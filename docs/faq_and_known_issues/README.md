@@ -214,3 +214,14 @@ Fields:
 ### 10. How to clone Imnify360 configuration on another system?
 
 The solution is available in [FAQ section](https://cloudlinux.zendesk.com/hc/en-us/articles/360022689394-How-to-Clone-Imunify360-Installation)
+
+### 11. How to disable Support icon in the Imunify360 UI?
+
+1. Go to <span class="notranslate">`/etc/sysconfig/imunify360/imunify360.config`</span>.
+2. And set <span class="notranslate">`PERMISSIONS.support_form:`</span> option to <span class="notranslate">`false`</span>.
+
+OR, **better**, run the following command:
+
+```
+imunify360-agent config update '{"PERMISSIONS": {"support_form": false}}'
+```
