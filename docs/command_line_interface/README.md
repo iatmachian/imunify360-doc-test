@@ -69,14 +69,13 @@ Optional arguments for the commands:
 |<span class="notranslate">`--by-country-code [country_code]`</span>|Filters output by country code.<br>Requires valid country code as argument.<br> Find valid country codes [here](https://www.nationsonline.org/oneworld/country_code_list.htm) in column ISO ALPHA-2 CODE.|
 |<span class="notranslate">`--by-ip [ip_address]`</span>|Filters output by abuser's IP or by subnet in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks).<br>Example: <span class="notranslate">`--by-ip 1.2.3.0/24`</span>.|
 |<span class="notranslate">`--by-list`</span>|Can be:<br><ul><li><span class="notranslate">any</span></li><li><span class="notranslate">gray (Gray List)</span></li><li><span class="notranslate">white (White List)</span></li><li><span class="notranslate">black (Black List)</span></li></ul>Filters output based on the list type.<br>Example: <span class="notranslate">`--by-list black`</span>.|
-|<span class="notranslate" style="color:red">--by-comment</span>|<span style="color:red">filters output by comment.</span>|
+|<span class="notranslate">`--by-comment`</span>|Filters output by comment.|
 |<span class="notranslate">`--limit`</span>|limits the output with specified number of incidents.<br>Must be a number greater than zero. By default, equals 100.|
 |<span class="notranslate">`--offset`</span>|Offset for pagination. By default, equals 0.|
 |<span class="notranslate">`--to`</span>|Allows to set the end of the period for filter.<br>Format is a timestamp.|
-|<span class="notranslate"><strike>--manual-only</strike> <span style="color:red">--manual</span></span>|Show only <strike>IP’s</strike> <font color="red">items</font> that have been added manually.|
-|<span class="notranslate"><strike>--no-manual-only</strike></span>|<strike>Show IP’s that have been added both automatically<br>and manually.</strike>|
+|<span class="notranslate">`--manual`</span>|Show only items that have been added manually.|
 |<span class="notranslate">`--verbose, -v`</span>|Allows to return data in good-looking view if<br>option <span class="notranslate">`--json`</span> is used.|
-|<span class="notranslate" style="color:red">--order-by</span>|<font color="red">need description</font>.|
+|<span class="notranslate">`--order-by`</span>|List of fields to sort the results by.|
  
 <div class="notranslate">
 
@@ -164,8 +163,8 @@ where 12.34.56.78 is that specific IP address.
 
 | | |
 |-|-|
-|<span class="notranslate">`--comment`</span>| allows to add comment to the item|
-|<span class="notranslate" style="color:red">--expiration</span>|<font color="red">allows to specify TTL for the blacklisted IP</font>|
+|<span class="notranslate">`--comment`</span>|allows to add comment to the item|
+|<span class="notranslate">`--expiration`</span>|allows to specify TTL for the blacklisted IP (in seconds since epoch)|
 
 **Examples:**
 
@@ -352,13 +351,11 @@ Optional arguments:
 
 </div>
 
-Allows to enable or disable additional CloudLinux software included in Imunify360 for free.
+Allows to enable or disable additional CloudLinux software included in Imunify360 for free. The following software is available:
 
-The following software is available:
-
-* [KernelCare](https://www.kernelcare.com) – <font color="red">use kernelcare feature name</font>
-* <span class="notranslate">[HardenedPHP](https://www.cloudlinux.com/hardenedphp)</span> – <font color="red">use hardened-php feature name</font>
-* <span class="notranslate">Invisible Captcha</span> – <font color="red">use invisible-captcha feature name</font>
+* [KernelCare](https://www.kernelcare.com) – use `kernelcare` feature name
+* <span class="notranslate">[HardenedPHP](https://www.cloudlinux.com/hardenedphp)</span> – use <span class="notranslate">`hardened-php`</span> feature name
+* <span class="notranslate">Invisible Captcha</span> – use <span class="notranslate">`invisible-captcha`</span> feature name
 
 Usage:
 
@@ -443,7 +440,7 @@ Option can be one or few of the optional arguments listed above and one more.
 |<span class="notranslate">`--since [timestamp]`</span>|allows to set start time to filter the list of incidents by period|
 |<span class="notranslate">`--to [timestamp]`</span>|allows to set finish time to filter the list of incidents by period|
 |<span class="notranslate">`--severity`</span>|allows to set severity to filter the list of incidents|
-|<font color="red">search</font>|<font color="red">need description</font>|
+|<span class="notranslate">`--search`</span>|string to search incidents by|
 
 _Example:_
 
@@ -608,7 +605,7 @@ Usage:
 <div class="notranslate">
 
 ```
-imunify360-agent malware [-h] [--optional arguments]
+imunify360-agent malware [command] [--optional arguments]
 ```
 
 </div>
@@ -617,12 +614,13 @@ Available commands:
 
 | | |
 |-|-|
-|<span class="notranslate">`dashboard indicators`</span>|Show indicators for dashboard.|
-|<span class="notranslate">`ignore`</span>|Allows to add, delete or show files which will not be scanned.|
-|<span class="notranslate">`malicious`</span>|Allows to manage malicious files.|
-|<span class="notranslate">`on-demand`</span>|Allows to manage on-demand scanner.|
-|<span class="notranslate">`read`</span>|Allows to read malware files.|
-|<span class="notranslate">`suspicious`</span>|Allows to manage suspicious files.|
+|<span class="notranslate">`ignore`</span>| malware Ignore List operations|
+|<span class="notranslate">`malicious`</span>| malware Malicious List operations|
+|<span class="notranslate">`on-demand`</span>| on-demand Scanner operations|
+|<span class="notranslate">`suspicious`</span>| malware Suspicious List operations|
+|<span class="notranslate">`cleanup status`</span>| show the status of the cleanup process|
+|<span class="notranslate">`hash`</span>| file hash white/blacklist related operations|
+|<span class="notranslate">`history list`</span>| lists the complete history of all malware-related incidents/actions (optional arguments available)|
  
 Optional arguments:
 
@@ -630,49 +628,108 @@ Optional arguments:
 |-|-|
 |<span class="notranslate">`-h, --help`</span>|Show this help message.|
 |<span class="notranslate">`--json`</span>|Returns data in JSON format.|
-|<span class="notranslate">`--limit`</span>|Limits the output with the specified number of domains.<br>Must be a number greater than zero. By default, equals 100.|
-|<span class="notranslate">`--offset`</span>|Offset for pagination. By default, equals 0.|
+|<span class="notranslate">`--limit LIMIT`</span>|Limits the output with the specified number of domains.<br>Must be a number greater than zero. By default, equals 100.|
+|<span class="notranslate">`--offset OFFSET`</span>|Offset for pagination. By default, equals 0.|
 |<span class="notranslate">`--verbose, -v`</span>|Allows to return data in a good-looking view if option <span class="notranslate">`--json`</span> is used.|
 |<span class="notranslate">`--since SINCE`</span>|Start date.|
 |<span class="notranslate">`--to TO`</span>|End date.|
 |<span class="notranslate">`--user USER`</span>|Returns results for a chosen user.|
+|<span class="notranslate">`--order-by [ORDER_BY [ORDER_BY ...]]`</span>|Sorting order.|
+|<span class="notranslate">`--by-status [BY_STATUS [BY_STATUS ...]]`</span>|Return items with selected status.|
+|<span class="notranslate">`--by-scan-id BY_SCAN_ID`</span>|Return items with selected ID.|
+|<span class="notranslate">`--items ITEMS`</span>|Return selected items.|
+|<span class="notranslate">`--search SEARCH`</span>|Search query.|
 
-<span class="notranslate">`command`</span> is a second positional argument for <span class="notranslate">`ignore`</span> and can be:
 
-| | |
-|-|-|
-|<span class="notranslate">`add`</span>|Add a file or files divided by space to the <span class="notranslate">Ignore List</span>.|
-|<span class="notranslate">`delete`</span>|Delete an ignored file or files divided by space from the list.|
-|<span class="notranslate">`list`</span>|Show a list of ignored files.|
- 
-<span class="notranslate">`command`</span> is a second positional argument for <span class="notranslate">`malicious`</span> and can be:
+<span class="notranslate">`action`</span> is the second positional argument for <span class="notranslate">`hash`</span> and can be one of the following:
 
 | | |
 |-|-|
-|<span class="notranslate">`delete`</span>|Delete malicious file or files divided by space.|
-|<span class="notranslate">`list`</span>|Show a list of malicious files.|
-|<span class="notranslate">`move-to-ignore`</span>|Move a file or files divided by space to the <span class="notranslate">Ignore List</span>.|
-|<span class="notranslate">`quarantine-malicious`</span>|Allows to add malicious files to quarantine.|
-|<span class="notranslate">`restore-from-backup`</span>|Restore source files from backup.|
-|<span class="notranslate">`restore-from-quarantine`</span>|Restore files from quarantine.|
+|<span class="notranslate">`list`</span>|list <span class="notranslate">White/Black</span>-listed file hashes (optional arguments apply)|
+|<span class="notranslate">`add`</span>|add file hash(es) of the specified type|
+|<span class="notranslate">`remove`</span>| remove file hash(es) of the specified type|
 
-<span class="notranslate">`command`</span> is a second positional argument for <span class="notranslate">`on-demand`</span> and can be:
+Positional arguments for <span class="notranslate">`add/remove`</span> are the list of SHA256 hashes calculated from the file contents
 
-| | |
-|-|-|
-|<span class="notranslate">`start`</span>|Start on-demand scanner for the path specified after the <span class="notranslate">`start`</span> command.<br>For example: <span class="notranslate">`imunify360-agent malware on-demand start --path /home/<username>/public_html/`</span>|
-|<span class="notranslate">`list`</span>|Returns a list of all on-demand scanner session results.|
-|<span class="notranslate">`status`</span>|Show current status for on-demand scanner.|
-|<span class="notranslate">`stop`</span>|Stop current scanning.|
+The argument that specifies which kind of hashes to add/remove:
 
-<span class="notranslate">`command`</span> is a second positional argument for <span class="notranslate">`suspicious`</span> and can be:
+<span class="notranslate">`--type`</span> - hash(es) type: <span class="notranslate">Black</span> or <span class="notranslate">White</span>
+
+
+<span class="notranslate">`action`</span> is the second positional argument for <span class="notranslate">`ignore`</span> and can be one of the following:
 
 | | |
 |-|-|
-|<span class="notranslate">`delete`</span>|Delete suspicious file or files divided by space.|
-|<span class="notranslate">`list`</span>|Show a list of suspicious files.|
-|<span class="notranslate">`move-to-ignore`</span>|Move suspicious files divided by space to the <span class="notranslate">Ignore List</span>.|
-|<span class="notranslate">`move-to-quarantine`</span>|Move suspicious files divided by space to the quarantine|
+|<span class="notranslate">`add`</span>|add a file PATH to the <span class="notranslate">Ignore List</span>|
+|<span class="notranslate">`delete`</span>|delete a file PATH from the <span class="notranslate">Ignore List</span>|
+|<span class="notranslate">`list`</span>|shows <span class="notranslate">Ignore List</span> entries (optional arguments apply)|
+
+<span class="notranslate">`command2`</span> is the second positional argument for the <span class="notranslate">`malicious`</span> command and can be one of the following:
+
+| | |
+|-|-|
+|<span class="notranslate">`cleanup`</span>|clean up infected ITEMS for a USER|
+|<span class="notranslate">`cleanup-all`</span>|clean up all files that have been detected as infected for all users|
+|<span class="notranslate">`restore-original`</span>|restore the original (malicious/infected) file to its original location|
+|<span class="notranslate">`delete`</span>|delete malicious/infected files|
+|<span class="notranslate">`list`</span>|list malicious/infected files|
+|<span class="notranslate">`move-to-ignore`</span>|move a <span class="notranslate">Malicious List</span> entry to the (malware) <span class="notranslate">Ignore List</span>|
+|<span class="notranslate">`quarantine-malicious`</span>|add malicious/infected files to the quarantine|
+|<span class="notranslate">`remove-from-list`</span>|remove malicious/infected files from the <span class="notranslate">Malicious List</span>|
+|<span class="notranslate">`restore-from-backup`</span>|restore a clean version of infected file from backup|
+|<span class="notranslate">`restore-from-quarantine`</span>|restore a quarantined file. The file will be automatically re-scanned|
+
+
+<span class="notranslate">`action`</span> is the second positional argument for <span class="notranslate">`on-demand`</span> and can be one of the following:
+
+| | |
+|-|-|
+|<span class="notranslate">`list`</span>|list all on-demand scans performed|
+|<span class="notranslate">`start --path PATH`</span>|starts an on-demand scan for a specified PATH|
+|<span class="notranslate">`status`</span>|show the on-demand malware scanner status|
+|<span class="notranslate">`stop`</span>|stop on-demand malware scanner process|
+
+The optional arguments for <span class="notranslate">`on-demand start`</span> are:
+
+| |
+|-|
+|<span class="notranslate">`--ignore-mask IGNORE_MASK`</span>|
+|<span class="notranslate">`--follow-symlinks`</span>|
+|<span class="notranslate">`--no-follow-symlinks`</span>|
+|<span class="notranslate">`--file-mask FILE_MASK`</span>|
+|<span class="notranslate">`--hash-filter`</span>|
+|<span class="notranslate">`--no-hash-filter`</span>|
+|<span class="notranslate">`--intensity {low,moderate,high}`</span>|
+
+<span class="notranslate">`action`</span> is the second positional argument for <span class="notranslate">`suspicious`</span> and can be one of:
+
+| | |
+|-|-|
+|<span class="notranslate">`delete`</span>|delete a <span class="notranslate">Suspicious List</span> entry|
+|<span class="notranslate">`list`</span>|obtain the list of <span class="notranslate">Suspicious List</span> entries|
+|<span class="notranslate">`move-to-ignore`</span>|move a <span class="notranslate">Suspicious List</span> entry to the (malware) <span class="notranslate">Ignore List</span>|
+|<span class="notranslate">`move-to-quarantine`</span>|move a <span class="notranslate">Suspicious List</span> entry to the quarantine|
+
+**Examples**
+
+1. The following command adds a hash to the malware <span class="notranslate">Black List</span>:
+
+<div class="notranslate">
+
+```
+imunify360-agent malware hash add --type black ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+```
+</div>
+
+2. The following command starts on-demand scanner for the path specified after the <span class="notranslate">`start`</span> command:
+
+<div class="notranslate">
+
+```
+imunify360-agent malware on-demand start --path /home/<username>/public_html/
+```
+</div>
+
  
 <div class="notranslate">
 
@@ -852,9 +909,9 @@ Option can be:
 | | |
 |-|-|
 |<span class="notranslate">`--id`</span>|ID number of the rule provided by the firewall plugin.|
-|<span class="notranslate">`--plugin`</span>|Firewall plugin name. Can be one of the following:<ul><li><span class="notranslate">`modsec`</span> for ModSecurity</li><li><span class="notranslate">`ossec`</span> for OSSEC</li><li><font color="red">lfd – need description</font></li></ul>|
+|<span class="notranslate">`--plugin`</span>|Firewall plugin name. Can be one of the following:<ul><li><span class="notranslate">`modsec`</span> for ModSecurity</li><li><span class="notranslate">`ossec`</span> for OSSEC</li><li><span class="notranslate">`lfd`</span> Login Failure Daemon (can be used in CSF integration mode)</li></ul>|
 |<span class="notranslate">`--name`</span>|Name of the added rule or details of the rule from <span class="notranslate">ModSecurity</span> or OSSEC.|
-|<font color="red">--domains</font>|<font color="red">need description</font>|
+|<span class="notranslate">`--domains`</span>|List of domains to disable a rule for. Can only be used with `modsec` type.|
 
 **Examples**
 1. The following command adds a rule with id 42 and name <span class="notranslate">‘Rule name’</span> for the <span class="notranslate">ModSecurity</span> rules to the disabled rules list:
@@ -1073,7 +1130,7 @@ imunify360-agent whitelist [subject] [command] <value> [--option]
 |<span class="notranslate">`move`</span>|Move item(-s) to the <span class="notranslate">White List</span>.|
 |<span class="notranslate">`edit`</span>|Edit comment on the item in the <span class="notranslate">White List</span>.|
 |<span class="notranslate">`list`</span>|List items(-s) in the <span class="notranslate">White List</span>.|
-|<font color="red">reset-to</font>|<font color="red">Replace whitelisted domains list with a new list.</font>|
+|<span class="notranslate">`reset-to`</span>|Replace whitelisted domains list with a new list.|
 
 Please note that by default <span class="notranslate">`list`</span> command outputs only first 100 items in the list as if it was run as <span class="notranslate">`whitelist ip list --limit 100`</span>.
 To check whether specific IP address is in the list, you can run the following command:
@@ -1097,7 +1154,7 @@ where `12.34.56.78` is that specific IP address.
 |<span class="notranslate">`--comment`</span>|Allows to add a comment to the item.|
 |<span class="notranslate">`--full-access`</span>|Only for <span class="notranslate">`move`</span> and <span class="notranslate">`edit`</span> commands.<br>Allows to grant full access to the IP or subnet ignoring the rules in Blocked ports.|
 |<span class="notranslate">`--no-full-access`</span>|Only for <span class="notranslate">`move`</span> and <span class="notranslate">`edit`</span> commands.<br>Allows to remove full access of the IP or subnet.|
-|<span class="notranslate" style="color:red">--expiration</span>|<font color="red">allows to specify TTL for the whitelisted IP</font>|
+|<span class="notranslate">`--expiration`</span>|Allows to specify TTL for the blacklisted IP (in seconds since epoch).|
 
 **Examples:**
 
@@ -1169,7 +1226,6 @@ Available commands:
 |<span class="notranslate">`details`</span>|allows to show details for the event.|
 |<span class="notranslate">`ignore list`</span>|allows to list files included to <span class="notranslate">Proactive Defense Ignore List</span>.|
 |<span class="notranslate">`ignore add`</span>|allows to add a file to <span class="notranslate">Proactive Defense Ignore List</span>.|
-|<font color="red">ignore addmany</font>|<font color="red">allows to add some files at once to Proactive Defense Ignore List</font>.|
 
 <span class="notranslate">`option`</span> can be one or few of the optional arguments listed above and one more.
 
@@ -1179,12 +1235,10 @@ Available commands:
 |<span class="notranslate">`--id`</span>|for <span class="notranslate">`details`</span>, <span class="notranslate">`ignore delete rule`</span> commands.<br>Allows to specify rule id.|
 |<span class="notranslate">`--rule-id`</span>|only for <span class="notranslate">`ignore add`</span> command.<br>Allows to specify rule id.|
 |<span class="notranslate">`--rule-name`</span>|only for <span class="notranslate">`ignore add`</span> command.<br>Allows to specify rule name.|
-|<font color="red">--since [timestamp]</font>|<font color="red">allows to set start time to filter the list of incidents by period</font>|
-|<font color="red">--to [timestamp]</font>|<font color="red">allows to set finish time to filter the list of incidents by period</font>|
-|<font color="red">--user</font>|<font color="red">need description</font>|
-|<font color="red">--search</font>|<font color="red">need description</font>|
-|<font color="red">--paths</font>|<font color="red">for the ignore addmany command. Allows to to specify paths separated by comma to the files.</font>|
-
+|<span class="notranslate">`--since [timestamp]`</span>|allows to set start time to filter the list of incidents by period.|
+|<span class="notranslate">`--to [timestamp]`</span>|allows to set finish time to filter the list of incidents by period.|
+|<span class="notranslate">`--user`</span>|show events for a specific user.|
+|<span class="notranslate">`--search`</span>|string to search Proactive events by.|
 
 **Examples:**
 
@@ -1281,7 +1335,7 @@ Allows to manage Imunify360 features available for users.
 <div class="notranslate">
 
 ```
-iimunify360-agent feature-management [command] [--optional argument]...
+imunify360-agent feature-management [command] [--optional argument]...
 ```
 
 </div>

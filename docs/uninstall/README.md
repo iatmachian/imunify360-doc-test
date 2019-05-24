@@ -38,8 +38,6 @@ For CloudLinux OS, please run the following commands:
 
 to remount <span class="notranslate">CageFS</span> and remove files from user's local directories as after uninstallation these files are not removed automatically and can generate errors to Apache log.
 
-<font color="red">*********** New section added ***********************</font>
-
 
 ## How to stop Imunify360
 

@@ -60,7 +60,7 @@ module.exports = {
     cloudlinuxSite: "https://cloudlinux.com",
     locales: {
       "/": {
-        // text for the language dorpdown title
+        // text for the language dropdown title
         title: "Language",
         // text for the language dropdown
         selectText: "En",
@@ -77,7 +77,10 @@ module.exports = {
             buttonText: "Refresh"
           }
         },
-        algolia: {},
+        algolia: {
+          apiKey: 'c2e14586074e24bec163f37da724fe7c',
+          indexName: 'imunify360'
+        },
         stayInTouch: "Stay in touch",
         bottomLinks: [
             {
@@ -127,11 +130,14 @@ module.exports = {
         search: "Поиск",
         serviceWorker: {
           updatePopup: {
-            message: "Новый контент доступен",
+            message: "Доступен новый контент",
             buttonText: "Обновить"
           }
         },
-        algolia: {},
+        algolia: {
+          apiKey: 'c2e14586074e24bec163f37da724fe7c',
+          indexName: 'imunify360'
+        },
         stayInTouch: "Будем на связи",
         bottomLinks: [
             {
