@@ -225,3 +225,14 @@ OR, **better**, run the following command:
 ```
 imunify360-agent config update '{"PERMISSIONS": {"support_form": false}}'
 ```
+
+### 12. How to hide the Ignore List tab for end users in the Imunify360 UI?
+
+1. Go to <span class="notranslate">`/etc/sysconfig/imunify360/imunify360.config`</span>.
+2. And set <span class="notranslate">`PERMISSIONS.user_ignore_list:`</span> option to <span class="notranslate">`false`</span>.
+
+OR, **better**, run the following command:
+
+```
+imunify360-agent config update '{"PERMISSIONS": {"user_ignore_list": false}}'
+```
