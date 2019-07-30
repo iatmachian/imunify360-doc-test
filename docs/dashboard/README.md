@@ -1204,9 +1204,8 @@ Click <span class="notranslate">_Save changes_</span> button at the bottom of th
 
 ### Malware
 
-Go to <span class="notranslate">Imunify360 | Settings | Malware</span>. 
-
 Here you can configure the following:
+* <span class="notranslate">Resource consumption</span>
 * <span class="notranslate">General</span>
 * <span class="notranslate">Background Scanning</span><sup> Beta 4.1+</sup>
 * <span class="notranslate">Malware Cleanup</span><sup> 3.7.1+</sup>
@@ -1216,9 +1215,23 @@ Here you can configure the following:
 ::: tip Note
 Read [CXS integration](/ids_integration/#cxs-integration) documentation carefully to make Malware Scanner work properly if you decided to use the former instead of Imunify360 anti-malware protection.
 :::
+
+**Resource consumption**
+
+![](/images/SettingsMalwareResourceConsumption.png)
+
+* <span class="notranslate">_CPU consumption_</span> – enables to set a level of CPU usage by Malware Scanner.
+    ::: tip Note
+    Low CPU usage means low scanning speed
+    :::
+* <span class="notranslate">_I/O consumption_</span> – enables to set a level of I/O usage by Malware Scanner.
+    :::tip Note
+    Low I/O usage means low scanning speed
+    :::
+
 **General**
 
-![](/images/SettingsMalware.png)
+![](/images/SettingsMalware2.png)
 
 * <span class="notranslate">_Automatically scan all modified files_</span> – enables real-time scanning for modified files using [inotify](https://en.wikipedia.org/wiki/Inotify) library. The Scanner searches for modified files in user’s DocumentRoot directories.
   ::: tip Note
@@ -1233,13 +1246,20 @@ Read [CXS integration](/ids_integration/#cxs-integration) documentation carefull
   It requires [Pure-FTPd](https://www.pureftpd.org/project/pure-ftpd) to be used as FTP service.
   :::
 * <span class="notranslate">_Automatically send suspicious and malicious files for analysis_</span> – malicious and suspicious files will be sent to the Imunify360 Team for analysis automatically.
-* <span class="notranslate">_Show ClamAV scanning results_</span> – show ClamAV scanning results in <span class="notranslate">_Users/Files_</span> tab.
 * <span class="notranslate">_Try to restore from backup first_</span> – allows to restore file as soon as it was detected as malicious from backup if a clean copy exists. If a clean copy does not exist or it is outdated, default action will be applied. See also <span class="notranslate">[CloudLinux Backup](/dashboard/#backups)</span>.
 * <span class="notranslate">_Use backups not older than (days)_</span> – allows to set the a maximum age of a clean file.
 * <span class="notranslate">_Default action on detect_</span> – configure Malware Scanner actions when detecting malicious activity:
   * <span class="notranslate">Delete permanently</span>
-  * <span class="notranslate">Quarantine file in place</span>
+  * <span class="notranslate">Quarantine file</span>
   * <span class="notranslate">Just display in dashboard</span>
+  * <span class="notranslate">Cleanup</span>
+  * <span class="notranslate">Cleanup, Quarantine as a fallback</span>
+
+:::tip Note
+Those options may be hidden for end-user if Cleanup is disabled in Features Management.
+:::
+
+* <span class="notranslate">_Rapid scan_</span> – dramatically speeds up repeated scans based on smart re-scan approach, local result caching and cloud-assisted scan.
 
 Tick required checkboxes and click <span class="notranslate">_Save changes_</span> button.
 
