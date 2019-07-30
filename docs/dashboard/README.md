@@ -1256,7 +1256,7 @@ Read [CXS integration](/ids_integration/#cxs-integration) documentation carefull
   * <span class="notranslate">Cleanup, Quarantine as a fallback</span>
 
 :::tip Note
-Those options may be hidden for end-user if Cleanup is disabled in Features Management.
+Some options may be hidden for end-user if Cleanup is disabled in Features Management.
 :::
 
 * <span class="notranslate">_Rapid scan_</span> – dramatically speeds up repeated scans based on smart re-scan approach, local result caching and cloud-assisted scan.
