@@ -484,44 +484,15 @@ You will see a notification if an IP is successfully removed.
 
 ![](/images/success_01_zoom75.png)
 
-
-#### How to use external files with the list of Black/White IPs
-
-To use external files with the list of <span class="notranslate">Black/White IPs</span>, place this list into the following directory:
-
-* for the White List:
-
-<div class="notranslate">
-
-```
-/etc/imunify360/whitelist/*.txt
-```
-</div>
-
-* for the Black List:
-
-<div class="notranslate">
-
-```
-/etc/imunify360/blacklist/*.txt
-```
-</div>
-
-Then run the following command:
-
-<div class="notranslate">
-
-```
-imunify360-agent reload-lists
-```
-</div>
-
-Or restart the agent.
-
+See also: [How to use external files with the list of Black/White IPs](/firewall_config/#external-black-whitelist-management)
 
 ### Blocked Ports
 
 This feature allows to block specific ports for TCP/UDP connection. It is also possible to add specific IPs or subnet as a whitelisted so that the rule for the port will not work.
+
+:::tip Note
+Imunify360 can block particular ports using this feature, yet it doesn't support a paradigm to "block everything but the selected ports". That could be achieved via legacy linux iptables.
+:::
 
 Click <span class="notranslate">_Lists_</span> and choose <span class="notranslate">_Blocked Ports_</span>.
 
@@ -669,7 +640,12 @@ The table has the following columns:
 * <span class="notranslate">**Detected**</span> — displays the exact time when a file was detected as malicious.
 * <span class="notranslate">**User name**</span> — displays file owner name.
 * <span class="notranslate">**File**</span> — the path where the file is located starting with root
-* <span class="notranslate">**Reason**</span> — describes the signature which was detected during the scanning process. Names in this column depend on the signature vendor.
+* <span class="notranslate">**Reason**</span> — describes the signature which was detected during the scanning process. Names in this column depend on the signature vendor. You can derive some information from the signature ID itself. `SMW-SA-05155-wshll` – in this Signature ID:
+	* The first section can be either `SMW` or `CMW`. `SMW` stands for Server Malware and `CMW` stands for Client Malware
+	* The second section of ID can be either `INJ` or `SA`. `INJ` stands for Injection (means Malware is Injected to some legitimate file) and `SA` stands for StandAlone (means File is Completely Malicious)
+	* The third section is `05155`. This is simply an identification number for the signature.
+	* The fourth section `wshll/mlw.wp/etc` explains the category and class of malware identified. Here, `wshll` stands for web shell (`mlw` stands for malware).
+	* The fifth section is `0`, which provides the version number of the signature.
 * <span class="notranslate">**Status**</span> — displays the file status:
   * <span class="notranslate">**Infected**</span> — threat was detected after scanning. If a file was not cleaned after cleanup, the info icon is displayed. Hover mouse over info icon to display the reason;
   * <span class="notranslate">**Cleaned**</span> —  infected file is cleaned up.
@@ -736,11 +712,11 @@ After <span class="notranslate">Malware Scanner</span> stops on-demand scanning 
 
 * <span class="notranslate">_Date_</span> – the date when the scanning process was started.
 * <span class="notranslate">_Path_</span> – the name of the folder that was scanned.
-* <span class="notranslate">_Total_</span> – the total number of files scanned.
-* <span class="notranslate">_Malicious_</span> – the number of malicious files found during the scanning.
-* <span class="notranslate">_Action_</span> – click icon in this column to perform particular actions.
+* <span class="notranslate">_Total files_</span> – the total number of files scanned.
+* <span class="notranslate">_Result_</span> – the result of scanning.
+* <span class="notranslate">_Actions_</span> – click icon in this column to perform particular action.
 
-![](/images/malwarescannerondemand_zoom70.png)
+![](/images/MalwareScannerResults.png)
 
 To review and manage malicious files go to the <span class="notranslate">_Files_</span> tab described below.
 
@@ -985,7 +961,13 @@ die();
 
 Choose <span class="notranslate">_Reputation Management_</span> in the main menu of the Imunify360 user interface to get to the <span class="notranslate">Reputation Management</span> page.
 
-Based on the [Google Safe Browsing](https://safebrowsing.google.com/), the <span class="notranslate">Reputation Management</span> allows to check if a domain registered on your server is safe or not.
+<span class="notranslate">Reputation Management</span> allows to check if a domain registered on your server is safe or not based on the following reputation engines:
+
+* [Google Safe Browsing](https://safebrowsing.google.com/)
+* [Yandex Safe Browsing](https://tech.yandex.com/safebrowsing/)
+* [Spamhaus](https://www.spamhaus.org/)
+* [PhishTank](https://www.phishtank.com/)
+* [OpenPhish](https://openphish.com/).
 
 How does it work:
 
@@ -994,7 +976,7 @@ How does it work:
 * Get results from it
 * Add bad domains to the list of <span class="notranslate">Reputation Management</span>
 
-If a domain or an IP is blocked, then this information will be available in the table below. Imunify360 uses [Google Safe Browsing](https://safebrowsing.google.com/) technology. If a user’s website appears in this table, then it would be useful to send [this link](https://developers.google.com/webmasters/hacked/) to the user. This instruction can help to solve problems with the domain.
+If a domain or an IP is blocked, then this information will be available in the table below. If a user’s website appears in this table, then it would be useful to send [this link](https://developers.google.com/webmasters/hacked/) to the user. This instruction can help to solve problems with the domain.
 
 At the top of the page (also in the main menu near <span class="notranslate">Reputation Management</span> item), Imunify360 shows the number of affected domains. This number is a quantity of affected domains that exist on the server.
 
@@ -1198,7 +1180,16 @@ Click <span class="notranslate">_Save changes_</span> button on the bottom of th
 	
 #### WebShield
 
-Tick <span class="notranslate">_Detect IPs behind CDN_</span> checkbox to allow to recognize and block IPs with suspicious activity behind Cloudflare and MaxCDN.
+Tick <span class="notranslate">_Detect IPs behind CDN_</span> checkbox to allow to recognize and block IPs with suspicious activity behind supported CDN providers.
+
+Supported CDN providers:
+
+* Cloudflare
+* MaxCDN
+* StackPath CDN
+* KeyCDN
+* Dartspeed.com
+* QUIC.cloud CDN
 	
 ![](/images/webshield.png)
 
@@ -1251,6 +1242,7 @@ Here you can configure the following:
 Read [CXS integration](/ids_integration/#cxs-integration) documentation carefully to make Malware Scanner work properly if you decided to use the former instead of Imunify360 anti-malware protection.
 :::
 
+
 **Resource consumption**
 
 ![](/images/SettingsMalwareResourceConsumption.png)
@@ -1263,6 +1255,7 @@ Read [CXS integration](/ids_integration/#cxs-integration) documentation carefull
     :::tip Note
     Low I/O usage means low scanning speed
     :::
+
 
 **General**
 
@@ -1290,8 +1283,9 @@ Read [CXS integration](/ids_integration/#cxs-integration) documentation carefull
   * <span class="notranslate">Cleanup</span>
   * <span class="notranslate">Cleanup, Quarantine as a fallback</span>
 
+
 :::tip Note
-Some options may be hidden for end-user if Cleanup is disabled in Features Management.
+Those options may be hidden for end-user if Cleanup is disabled in Features Management.
 :::
 
 * <span class="notranslate">_Rapid scan_</span> – dramatically speeds up repeated scans based on smart re-scan approach, local result caching and cloud-assisted scan.
@@ -1329,7 +1323,7 @@ You can track the scanning activity at the <span class="notranslate">[Malware Sc
 ![](/images/malwarescannersettings_zoom70.png)
 
 
-**Proactive Defense<sup> 4.0+</sup>**
+**Proactive Defense<sup> 4.2+</sup>**
 
 * <span class="notranslate">_Enable Blamer_</span> — tick to allow Imunify360 to find a root cause of how infection got injected into the server through PHP. Blamer pinpoints exact URL, PHP script & PHP execution path that allowed a hacker to inject malware onto the server.
 Imunify360 security team will use that information to prevent future infections from happening.
@@ -1338,11 +1332,11 @@ Imunify360 security team will use that information to prevent future infections 
 
 Click <span class="notranslate">_Save changes_</span> button at the page bottom to apply all changes.
 
+To reduce the number of blamer events, similar events are combined by default into a single one. In order to disable it, specify <span class="notranslate"> `filter_messages=off` </span>
+in <span class="notranslate"> _/usr/share/i360-php-opts/module.ini_ </span>
+
 ### Backups
 
-::: tip Note
-Imunify360 2.7.0+
-:::
 #### Overview
 
 Imunify360 provides customers with an ability to integrate with backup providers and automatically or manually restore files from their backup if they have become infected. Only administrator can choose backup provider but end user has an ability to backup and restore files within this selected backup provider.

@@ -130,11 +130,23 @@ to request CAPTCHA again</td></tr>
 <td># enable (<span class="notranslate">true</span>) or disable (<span class="notranslate">false) Blamer</span></td></tr>
 <tr><td><span class="notranslate">mode: KILL</span></td>
 <td># available modes:<ul><li><span class="notranslate">KILL</span></li><li><span class="notranslate">DISABLED</span></li><li><span class="notranslate">LOG</span></li></ul></td></tr>
- </table>
-
-::: tip Experimental - <span class="notranslate">Active Response</span> feature
-The following feature requires a special Imunify360 build - contact our tech support at <span class="notranslate">https://cloudlinux.zendesk.com (Imunify360</span> department) to enable it.
-:::
+<tr>
+<th colspan="2" align="left"><span class="notranslate">MALWARE_SCAN_INTENSITY:</span></th></tr>
+<tr><td><span class="notranslate">cpu: 6</span></td>
+<td># intensity level for CPU consumption. Can be set from 1 to 7, default is 6</td></tr>
+<tr><td><span class="notranslate">io: 6</span></td>
+<td># intensity level for file operations. Can be set from 1 to 7, default is 6</td></tr>
+<tr>
+<th colspan="2" align="left"><span class="notranslate">MALWARE_SCAN_SCHEDULE:</span></th></tr>
+<tr><td><span class="notranslate">day_of_month: 4</span></td>
+<td># when the background scan shall start, day of the month. Can be from 1 to 31, the default value is the next day after the installation</td></tr>
+<tr><td><span class="notranslate">day_of_week: 0</span></td>
+<td># when the background scan shall start, day of the week. Can be from 0 to 7 (0 for Sunday, 1 for Monday..., 7 for Sunday (again)), the default value is 0</td></tr>
+<tr><td><span class="notranslate">hour: 3</span></td>
+<td># when the background scan shall start, hour. Can be from 0 to 23, the default value is 3</td></tr>
+<tr><td><span class="notranslate">interval: none</span></td>
+<td># interval of scan. Supported values: strings <span class="notranslate">`none`</span>, <span class="notranslate">`day`</span>, <span class="notranslate">`week`</span>, <span class="notranslate">`month`</span>, the default value is <span class="notranslate">`none`</span> (no scan)</td></tr>
+</table>
 
 <span class="notranslate">Active Response</span> is an ossec-driven (IDS) feature of Imunify360 which has been re-engineered to make it capable of blocking access to a specific server port being attacked.
 

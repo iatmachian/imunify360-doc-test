@@ -141,10 +141,12 @@ For cPanel/EasyApache 4, Plesk, DirectAdmin and LiteSpeed _mod_remoteip_ will be
 	
 #### Supported CDN providers:
 
-* Cloudflare: December 2018
-* MaxCDN: December 2018
-* StackPath CDN: April 2019
-* KeyCDN is not supported at the moment, ETA is not yet available.
+* Cloudflare
+* MaxCDN
+* StackPath CDN
+* KeyCDN
+* Dartspeed.com
+* QUIC.cloud CDN
 
 ### SplashScreen for Chinese customers
 
@@ -178,6 +180,7 @@ service imunify360-websheld reload
 systemctl reload imunify360-webshield
 ```
 </div>
+
 
 The graylisted visitors will see such screen for 5 seconds before redirecting to their initial destination.
 

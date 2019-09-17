@@ -154,6 +154,8 @@ imunify360-agent register IPL
 
 ## Update Instructions
 
+
+
 To upgrade Imunify360 run the command:
 
 <div class="notranslate">
@@ -207,6 +209,7 @@ apt-get update
 ```
 
 </div>
+
 
 ### Gradual roll-out 
 
