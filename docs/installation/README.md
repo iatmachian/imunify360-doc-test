@@ -1,7 +1,7 @@
 # Installation Guide
 ## Requirements
 **Operating system**
-* <span class="notranslate">CentOS</span>
+* <span class="notranslate">CentOS 6 and 7</span>
 * <span class="notranslate">RHEL</span>
 * <span class="notranslate">CloudLinux OS</span> 6 and 7
 * <span class="notranslate">Ubuntu 16.04 LTS</span> only <sup>3.6+</sup>
@@ -13,7 +13,7 @@
 
 **Hardware**
 
-* <span class="notranslate">RAM: 512Mb</span>
+* <span class="notranslate">RAM: 1Gb</span>
 * <span class="notranslate">HDD: 20Gb</span> available disk space
 
 **Supported hosting panels**
@@ -67,6 +67,11 @@ Make sure that you have a license key. You can purchase it or get a trial licens
 ::: tip Note
 Before proceeding to installation process read carefully the information about specific settings for each supported hosting panel and <span class="notranslate">mod_security</span> rulesets [here](/hosting_panels_specific_settin/).
 :::
+
+:::warning Warning
+On DirectAdmin, Imunify UI requires the <span class="notranslate">`proc_open`</span> PHP function to be enabled. If you are unable to open the Imunify UI, you might see a related message in the <span class="notranslate">`errror.log`</span> of the web-server. If so, please remove it from the <span class="notranslate">`disable_functions`</span> list in <span class="notranslate">`php.ini`</span>.
+:::
+
 To install Imunify360 proceed the following steps:
 
 1. Log in with root privileges to the server where Imunify360 should be installed.

@@ -58,6 +58,7 @@ Available commands:
 |<span class="notranslate">`feature-management`</span>| manage Imunify360 features available for users|
 |<span class="notranslate">`feature-management native enable`<sup> Beta 4.0+ cPanel</sup></span>|activate the Native Features Management using WHM/cPanel package extensions.|
 |<span class="notranslate">`feature-management native disable`<sup> Beta 4.0+ cPanel</sup></span>|deactivate the Native Features Management using WHM/cPanel package extensions and return the original Imunify360 Features Management back.|
+|<span class="notranslate">`backup-systems`</span>|allows to manage CloudLinux Backup|
 
 Optional arguments for the commands:
 
@@ -113,7 +114,7 @@ Optional arguments:
 
 </div>
 
-This command allows to view or edit actual IPs in the <span class="notranslate">Black List</span>.
+This command allows you to view or edit actual IPs in the <span class="notranslate">Black List</span>.
 
 Usage:
 
@@ -164,6 +165,7 @@ where 12.34.56.78 is that specific IP address.
 |-|-|
 |<span class="notranslate">`--comment`</span>|allows to add comment to the item|
 |<span class="notranslate">`--expiration`</span>|allows to specify TTL for the blacklisted IP (in seconds since epoch)|
+|<span class="notranslate">`--scope`</span>|allows to set the scope to <span class="notranslate">_Global/Local_</span>. Accepts two values: <span class="notranslate">`local`</span> (a default value, means "add IP on this server only") and <span class="notranslate">`group`</span> (means "add IP for the whole group in which this server is").|
 
 **Examples:**
 
@@ -183,6 +185,17 @@ where 12.34.56.78 is that specific IP address.
 
    ```
    imunify360-agent blacklist --by-country-code BO
+   ```
+
+</div>
+
+
+* The following command adds an IP 1.2.3.4 to the Black List and sets the scope to <span class="notranslate">`group`</span>:
+
+<div class="notranslate">
+
+   ```
+imunify360-agent blacklist ip add 1.2.3.4 --scope group
    ```
 
 </div>
@@ -249,7 +262,7 @@ imunify360-agent blocked-port add 5555:tcp --comment “Some comment”
 Allows to send domains list to check on Imunify360 central server. This command requires cPanel. After domains checked, the results is available via command <span class="notranslate">`infected-domains`</span>.
 
 ::: tip Note
-The server requires some time for checking and the results may not be ready immediately.
+<span class="notranslate">`check-domains`</span> command may take a few minutes to complete.
 :::
 Usage:
 
@@ -443,11 +456,18 @@ Option can be one or few of the optional arguments listed above and one more.
 
 | | |
 |-|-|
+|<span class="notranslate">`--order-by [ORDER_BY [ORDER_BY ...]]`</span>|Sorting order.|
+|<span class="notranslate">`--limit`</span>|Limits the output with specified number of IPs.<br>Must be a number greater than zero. By default, equals 50.|
+|<span class="notranslate">`--by-country-code [country_code]`</span>|Filters output by country code.<br>Requires valid country code as argument.<br>Find valid country codes<br>in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks) in column ISO ALPHA-2 CODE.|
 |<span class="notranslate">`--period [period]`</span>|Timeframe.<br>Allows to specify the amount of time starting from the current day.<br>Should be greater than (or equal to) 1 minute.<br>Can be specified in format:<ul><li><span class="notranslate">`<int>m`</span> – minutes, example <span class="notranslate">` --period 30m`</span></li><li><span class="notranslate">`<int>h`</span> – hours, example <span class="notranslate">`--period 4h`</span></li><li><span class="notranslate">`<int>d`</span> – days, example <span class="notranslate">`--period 7d`</span></li><li><span class="notranslate">`today`</span> – for today, example <span class="notranslate">`--period today`</span></li><li><span class="notranslate">`yesterday`</span> – for yesterday, example <span class="notranslate">`--period yesterday`</span></li></ul>For example, <span class="notranslate">` --period 5d`</span> will return a list of incidents for 5 days. |
 |<span class="notranslate">`--since [timestamp]`</span>|allows to set start time to filter the list of incidents by period|
 |<span class="notranslate">`--to [timestamp]`</span>|allows to set finish time to filter the list of incidents by period|
 |<span class="notranslate">`--severity`</span>|allows to set severity to filter the list of incidents|
+|<span class="notranslate">`--offset OFFSET`</span>|offset for pagination. By default, equals 0|
+|<span class="notranslate">`--by-abuser-ip [BY_ABUSER_IP]`</span>| selection based on abuser IP address|
+|<span class="notranslate">`--json`</span>| return data in JSON format |
 |<span class="notranslate">`--search`</span>|string to search incidents by|
+|<span class="notranslate">`--by-list`</span>|Can be:<br><ul><li>any</li><li>gray (Gray List)</li><li>white (White List)</li><li>black (Black List)</li></ul>Filters output based on the list type.<br>Example: <span class="notranslate">`--by-list black`</span>.|
 
 _Example:_
 
@@ -630,7 +650,6 @@ Available commands:
 |<span class="notranslate">`on-demand`</span>| on-demand Scanner operations|
 |<span class="notranslate">`suspicious`</span>| malware Suspicious List operations|
 |<span class="notranslate">`cleanup status`</span>| show the status of the cleanup process|
-|<span class="notranslate">`hash`</span>| file hash white/blacklist related operations|
 |<span class="notranslate">`history list`</span>| lists the complete history of all malware-related incidents/actions (optional arguments available)|
  
 Optional arguments:
@@ -650,21 +669,6 @@ Optional arguments:
 |<span class="notranslate">`--by-scan-id BY_SCAN_ID`</span>|Return items with selected ID.|
 |<span class="notranslate">`--items ITEMS`</span>|Return selected items.|
 |<span class="notranslate">`--search SEARCH`</span>|Search query.|
-
-
-<span class="notranslate">`action`</span> is the second positional argument for <span class="notranslate">`hash`</span> and can be one of the following:
-
-| | |
-|-|-|
-|<span class="notranslate">`list`</span>|list <span class="notranslate">White/Black</span>-listed file hashes (optional arguments apply)|
-|<span class="notranslate">`add`</span>|add file hash(es) of the specified type|
-|<span class="notranslate">`remove`</span>| remove file hash(es) of the specified type|
-
-Positional arguments for <span class="notranslate">`add/remove`</span> are the list of SHA256 hashes calculated from the file contents
-
-The argument that specifies which kind of hashes to add/remove:
-
-<span class="notranslate">`--type`</span> - hash(es) type: <span class="notranslate">Black</span> or <span class="notranslate">White</span>
 
 
 <span class="notranslate">`action`</span> is the second positional argument for <span class="notranslate">`ignore`</span> and can be one of the following:
@@ -708,8 +712,6 @@ The optional arguments for <span class="notranslate">`on-demand start`</span> ar
 |<span class="notranslate">`--follow-symlinks`</span>|
 |<span class="notranslate">`--no-follow-symlinks`</span>|
 |<span class="notranslate">`--file-mask FILE_MASK`</span>|
-|<span class="notranslate">`--hash-filter`</span>|
-|<span class="notranslate">`--no-hash-filter`</span>|
 |<span class="notranslate">`--intensity-cpu {1 to 7}`</span> 1 means the lowest intensity, 7 means the highest intensity|
 |<span class="notranslate">`--intensity-io {1 to 7}`</span> 1 means the lowest intensity, 7 means the highest intensity|
 
@@ -724,16 +726,7 @@ The optional arguments for <span class="notranslate">`on-demand start`</span> ar
 
 **Examples**
 
-1. The following command adds a hash to the malware <span class="notranslate">Black List</span>:
-
-<div class="notranslate">
-
-```
-imunify360-agent malware hash add --type black ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
-```
-</div>
-
-2. The following command starts on-demand scanner for the path specified after the <span class="notranslate">`start`</span> command:
+1. The following command starts on-demand scanner for the path specified after the <span class="notranslate">`start`</span> command:
 
 <div class="notranslate">
 
@@ -742,7 +735,7 @@ imunify360-agent malware on-demand start --path /home/<username>/public_html/
 ```
 </div>
 
-3. The following command shows the example of the <span class="notranslate">`ignore-mask`</span> usage when you have to scan all `d*` folders except for the <span class="notranslate">`dixon77w.com`</span> and <span class="notranslate">`dunnrrr.com`</span>:
+2. The following command shows the example of the <span class="notranslate">`ignore-mask`</span> usage when you have to scan all `d*` folders except for the <span class="notranslate">`dixon77w.com`</span> and <span class="notranslate">`dunnrrr.com`</span>:
 
 <div class="notranslate">
 
@@ -1053,17 +1046,17 @@ Optional arguments:
 
 </div>
 
-To submit file as false positive (if Imunify360 considers file as a malicious but it actually doesn’t) you can use the following command:
+To submit file as false positive (if Imunify360 considers file as a malicious but it actually doesn’t) you can use the following command (please make sure to specify the file name along with full path):
 
 <div class="notranslate">
 
 ```
-imunify360-agent submit false-positive <file>
+imunify360-agent submit false-positive --reason <reason> --scanner ai-bolit <file>
 ```
 
 </div>
 
-To submit file as false negative (if Imunify360 considers file as a non-malicious but it actually does) you can use the following command:
+To submit file as false negative (if Imunify360 considers file as a non-malicious but it actually does) you can use the following command (please make sure to specify the file name along with full path):
 
 <div class="notranslate">
 
@@ -1142,6 +1135,7 @@ where `12.34.56.78` is that specific IP address.
 |<span class="notranslate">`--full-access`</span>|Only for <span class="notranslate">`move`</span> and <span class="notranslate">`edit`</span> commands.<br>Allows to grant full access to the IP or subnet ignoring the rules in Blocked ports.|
 |<span class="notranslate">`--no-full-access`</span>|Only for <span class="notranslate">`move`</span> and <span class="notranslate">`edit`</span> commands.<br>Allows to remove full access of the IP or subnet.|
 |<span class="notranslate">`--expiration`</span>|Allows to specify TTL for the blacklisted IP (in seconds since epoch).|
+|<span class="notranslate">`--scope`</span>|Allows to set the scope to <span class="notranslate">_Global/Local_</span>. Accepts two values: <span class="notranslate">`local`</span> (a default value, means "add IP on this server only") and <span class="notranslate">`group`</span> (means "add IP for the whole group in which this server is").|
 
 **Examples:**
 
@@ -1181,6 +1175,16 @@ where `12.34.56.78` is that specific IP address.
 
    ```
    imunify360-agent whitelist domain list
+   ```
+
+</div>
+
+5. The following command adds an IP 1.2.3.4 to the White List and sets the scope to <span class="notranslate">`group`</span>:
+
+<div class="notranslate">
+
+   ```
+imunify360-agent whitelist ip add 1.2.3.4 --scope group
    ```
 
 </div>
@@ -1433,3 +1437,101 @@ Imunify360 will keep applying users <span class="notranslate">Features Managemen
 ::: warning Warning
 <span class="notranslate">`feature-management enable/disable --feature av`</span> and <span class="notranslate">`feature-management enable/disable --feature proactive`</span> commands will start functioning.
 :::
+
+
+## Backup systems
+
+Allows to manage backup systems integrated to Imunify360.
+
+**Usage:**
+
+<div class="notranslate">
+
+```
+imunify360-agent backup-systems [command] <value>
+```
+</div>
+
+<span class="notranslate">`command`</span> is a positional argument and can be:
+| | |
+|-|-|
+|<span class="notranslate">`list`</span>|List of all available backup systems.|
+|<span class="notranslate">`status`</span>|Returns backup system status including a current backup system and enabling status.|
+|<span class="notranslate">`extended-status`</span>|Returns extended status including log file path, error on executing, current backup system, enabling status, current state, and current backup progress bar.|
+|<span class="notranslate">`init`</span>|<span class="notranslate">`<value>`</span> must be in the list of available backup systems. Initializes <span class="notranslate">`<value>`</span> backup system.|
+|<span class="notranslate">`disable`</span>|Disables backup system.|
+|<span class="notranslate">`check`</span>|Returns licenses info.|
+
+The <span class="notranslate">`status`</span> command returns <span class="notranslate">`{'<key>': <value>}`</span> (<span class="notranslate">JSON</span> formatted):
+
+|Key|Value|
+|-|-|
+|<span class="notranslate">`backup_system`</span>|<span class="notranslate">Str</span> with the name of the currently enabled backup system.|
+|<span class="notranslate">`enabled`</span>|If backups are enabled — <span class="notranslate">`True`</span>, else — <span class="notranslate">`False`</span>.|
+
+The <span class="notranslate">`extended-status`</span> command returns <span class="notranslate">`{'<key>': <value>}`</span> (<span class="notranslate">JSON</span> formatted):
+
+|Key|Value|
+|-|-|
+|<span class="notranslate">`log_path`</span>|<span class="notranslate">Str</span> with the path to the log file.|
+|<span class="notranslate">`error`</span>|<span class="notranslate">Str</span> with a human-friendly error message.|
+|<span class="notranslate">`backup_system`</span>|<span class="notranslate">Str</span> with the name of the currently enabled backup system.|
+|<span class="notranslate">`enabled`</span>|If backups are enabled — <span class="notranslate">`True`</span>, else — <span class="notranslate">`False`</span>.|
+|<span class="notranslate">`state`</span>|<span class="notranslate">Str</span> with the current running condition. Statuses: <span class="notranslate">`not_running`, `init`, `backup`, `done`, `unpaid`</span>.|
+|<span class="notranslate">`progress`</span>|This key is optional. It represents the progress of backup if it is running.|
+
+The <span class="notranslate">`check`</span> command returns <span class="notranslate">`{'<key>': <value>}`</span> (<span class="notranslate">JSON</span> formatted):
+
+|Key|Value|
+|-|-|
+|<span class="notranslate">`status`</span>|<span class="notranslate">Str</span> with the license status. Statuses: <span class="notranslate">`paid`, `unpaid`</span>.|
+|<span class="notranslate">`size`</span>|<span class="notranslate">Int</span>, which represents a paid size of backups in GB. E.g. <span class="notranslate">`'size': 10`</span> means that you paid for 10GB.|
+
+
+**Examples:**
+
+1. The following command prints a list of all available backup systems:
+   
+<div class="notranslate">
+
+   ```
+   $ imunify360-agent backup-systems list
+   acronis 
+   r1soft 
+   cloudlinux
+   ```
+</div>
+
+2. The following command initializes CloudLinux backup system:
+
+<div class="notranslate">
+
+   ```
+   $ imunify360-agent backup-systems init cloudlinux
+   Backup initialization process is in progress
+   ```
+</div>
+
+3. The following command checks if the CloudLinux backup system is connected:
+
+<div class="notranslate">
+
+   ```
+   $ imunify360-agent backup-systems check cloudlinux
+   {'url': 'https://cln.cloudlinux.com/clweb/cb/buy.html?id=YourServerIdHere', 'status': 'unpaid'}
+   ```
+</div>
+
+At first, it shows that it isn't, so you should open the URL from the JSON response in the browser to activate the backup. Once this is done, it shows in the CLN.
+
+Run the check again and now it returns the size and that the backup has been paid for.
+
+<div class="notranslate">
+
+   ```
+   $ imunify360-agent backup-systems check cloudlinux
+   {'size': 10, 'status': 'paid'}
+   ```
+</div>
+
+The above commands create a new cloudlinuxbackup.com account and link that account to this server after following the link and confirming the payment of $0.00 for free 10GB.

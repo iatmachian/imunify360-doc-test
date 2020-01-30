@@ -3,6 +3,10 @@
 
 The CAPTCHA is a feature intended to distinguish human from machine input and protect websites from the spam and different types of automated abuse. Imunify360 uses [reCAPTCHA](https://www.google.com/recaptcha/intro/invisible.html) service.
 
+:::warning Warning
+Please note that the WebShield Captcha is not compatible with aggressive CDN caching modes, like Cloudflare 'cache everything' with 'Edge Cache TTL'. If the Сaptcha page is cached by CDN, a visitor will see the Captcha from CDN cache disregarding it has been passed or not. In order to fix that, either disable the aggressive CDN caching or the Captcha functionality in the Imunify360.
+:::
+
 There are two layers in CAPTCHA behavior:
 
 1. If a user of a website is added to the <span class="notranslate">Grey List</span> (the access is blocked), then the CAPTCHA allows him to unblock himself. When he tries to get to the website he is redirected to the Captcha Server by ipset, where he can see the protection page asking to confirm that he is not a robot by ticking a checkbox.
@@ -97,6 +101,41 @@ service imunify360-webshield restart
 </div>
 6. Block yourself (remove your IP from <span class="notranslate">Imunify360 White List</span> and try to log in to the server via ssh with wrong password until it blocks you). Then go to website and log in. Captcha should appear. Set Polish language and assert that new text is displayed.
 
+### Changing the default keys to Google reCAPTCHA keys
+
+If a server owner has his own Google reCAPTCHA keys (both private and public), he may use them instead of the default CloudLinux keys.
+
+To set Google reCAPTCHA keys, do the following:
+
+1. In the <span class="notranslate">`/etc/imunify360-webshield/virtserver.conf`</span> file find the <span class="notranslate">`set $captcha_key`</span> line 
+2. Replace the provided key with your own public key, for example:
+
+    <div class="notranslate">
+
+    ```
+    location @to_captcha {
+    ...
+    set $captcha_key YOUR_OWN_PUBLIC_KEY;
+    content_by_lua_file lua/captcha.lua;
+    }
+    ```
+    </div>
+
+    :::warning Note
+    Pay attention to semicolon at the end of the line.
+    :::
+3. Then go to the <span class="notranslate">`/etc/imunify360-webshield/webshield.conf`</span> file and uncomment the <span class="notranslate">`captcha_custom_secret_key`</span> directive
+4. Place your private key into it, for example:
+
+    <div class="notranslate">
+
+    ```
+    # Uncomment the following line if you have your own google recaptcha key and want to use it
+    captcha_custom_secret_key YOUR_SECRET_KEY;
+    ```
+    </div>
+5. Reload WebShield
+
 ## CDN Support <sup>3.8+</sup>
 	
 Starting from version 3.8 Imunify360 correctly graylists and blocks IPs behind Cloudflare and other CDNs (see [here](/webshield/#supported-cdn-providers) for the full list).
@@ -147,6 +186,15 @@ For cPanel/EasyApache 4, Plesk, DirectAdmin and LiteSpeed _mod_remoteip_ will be
 * KeyCDN
 * Dartspeed.com
 * QUIC.cloud CDN
+* NuCDN
+* Google CDN
+* CloudFront CDN
+* GoCache CDN
+* Opera
+* QUANTIL
+* QUIC.cloud CDN
+* BunnyCDN
+
 
 ### SplashScreen for Chinese customers
 
@@ -187,6 +235,33 @@ The graylisted visitors will see such screen for 5 seconds before redirecting to
 ![](/images/splash_as_captcha.png)
 
 
+### How to block attacks from a particular country in WebShield
 
+:::tip Note
+Imunify360 4.3+
+:::
+
+By default, country traffic blocking is not applied to the requests that come via a legitimate proxy such as Cloudflare. Even if the country is blocked in settings. Starting from Imunify360 version 4.3, we introduce a new way of country traffic blocking.
+
+1. Add those countries to the <span class="notranslate">`/etc/imunify360-webshield/blocked_country_codes.conf`</span> file.
+For example:
+
+<div class="notranalate">
+
+```
+CH 1;
+RU 1;
+```
+</div>
+2. Then reload WebShield with the following command:
+
+<div class="notranslate">
+
+```
+systemctl reload imunify360-webshield
+```
+</div>
+
+It will block traffic from those countries no matter if it goes via known proxies or directly.
 
 

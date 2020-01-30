@@ -49,16 +49,12 @@ A support ticket will be created and an email will be sent to a specified email 
 
 <div class="notranslate">
 
-## Dashboard
+## Dashboard <Badge text="4.0+"/>
 
 </div>
 
 You can access the Imunify360 Dashboard from your control panel. It shows security events as charts and heat maps.
 It's a great way to analyze incidents that happened within the past day, week or month.
-
-:::tip Note
-Beta 4.0 and later
-:::
 
 Click <span class="notranslate">_Dashboard_</span> tab to display an overview of incidents recorded during the selected time interval, an estimate of the intensity of attacks, and correlate events across all sources.
 
@@ -68,13 +64,10 @@ Here you can see notifications about server security and Imunify360 configuratio
 
 <div class="notranslate">
 
-### Multi-server Dashboard 
+### Multi-server Dashboard <Badge text="4.1+"/>
 
 </div>
 
-:::tip Note
-Beta 4.1 and later
-:::
 
 Starting from Imunify360 version 4.1, the <span class="notranslate">Dashboard</span> can display Imunify360 performance data for a number of specified servers. 
 * You can add a specified server using its server key – a unique server id that identifies an installed Imunify360 instance.
@@ -84,6 +77,7 @@ Starting from Imunify360 version 4.1, the <span class="notranslate">Dashboard</s
     :::
 * You can easily remove a server from the Dashboard.
 * You can use <span class="notranslate">_Server_</span> drop-down to show a list of all servers added into the Dashboard.
+* You can choose in the multi-server drop-down for which server the Dashboard would represent its data: a current server (where the Imunify360 is installed) or a remote one (it is indicated on the Dashboard).
 
 ![](/images/dashboard_servers2.png)
 
@@ -281,8 +275,18 @@ In the pop-up choose <span class="notranslate">_IP_</span> tab and fill out:
   ::: tip Note
   You can grant or remove full access afterwards in the table, just click _Cog_ icon and choose <span class="notranslate">_Grant Full Access_</span> to grant or <span class="notranslate">_Remove Full Access_</span> to remove it.
   :::
+* If the server is a part of a group (see: <span class="notranslate">[global Black | White list management](/dashboard/#global-black-white-list-ip-management)</span>, choose <span class="notranslate">_Scope: Local_</span> (IP will be added to White list on a current server) or <span class="notranslate">_Group_</span> (IP will be added to a group of servers and from this moment can be managed from any server in the group).
 
 When done, click <span class="notranslate">_Add IP_</span> to confirm your action or <span class="notranslate">_Cancel_</span> to hide pop-up.
+
+:::tip Notes
+* If you add a new server in an existing group in CLN, then all IPs whitelisted for this group will be added as whitelisted to this new server.
+* If you have an IP whitelisted globally, then this IP will be added to all servers belong to this group.
+* All actions performed with globally whitelisted IP propagate to a whole group (all servers and IPs included in this group).
+* If you remove an IP included in a group, this IP will be removed from all servers belonged to this group.
+* If you change the scope from <span class="notranslate">_Global_</span> to <span class="notranslate">_Local_</span>, then this IP on a current server becomes local and is removed from other servers of this group.
+* If you remove a server from a group in CLN, then all IPs whitelisted for the whole group will be removed from that server.
+:::
 
 You will see a notification if an IP has been added successfully.
 
@@ -417,6 +421,16 @@ In the pop-up choose <span class="notranslate">_IP_</span> tab and fill out:
 * <span class="notranslate">_Enter a comment_</span> – type a comment to the IP or subnet (optional)
 * <span class="notranslate">_Enter TTL_</span> in days or hours – time to live – for how long the IP will be in the Black List.
 * Choose <span class="notranslate">_Black List_</span> radio button
+* If the server is a part of a group (see: <span class="notranslate">[global Black | White list management](/dashboard/#global-black-white-list-ip-management)</span>), choose <span class="notranslate">_Scope: Local_</span> (IP will be added to Black list on a current server) or <span class="notranslate">_Group_</span> (IP will be added to a group of servers and from this moment can be managed from any server in the group).
+
+:::tip Notes
+* If you add a new server in an existing group in CLN, then all IPs blacklisted for this group will be added as blacklisted to this new server.
+* If you have an IP blacklisted globally, then this IP will be added to all servers belong to this group.
+* All actions performed with globally blacklisted IP propagate to a whole group (all servers and IPs included in this group).
+* If you remove an IP included in a group, this IP will be removed from all servers belonged to this group.
+* If you change the scope from <span class="notranslate">_Global_</span> to <span class="notranslate">_Local_</span>, then this IP on a current server becomes local and is removed from other servers of this group.
+* If you remove a server from a group in CLN, then all IPs blacklisted for the whole group will be removed from that server.
+:::
 
 When done, click <span class="notranslate">_Add IP_</span> to confirm your action or <span class="notranslate">_Cancel_</span> to close the pop-up.
 
@@ -425,10 +439,6 @@ When done, click <span class="notranslate">_Add IP_</span> to confirm your actio
 You will see a notification if the IP is added successfully.
 
 ![](/images/added_zoom92.png)
-
-::: tip Note
-Required Imunify360 Beta version 2.7.4 or later
-:::
 
 If <span class="notranslate">_Show only manually added_</span> switcher is disabled (default setting) than IPs automatically blocked by Imunify360 without access to CAPTCHA are displayed in the <span class="notranslate">Black List</span> along with manually added IPs. They have _**Imunify360**_ in the <span class="notranslate">**Source**</span> column and <span class="notranslate">_**Automatically blocked due to distributed attack**_</span> in <span class="notranslate">**Comment**</span> column.
 
@@ -485,6 +495,29 @@ You will see a notification if an IP is successfully removed.
 ![](/images/success_01_zoom75.png)
 
 See also: [How to use external files with the list of Black/White IPs](/firewall_config/#external-black-whitelist-management)
+
+### Global Black/White list IP management <sup><Badge text="4.5+"/> <Badge text="beta" type="warn"/></sup>
+
+Starting from Imunify360 version 4.5 an administrator can manage IPs globally, this means that you can blacklist or whitelist an IP not only on one server but on a group of servers. 
+
+Prior to manage IPs globally, you should create a group and add servers into it. This can be done via [CLN UI](https://cln.cloudlinux.com/). You can find the complete documentation on how to create and manage servers’ groups [here](https://docs.cln.cloudlinux.com/dashboard/#server-groups).
+
+When you have created a group in CLN and added IPs into this group, go to _Imunify360 > Firewall > White list_ or _Black list_.
+You will see the _Scope_ column and controls (on clicking the _Add_ button) to manage IP locally (on a current server) or globally (on a group of servers).
+
+![](/images/global_IP_management.png)
+
+#### How to change Scope to Group/Local
+
+To change the scope to <span class="notranslate">_Group/Local_</span>, go to <span class="notranslate">_Firewall > White/Black list_</span> and select an IP.
+
+
+* In the <span class="notranslate">_Actions_</span> column click ![](/images/gear.png).
+* Choose <span class="notranslate">_Change scope to Group/Local_</span>.
+* In the opened popup click <span class="notranslate">_Yes, change scope to Group/Local_</span> or click <span class="notranslate">_Cancel_</span> to close the popup.
+
+![](/images/change_scope.png)
+
 
 ### Blocked Ports
 
@@ -1044,12 +1077,14 @@ The following tabs are available:
 Go to <span class="notranslate">_Imunify360 → Settings → General_</span>. The following sections are available:
 
 * <span class="notranslate">[Installation](/dashboard/#installation)</span>
+* <span class="notranslate">[WAF Settings](/dashboard/#waf-settings)</span>
 * <span class="notranslate">[DoS Protection](/dashboard/#dos-protection)</span>
 * <span class="notranslate">[3-rd Party Integration](/dashboard/#_3-rd-party-integration)</span>
 * <span class="notranslate">[Auto White List](/dashboard/#auto-white-list)</span>
 * <span class="notranslate">[Incidents Logging](/dashboard/#incidents-logging)</span>
 * <span class="notranslate">[WebShield](/dashboard/#webshield)</span>
 * <span class="notranslate">[OSSEC](/dashboard/#ossec)</span>
+* <span class="notranslate">[PAM](/dashboard/#pam)</span>
 * <span class="notranslate">[Error Reporting](/dashboard/#error-reporting)</span>
 * <span class="notranslate">[Contact Details](/dashboard/#contact-details)</span>
 
@@ -1108,12 +1143,56 @@ To install or uninstall KernelCare click on a button related. Please find additi
 ::: tip Note
 KernelCare is free on the servers with Imunify360 installed.
 :::
+
+#### Privilege escalation detection & protection <sup><Badge text="beta" type="warn"/> <Badge text="4.4+"/></sup>
+
+The KernelCare extension for Imunify360 allows tracing malicious invocations to detect privilege escalation attempts.
+
+Starting from Imunify360 version 4.4, you can find these attempts on the [Incidents tab](/dashboard/#incidents) (as part of the OSSEC log). The incidents can be seen by filtering events with the `EDF` label. 
+
+To enable the feature, tick the <span class="notranslate">_Privilege escalation detection & protection_</span> checkbox.
+
+![](/images/pep_kernelcare.png)
+
+:::warning Note
+The _Privilege escalation detection & protection_ feature is implemented for CentOS 7 only.
+:::
+
+Or you can enable it via CLI using the following command:
+
+<div class="notranslate">
+
+```
+imunify360-agent config update '{"KERNELCARE": {"edf": true}}'
+```
+</div>
+
+
+Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
+
+#### WAF Settings
+
+When the <span class="notranslate">_Minimized ModSec Ruleset_</span> option is on, it disables Imunify WAF rules with a high memory footprint, yet leaves critical ruleset enabled. It is recommended for the servers with a small amount of RAM. It is enabled by default for the installations with low RAM.
+
+You can switch back to the normal mode by enabling WebShield or unchecking <span class="notranslate">_Minimized ModSec Ruleset_</span> in Settings | General | WAF Settings
+
+
+![](/images/waf_settings.png)
+
 Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
 
 #### DoS Protection
 
-<span class="notranslate">DoS Protection</span> section allows to enable or disable DoS protection. DoS protection works by counting connections from each remote IP address per local port separately.
-Tick checkbox <span class="notranslate">_Enable Dos Protection_</span>.
+<span class="notranslate">DoS Protection</span> section allows to enable or disable DoS protection. DoS protection works by counting connections from each remote IP address per local port separately. Starting from Imunify360 4.4 beta it is enabled by default for all new installations.
+To enable/disable it, tick the <span class="notranslate">_Enable Dos Protection_</span> checkbox. Or you can enable it using the following CLI command:
+
+<div class="notranslate">
+
+```
+imunify360-agent config update '{"DOS": {"enabled": true}}'
+```
+</div>
+
 It is possible to configure how Imunify360 will behave:
 
 * <span class="notranslate">_Max Connections_</span>– allows to setup the number of simultaneous connections allowed before IP will be blocked. Cannot be set lower than 100.
@@ -1180,7 +1259,22 @@ Click <span class="notranslate">_Save changes_</span> button on the bottom of th
 	
 #### WebShield
 
-Tick <span class="notranslate">_Detect IPs behind CDN_</span> checkbox to allow to recognize and block IPs with suspicious activity behind supported CDN providers.
+<span class="notranslate">_Detect IPs behind CDN_</span> feature allows to recognize and block IPs with suspicious activity behind supported CDN providers.
+
+Starting from Imunify360 4.4 beta it is enabled by default for all new installations.
+
+To enable/disable it, tick the <span class="notranslate">_Detect IPs behind CDN_</span> checkbox.
+
+![](/images/webshield.png)
+
+Or you can enable it using the following CLI command:
+
+<div class="notranslate">
+
+```
+imunify360-agent config update '{"WEBSHIELD": {"known_proxies_support": true}}'
+```
+</div>
 
 Supported CDN providers:
 
@@ -1190,8 +1284,6 @@ Supported CDN providers:
 * KeyCDN
 * Dartspeed.com
 * QUIC.cloud CDN
-	
-![](/images/webshield.png)
 
 Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
 
@@ -1204,6 +1296,44 @@ The purpose of the feature is significantly reducing false positive rate while i
 
 Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
 
+#### PAM <sup><Badge text="4.4+"/></sup>
+
+#### PAM brute-force attack protection
+
+Tick the <span class="notranslate">_PAM brute-force attack protection_</span> checkbox to enable an advanced brute-force protection technique based on the combination of PAM module authorization, RBL check, and IP blacklisting. 
+	
+![](/images/pam_module.png)
+
+You can also enable it via CLI with the following command:
+
+<div class="notranslate">
+
+```
+imunify360-agent config update '{"PAM": {"enabled": true}}'
+```
+</div>
+
+Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
+
+#### Exim+Dovecot brute-force attack protection <sup><Badge text="4.5+"/> <Badge text="Beta" type="warn"/></sup>
+
+Tick the <span class="notranslate">_Exim+Dovecot brute-force attack protection_</span> checkbox to enable advanced protection against Dovecot brute-force attacks. PAM module protects against IMAP/POP3 brute-force attack and prevents mail account from being compromised via brute-forcing.
+
+![](/images/dovecot.png)
+
+You can also enable it via CLI with the following command: 
+
+<div class="notranslate">
+
+```
+imunify360-agent config update '{"PAM.exim_dovecot_protection": {"enabled": true}}'
+```
+</div>
+
+Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
+
+
+
 #### Error Reporting
  
 Tick <span class="notranslate">_Enable Sentry error reporting_</span> checkbox to send reports to Imunify360 error reports server.
@@ -1212,11 +1342,7 @@ Tick <span class="notranslate">_Enable Sentry error reporting_</span> checkbox t
 
 Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
 
-#### **Contact Details**
-
-:::tip Note
-Imunify360 version 4.1 Beta
-:::
+#### Contact Details <sup><Badge text="4.1+"/></sup>
  
 Type your email into the <span class="notranslate">_Email_</span> field to receive email reports about critical issues, security alerts or system misconfigurations detected on your servers.
 
@@ -1288,11 +1414,12 @@ Read [CXS integration](/ids_integration/#cxs-integration) documentation carefull
 Those options may be hidden for end-user if Cleanup is disabled in Features Management.
 :::
 
-* <span class="notranslate">_Rapid scan_</span> – dramatically speeds up repeated scans based on smart re-scan approach, local result caching and cloud-assisted scan.
+* <span class="notranslate">_RapidScan_</span> – dramatically speeds up repeated scans based on smart re-scan approach, local result caching and cloud-assisted scan. When you first enable the RapidScan feature, the first scan will run as before. But subsequent scans will see a dramatic speed improvement, anywhere between 5 to 20 times faster. You can find details [here](/features/#rapidscan).
+* <span class="notranslate">_Binary (ELF) malware detection_</span> <sup>Beta</sup> <sup>4.4+</sup> – this option allows to scans user home directories for malware. It’s disabled in Imunify360 version 4.4 by default.
 
 Tick required checkboxes and click <span class="notranslate">_Save changes_</span> button.
 
-#### **Background Scanning<sup> Beta 4.1</sup>**
+#### Background Scanning
 
 Allows to set up automatic, scheduled, background scanning of user accounts.
 
@@ -1315,7 +1442,7 @@ Depending on the selected period, precise settings.
 You can track the scanning activity at the <span class="notranslate">[Malware Scanner](#malware-scanner)</span> tab.
 
 
-**Cleanup<sup>3.7.1+</sup>**
+#### Cleanup <sup><Badge text="3.7.1+" type="tip"/></sup>
 
 * <span class="notranslate">_Trim file instead of removal_</span> — do not remove infected file during cleanup but make the file zero-size (for malwares like web-shells);
 * <span class="notranslate">_Keep original files for … days_</span> — the original infected file is available for restore within the defined period. Default is 14 days.
@@ -1323,7 +1450,7 @@ You can track the scanning activity at the <span class="notranslate">[Malware Sc
 ![](/images/malwarescannersettings_zoom70.png)
 
 
-**Proactive Defense<sup> 4.2+</sup>**
+#### Proactive Defense <sup><Badge text="4.2+" type="tip"/></sup>
 
 * <span class="notranslate">_Enable Blamer_</span> — tick to allow Imunify360 to find a root cause of how infection got injected into the server through PHP. Blamer pinpoints exact URL, PHP script & PHP execution path that allowed a hacker to inject malware onto the server.
 Imunify360 security team will use that information to prevent future infections from happening.
@@ -1345,6 +1472,10 @@ The following integrated with Imunify360 backup providers are available:
 * <span class="notranslate">CloudLinux Backup</span>
 * Hosting panel Backup (cPanel or Plesk)
 * <span class="notranslate">Acronis Backup</span>
+
+:::tip Note
+Imunify360 is integrated with the JetBackup server backup application. Anyone using JetBackup with WHM or cPanel can elect to use Imunify360. You can find more details [here](https://blog.imunify360.com/imunify360-now-integrated-with-jetbackup).
+:::
 
 **Requirements**
 
