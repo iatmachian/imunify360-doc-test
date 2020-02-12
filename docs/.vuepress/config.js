@@ -47,6 +47,7 @@ module.exports = {
     redirectionMapping: urls,
     sidebarDepth: 2,
     logo: "/logo.svg",
+    request: "https://cloudlinux.zendesk.com/hc/en-us/requests/new",
     try_free: "https://www.imunify360.com/trial",
     social: [
       { url: "https://www.facebook.com/imunify360/", logo: "/fb.png" },
@@ -69,6 +70,7 @@ module.exports = {
         // text for the edit-on-github link
         editLinkText: "Edit this page",
         tryFree: "Try Free",
+	request: "Submit request",
         search: "Search",
         // config for Service Worker
         serviceWorker: {
