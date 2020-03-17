@@ -43,7 +43,9 @@ In the config file it is possible to set up Imunify360 configuration. The follow
 <th align="left"><span class="notranslate"># defines ModSecurity settings</span></th>
 </tr>
 <tr>
-<td width="250px;"><span class="notranslate">ruleset: FULL</span></td><td># defines what ruleset to use: <span class="notranslate">FULL</span> (default value) or <span class="notranslate">MINIMAL</span>. If the amount of RAM on the server is less than 2.1GB, the ruleset value is automatically set to <span class="notranslate">MINIMAL</span>.</td></tr>
+<td width="250px;"><span class="notranslate">ruleset: FULL</span></td><td># defines what ruleset to use: <span class="notranslate">FULL</span> (default value) or <span class="notranslate">MINIMAL</span>. If the amount of RAM on the server is less than 2.1GB, the ruleset value is automatically set to <span class="notranslate">MINIMAL</span>.</td>
+<td width="250px;"><span class="notranslate">cms_account_compromise_prevention: true</span></td><td># enables WordPress account brute-force protection.</td>
+</tr>
 <tr>
 <th colspan="2" align="left"><span class="notranslate">MOD_SEC_BLOCK_BY_SEVERITY:</span></th></tr>
  <tr><td><span class="notranslate">enable: true</span></td><td># allows to enable or disable option that moves IPs to <span class="notranslate">Gray List</span> if the ModSecurity rule is triggered</td></tr>
@@ -198,4 +200,33 @@ and then restart Imunify360 service:
 systemctl restart imunify360
 ```
 
+</div>
+
+### How to apply changes from CLI
+
+In order to apply changes via command-line interface (CLI), you can use the following command:
+
+<div class="notranslate">
+
+```
+imunify360-agent config update ‘{"SECTION": {"parameter": value}}’ 
+```
+</div>
+
+For example, if you want to set <span class="notranslate">`MALWARE_SCAN_INTENSITY.cpu = 5`</span> from a command line, then you should execute the following command:
+
+<div class="notranslate">
+
+```
+imunify360-agent config update ‘{"MALWARE_SCAN_INTENSITY": {"cpu": 5}}’
+```
+</div>
+
+It is also possible to apply several parameters at once. For example:
+
+<div class="notranslate">
+
+```
+imunify360-agent config update '{"PAM": {"exim_dovecot_protection": false, "enable":true}}'
+```
 </div>
