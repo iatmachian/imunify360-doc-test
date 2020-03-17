@@ -1347,8 +1347,6 @@ Click <span class="notranslate">_Save changes_</span> button on the bottom of th
 
 <span class="notranslate">_Detect IPs behind CDN_</span> feature allows to recognize and block IPs with suspicious activity behind supported CDN providers.
 
-Starting from Imunify360 4.4 beta it is enabled by default for all new installations.
-
 To enable/disable it, tick the <span class="notranslate">_Detect IPs behind CDN_</span> checkbox.
 
 ![](/images/webshield.png)
@@ -1468,9 +1466,9 @@ Read [CXS integration](/ids_integration/#cxs-integration) documentation carefull
     Low I/O usage means low scanning speed
     :::
 
-:::tip Note
-If Imunify360 <sup>4.6+</sup> is running on CloudLinux OS, LVE is used to manage scan intensity. If it is running on other operating systems, “nice” is used to control CPU and “ionice” is used when the I/O scheduler is CFQ.
-:::
+    :::tip Note
+    If Imunify360 <sup>4.6+</sup> is running on CloudLinux OS, LVE is used to manage scan intensity. If it is running on other operating systems, “nice” is used to control CPU and “ionice” is used when the I/O scheduler is CFQ.
+    :::
 
 **General**
 

@@ -44,6 +44,8 @@ In the config file it is possible to set up Imunify360 configuration. The follow
 </tr>
 <tr>
 <td width="250px;"><span class="notranslate">ruleset: FULL</span></td><td># defines what ruleset to use: <span class="notranslate">FULL</span> (default value) or <span class="notranslate">MINIMAL</span>. If the amount of RAM on the server is less than 2.1GB, the ruleset value is automatically set to <span class="notranslate">MINIMAL</span>.</td>
+</tr>
+<tr>
 <td width="250px;"><span class="notranslate">cms_account_compromise_prevention: true</span></td><td># enables WordPress account brute-force protection.</td>
 </tr>
 <tr>
