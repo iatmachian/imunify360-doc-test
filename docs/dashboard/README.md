@@ -1246,7 +1246,7 @@ When the <span class="notranslate">_Minimized ModSec Ruleset_</span> option is o
 You can switch back to the normal mode by enabling WebShield or unchecking <span class="notranslate">_Minimized ModSec Ruleset_</span> in Settings | General | WAF Settings
 
 
-![](/images/waf_settings.png)
+![](/images/waf_wordpress_acp.png)
 
 Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
 
@@ -1254,8 +1254,6 @@ Click <span class="notranslate">_Save changes_</span> button on the bottom of th
 
 Server admin can enable an option to prevent access to WordPress accounts with well-known (trivial) passwords.
 When the option is enabled, all end-users that are trying to log into the admin account with weak/trivial or well-known passwords from the dictionary used by brute-forcers will be taken to the special alert page with an appeal to change their current password.
-
-![](/images/waf_wordpress_acp.png)
 
 This feature can be enabled by setting <span class="notranslate">`cms_account_compromise_prevention` to `true`</span> in MOD_SEC [config file section](/config_file_description/#config-file-description)
 
