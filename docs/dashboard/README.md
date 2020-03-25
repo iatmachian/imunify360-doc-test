@@ -1263,7 +1263,7 @@ This feature is implemented via modsec rule and could be partially [disabled on 
 
 ![](/images/waf_wordpress_acp_alert.png)
 
-The alert page supports localization and is displayed in the language of the browser.
+The alert page supports localization and is displayed in the language of the browser (on an external Imunify domain).
 
 #### DoS Protection
 
