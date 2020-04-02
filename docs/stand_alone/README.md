@@ -475,7 +475,7 @@ domains = /path/to/get-domains-script.sh
 ```
 </div>
 
-It should point to an executable file that generates a JSON file similar to the following
+It should point to an executable file that generates a JSON file similar to the following:
 
 <div class="notranslate">
 
