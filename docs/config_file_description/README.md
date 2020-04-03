@@ -46,7 +46,7 @@ In the config file it is possible to set up Imunify360 configuration. The follow
 <td width="250px;"><span class="notranslate">ruleset: FULL</span></td><td># defines what ruleset to use: <span class="notranslate">FULL</span> (default value) or <span class="notranslate">MINIMAL</span>. If the amount of RAM on the server is less than 2.1GB, the ruleset value is automatically set to <span class="notranslate">MINIMAL</span>.</td></tr>
 <tr>
 <td width="250px;"><span class="notranslate">cms_account_compromise_prevention: true</span></td><td># enables WordPress account brute-force protection.</td></tr>
-<td width="250px;"><span class="notranslate"><font color="Red">prev_settings: </font></span></td><td><font color="Red">For internal usage, do not edit</font></td></tr>
+<td width="250px;"><span class="notranslate">prev_settings: </span></td><td># for internal usage, do not edit</td></tr>
 <tr>
 <th colspan="2" align="left"><span class="notranslate">MOD_SEC_BLOCK_BY_SEVERITY:</span></th></tr>
  <tr><td><span class="notranslate">enable: true</span></td><td># allows to enable or disable option that moves IPs to <span class="notranslate">Gray List</span> if the ModSecurity rule is triggered</td></tr>
@@ -93,24 +93,24 @@ that were uploaded via http/https. Note that it requires <a href="https://modsec
 <td># max file size to upload to CloudLinux malware research service; value is set in bytes</td></tr>
 <tr><td><span class="notranslate">detect_elf: False</span></td>
 <td># enable (<span class="notranslate">True</span>) or disable (<span class="notranslate">False</span>) (default value) binary (ELF) malware detection</td></tr>
-<tr><td><span class="notranslate"><font color="Red">notify_on_detect: False</font></span></td>
-<td><font color="Red"># notify (<span class="notranslate">True</span>) or not (<span class="notranslate">False</span>) (default value) an admin when malware is detected</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">optimize_realtime_scan: False</font></span></td>
-<td><font color="Red">Use optimized engine for realtime scan</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">sends_file_for_analysis: True</font></span></td>
-<td><font color="Red"># send (<span class="notranslate">True</span>) (default value) or not (<span class="notranslate">False</span>) malicious and suspicious files to the Imunify team for analysis</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">i360_clamd: False</font></span></td>
-<td><font color="Red">Obsolete (not used)</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">show_clamav_results: False</font></span></td>
-<td><font color="Red">Obsolete (not used)</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">clamav_binary: True</font></span></td>
-<td><font color="Red">Obsolete (not used)</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">scan_modified_files: True</font></span></td>
-<td><font color="Red"># enable (<span class="notranslate">True</span>) (default value) or disable (<span class="notranslate">False</span>) real-time scanning for modified files using inotify library. The Scanner searches for modified files in user’s DocumentRoot directories.</font></td></tr>
+<tr><td><span class="notranslate">notify_on_detect: False</span></td>
+<td># notify (<span class="notranslate">True</span>) or not (<span class="notranslate">False</span>) (default value) an admin when malware is detected</td></tr>
+<tr><td><span class="notranslate">optimize_realtime_scan: False</span></td>
+<td># use optimized engine for realtime scan</td></tr>
+<tr><td><span class="notranslate">sends_file_for_analysis: True</span></td>
+<td># send (<span class="notranslate">True</span>) (default value) or not (<span class="notranslate">False</span>) malicious and suspicious files to the Imunify team for analysis</td></tr>
+<tr><td><span class="notranslate">i360_clamd: False</span></td>
+<td># obsolete (not used)</td></tr>
+<tr><td><span class="notranslate">show_clamav_results: False</span></td>
+<td># obsolete (not used)</td></tr>
+<tr><td><span class="notranslate">clamav_binary: True</span></td>
+<td># obsolete (not used)</td></tr>
+<tr><td><span class="notranslate">scan_modified_files: True</span></td>
+<td># enable (<span class="notranslate">True</span>) (default value) or disable (<span class="notranslate">False</span>) real-time scanning for modified files using inotify library. The Scanner searches for modified files in user’s DocumentRoot directories.</td></tr>
 <tr><td><span class="notranslate"><font color="Red">cloud_assisted_scan: True</font></span></td>
 <td><font color="Red"># need a description</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">rapid_scan: False</font></span></td>
-<td><font color="Red"># speeds up (<span class="notranslate">True</span>) ot not (<span class="notranslate">False</span>) (default value) repeated scans based on smart re-scan approach, local result caching and cloud-assisted scan.</font></td></tr>
+<tr><td><span class="notranslate">rapid_scan: False</span></td>
+<td># speeds up (<span class="notranslate">True</span>) ot not (<span class="notranslate">False</span>) (default value) repeated scans based on smart re-scan approach, local result caching and cloud-assisted scan.</font></td></tr>
 <tr>
 <th colspan="2" align="left"><span class="notranslate">CAPTCHA:</span></th></tr>
 <tr><td><span class="notranslate">cert_refresh_timeout: 3600</span></td>
@@ -140,8 +140,8 @@ If you want iptables rules to be applied to a specific NIC only, list them here 
 <td># restore from backup files that are not older than <span class="notranslate"><em>max_days_in_backup</em></span></td></tr>
 <tr><td><span class="notranslate">cl_backup_allowed: True</span></td>
 <td># show <span class="notranslate">CloudLinux Backup</span> in the list of available backup system (<span class="notranslate">True</span>) or hide it (<span class="notranslate">False</span>)</td></tr>
-<tr><td><span class="notranslate"><font color="Red">cl_on_premise_backup_allowed: False</font></span></td>
-<td><font color="Red"># do not allow CloudLinux backup (<span class="notranslate">False</span>) or allow it (<span class="notranslate">True</span>)</font></td></tr>
+<tr><td><span class="notranslate">cl_on_premise_backup_allowed: False</span></td>
+<td># do not allow CloudLinux backup (<span class="notranslate">False</span>) or allow it (<span class="notranslate">True</span>)</td></tr>
 <tr>
 <th colspan="2" align="left"><span class="notranslate">CAPTCHA_DOS:</span></th></tr>
 <tr><td><span class="notranslate">enabled: true</span></td>
@@ -177,8 +177,8 @@ to request CAPTCHA again</td></tr>
 <td># intensity level for CPU consumption. Can be set from 1 to 7, default is 2</td></tr>
 <tr><td><span class="notranslate">io: 6</span></td>
 <td># intensity level for file operations. Can be set from 1 to 7, default is 2</td></tr>
-<tr><td><span class="notranslate"><font color="Red">ram: 1024</font></span></td>
-<td><font color="Red"># intensity level for RAM consumption. Minimum value is 1024, default is 2048</font></td></tr>
+<tr><td><span class="notranslate">ram: 1024</span></td>
+<td># intensity level for RAM consumption. Minimum value is 1024, default is 2048</td></tr>
 <tr>
 <th colspan="2" align="left"><span class="notranslate">MALWARE_SCAN_SCHEDULE:</span></th></tr>
 <tr><td><span class="notranslate">day_of_month: 4</span></td>
@@ -201,46 +201,46 @@ to request CAPTCHA again</td></tr>
 <th align="left"># KernelCare extension for Imunify360 which allows tracing malicious invocations to detect privilege escalation attempts</th></tr>
 <tr><td><span class="notranslate">edf: false</span></td>
 <td># enable (<span class="notranslate">true</span>) or disable (<span class="notranslate">false</span>) (default value) exploit detection framework</td></tr>
-<tr><th colspan="2" align="left"><span class="notranslate"><font color="Red">MALWARE_CLEANUP:</font></span></th></tr>
-<tr><td><span class="notranslate"><font color="Red">trim_file_instead_of_removal: True</font></span></td>
-<td><font color="Red"># do not remove infected file during cleanup but make the file zero-size (for malwares like web-shells) (<span class="notranslate">True</span>) (default value)</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">keep_original_files_days: 14</font></span></td>
-<td><font color="Red"># the original infected file is available for restore within the defined period. The default is 14 days. The minimum value is one day.</font></td></tr>
-<tr><th colspan="2" align="left"><span class="notranslate"><font color="Red">OSSEC:</font></span></th></tr>
-<tr><td><span class="notranslate"><font color="Red">active_response: False</font></span></td>
-<td><font color="Red"># block (<span class="notranslate">True</span>) access to a specific server port being attacked. The default value is <span class="notranslate">False</span>.</font></td></tr>
-<tr><th colspan="2" align="left"><span class="notranslate"><font color="Red">ADMIN_CONTACTS:</font></span></th></tr>
-<tr><td><span class="notranslate"><font color="Red">emails: youremail@email.com</font></span></td>
-<td><font color="Red"># your email to receive reports about critical issues, security alerts or system misconfigurations detected on your servers.</font></td></tr>
-<tr><th colspan="2" align="left"><span class="notranslate"><font color="Red">SMTP_BLOCKING:</font></span></th></tr>
-<tr><td><span class="notranslate"><font color="Red">enable: False</font></span></td>
-<td><font color="Red"># enable (<span class="notranslate">True</span>) or disable (<span class="notranslate">False</span>) (default value) SMTP Traffic Management. When enabled, the outgoing SMTP traffic would be blocked according to the settings.</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">ports: 25,587,465</font></span></td>
-<td><font color="Red"># a list of the ports to be blocked. The defaults are: 25, 587,465.</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">allow_users:</font></span></td>
-<td><font color="Red"># a list of users to be ignored (not blocked). By default it is empty. Including Unix and cPanel users (if a process that sends an email has a UID of one of the `allow_users`, it will not be blocked).</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">allow_groups: mail</font></span></td>
-<td><font color="Red"># a list of the groups to be ignored (not blocked). By default it is empty. Including Unix and cPanel users (if a process that sends an email has a UID of one of the `allow_users`, it will not be blocked).</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">allow_local: False</font></span></td>
-<td><font color="Red"># block (<span class="notranslate">True</span>) all, except the local SMTP (localhost). <span class="notranslate">False</span> is the default value.</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">redirect: False</font></span></td>
-<td><font color="Red"># enable (<span class="notranslate">True</span>) or disable (<span class="notranslate">False</span>) (the default value) automatic redirection to the local ports for outgoing mail traffic.</font></td></tr>
-<tr><th colspan="2" align="left"><span class="notranslate"><font color="Red">CSF_INTEGRATION:</font></span></th></tr>
-<tr><td><span class="notranslate"><font color="Red">catch_lfd_events: True</font></span></td>
-<td><font color="Red"># let (<span class="notranslate">True</span>) (the default value) Imunify360 use Login Failure Daemon (LFD) as a source for security events.</font></td></tr>
-<tr><th colspan="2" align="left"><span class="notranslate"><font color="Red">PERMISSIONS:</font></span></th></tr>
-<tr><td><span class="notranslate"><font color="Red">support_form: True</font></span></td>
-<td><font color="Red"># show (<span class="notranslate">True</span>) (the default value) or hide (<span class="notranslate">False</span>) the Support icon in the Imunify360 UI.</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">user_ignore_list: True</font></span></td>
-<td><font color="Red"># show (<span class="notranslate">True</span>) (the default value) or hide (<span class="notranslate">False</span>) the Ignore List tab for end-users in the Imunify360 UI.</font></td></tr>
-<tr><th colspan="2" align="left"><span class="notranslate"><font color="Red">STOP_MANAGING:</font></span></th></tr>
-<tr><td><span class="notranslate"><font color="Red">modsec_directives: False</font></span></td>
-<td><font color="Red">For internal use, do not edit</font></td></tr>
-<tr><th colspan="2" align="left"><span class="notranslate"><font color="Red">WEB_SERVICES:</font></span></th></tr>
-<tr><td><span class="notranslate"><font color="Red">http_ports: </font></span></td>
-<td><font color="Red">Additional http ports for captcha</font></td></tr>
-<tr><td><span class="notranslate"><font color="Red">https_ports: </font></span></td>
-<td><font color="Red">Additional https ports for captcha</font></td></tr>
+<tr><th colspan="2" align="left"><span class="notranslate">MALWARE_CLEANUP:</span></th></tr>
+<tr><td><span class="notranslate">trim_file_instead_of_removal: True</span></td>
+<td># do not remove infected file during cleanup but make the file zero-size (for malwares like web-shells) (<span class="notranslate">True</span>) (default value)</td></tr>
+<tr><td><span class="notranslate">keep_original_files_days: 14</span></td>
+<td># the original infected file is available for restore within the defined period. The default is 14 days. The minimum value is one day.</td></tr>
+<tr><th colspan="2" align="left"><span class="notranslate">OSSEC:</span></th></tr>
+<tr><td><span class="notranslate">active_response: False</span></td>
+<td># block (<span class="notranslate">True</span>) access to a specific server port being attacked. The default value is <span class="notranslate">False</span>.</td></tr>
+<tr><th colspan="2" align="left"><span class="notranslate">ADMIN_CONTACTS:</span></th></tr>
+<tr><td><span class="notranslate">emails: youremail@email.com</span></td>
+<td># your email to receive reports about critical issues, security alerts or system misconfigurations detected on your servers.</td></tr>
+<tr><th colspan="2" align="left"><span class="notranslate">SMTP_BLOCKING:</span></th></tr>
+<tr><td><span class="notranslate">enable: False</span></td>
+<td># enable (<span class="notranslate">True</span>) or disable (<span class="notranslate">False</span>) (default value) SMTP Traffic Management. When enabled, the outgoing SMTP traffic would be blocked according to the settings.</td></tr>
+<tr><td><span class="notranslate">ports: 25,587,465</span></td>
+<td># a list of the ports to be blocked. The defaults are: 25, 587,465.</td></tr>
+<tr><td><span class="notranslate">allow_users:</span></td>
+<td># a list of users to be ignored (not blocked). By default it is empty. Including Unix and cPanel users (if a process that sends an email has a UID of one of the `allow_users`, it will not be blocked).</td></tr>
+<tr><td><span class="notranslate">allow_groups: mail</span></td>
+<td># a list of the groups to be ignored (not blocked). By default it is empty. Including Unix and cPanel users (if a process that sends an email has a UID of one of the `allow_users`, it will not be blocked).</td></tr>
+<tr><td><span class="notranslate">allow_local: False</span></td>
+<td># block (<span class="notranslate">True</span>) all, except the local SMTP (localhost). <span class="notranslate">False</span> is the default value.</td></tr>
+<tr><td><span class="notranslate">redirect: False</span></td>
+<td># enable (<span class="notranslate">True</span>) or disable (<span class="notranslate">False</span>) (the default value) automatic redirection to the local ports for outgoing mail traffic.</td></tr>
+<tr><th colspan="2" align="left"><span class="notranslate">CSF_INTEGRATION:</span></th></tr>
+<tr><td><span class="notranslate">catch_lfd_events: True</span></td>
+<td># let (<span class="notranslate">True</span>) (the default value) Imunify360 use Login Failure Daemon (LFD) as a source for security events.</td></tr>
+<tr><th colspan="2" align="left"><span class="notranslate">PERMISSIONS:</span></th></tr>
+<tr><td><span class="notranslate">support_form: True</span></td>
+<td># show (<span class="notranslate">True</span>) (the default value) or hide (<span class="notranslate">False</span>) the Support icon in the Imunify360 UI.</td></tr>
+<tr><td><span class="notranslate">user_ignore_list: True</span></td>
+<td># show (<span class="notranslate">True</span>) (the default value) or hide (<span class="notranslate">False</span>) the Ignore List tab for end-users in the Imunify360 UI.</td></tr>
+<tr><th colspan="2" align="left"><span class="notranslate">STOP_MANAGING:</span></th></tr>
+<tr><td><span class="notranslate">modsec_directives: False</span></td>
+<td># for internal useage, do not edit</td></tr>
+<tr><th colspan="2" align="left"><span class="notranslate">WEB_SERVICES:</span></th></tr>
+<tr><td><span class="notranslate">http_ports: </span></td>
+<td># additional http ports for Captcha</td></tr>
+<tr><td><span class="notranslate">https_ports: </span></td>
+<td># additional https ports for Captcha</td></tr>
 </table>
 
 <span class="notranslate">Active Response</span> is an ossec-driven (IDS) feature of Imunify360 which has been re-engineered to make it capable of blocking access to a specific server port being attacked.
