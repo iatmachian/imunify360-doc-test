@@ -46,7 +46,7 @@ In the config file it is possible to set up Imunify360 configuration. The follow
 <td width="250px;"><span class="notranslate">ruleset: FULL</span></td><td># defines what ruleset to use: <span class="notranslate">FULL</span> (default value) or <span class="notranslate">MINIMAL</span>. If the amount of RAM on the server is less than 2.1GB, the ruleset value is automatically set to <span class="notranslate">MINIMAL</span>.</td></tr>
 <tr>
 <td width="250px;"><span class="notranslate">cms_account_compromise_prevention: true</span></td><td># enables WordPress account brute-force protection.</td></tr>
-<td width="250px;"><span class="notranslate"><font color="Red">prev_settings: </font></span></td><td><font color="Red"># need a description.</font></td></tr>
+<td width="250px;"><span class="notranslate"><font color="Red">prev_settings: </font></span></td><td><font color="Red">For internal usage, do not edit</font></td></tr>
 <tr>
 <th colspan="2" align="left"><span class="notranslate">MOD_SEC_BLOCK_BY_SEVERITY:</span></th></tr>
  <tr><td><span class="notranslate">enable: true</span></td><td># allows to enable or disable option that moves IPs to <span class="notranslate">Gray List</span> if the ModSecurity rule is triggered</td></tr>
@@ -96,15 +96,15 @@ that were uploaded via http/https. Note that it requires <a href="https://modsec
 <tr><td><span class="notranslate"><font color="Red">notify_on_detect: False</font></span></td>
 <td><font color="Red"># notify (<span class="notranslate">True</span>) or not (<span class="notranslate">False</span>) (default value) an admin when malware is detected</font></td></tr>
 <tr><td><span class="notranslate"><font color="Red">optimize_realtime_scan: False</font></span></td>
-<td><font color="Red"># need a description</font></td></tr>
+<td><font color="Red">Use optimized engine for realtime scan</font></td></tr>
 <tr><td><span class="notranslate"><font color="Red">sends_file_for_analysis: True</font></span></td>
 <td><font color="Red"># send (<span class="notranslate">True</span>) (default value) or not (<span class="notranslate">False</span>) malicious and suspicious files to the Imunify team for analysis</font></td></tr>
 <tr><td><span class="notranslate"><font color="Red">i360_clamd: False</font></span></td>
-<td><font color="Red"># need a description</font></td></tr>
+<td><font color="Red">Obsolete (not used)</font></td></tr>
 <tr><td><span class="notranslate"><font color="Red">show_clamav_results: False</font></span></td>
-<td><font color="Red"># need a description</font></td></tr>
+<td><font color="Red">Obsolete (not used)</font></td></tr>
 <tr><td><span class="notranslate"><font color="Red">clamav_binary: True</font></span></td>
-<td><font color="Red"># need a description</font></td></tr>
+<td><font color="Red">Obsolete (not used)</font></td></tr>
 <tr><td><span class="notranslate"><font color="Red">scan_modified_files: True</font></span></td>
 <td><font color="Red"># enable (<span class="notranslate">True</span>) (default value) or disable (<span class="notranslate">False</span>) real-time scanning for modified files using inotify library. The Scanner searches for modified files in user’s DocumentRoot directories.</font></td></tr>
 <tr><td><span class="notranslate"><font color="Red">cloud_assisted_scan: True</font></span></td>
@@ -235,12 +235,12 @@ to request CAPTCHA again</td></tr>
 <td><font color="Red"># show (<span class="notranslate">True</span>) (the default value) or hide (<span class="notranslate">False</span>) the Ignore List tab for end-users in the Imunify360 UI.</font></td></tr>
 <tr><th colspan="2" align="left"><span class="notranslate"><font color="Red">STOP_MANAGING:</font></span></th></tr>
 <tr><td><span class="notranslate"><font color="Red">modsec_directives: False</font></span></td>
-<td><font color="Red"># need a description.</font></td></tr>
+<td><font color="Red">For internal use, do not edit</font></td></tr>
 <tr><th colspan="2" align="left"><span class="notranslate"><font color="Red">WEB_SERVICES:</font></span></th></tr>
 <tr><td><span class="notranslate"><font color="Red">http_ports: </font></span></td>
-<td><font color="Red"># need a description.</font></td></tr>
+<td><font color="Red">Additional http ports for captcha</font></td></tr>
 <tr><td><span class="notranslate"><font color="Red">https_ports: </font></span></td>
-<td><font color="Red"># need a description.</font></td></tr>
+<td><font color="Red">Additional https ports for captcha</font></td></tr>
 </table>
 
 <span class="notranslate">Active Response</span> is an ossec-driven (IDS) feature of Imunify360 which has been re-engineered to make it capable of blocking access to a specific server port being attacked.
