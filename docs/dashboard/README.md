@@ -170,6 +170,10 @@ Attacks against network services, e.g. FTP, SSH, POP, IMAP, etc., recorded by OS
 
 Attacks detected by the Imunify360 Bot-Detector heuristics-based plugin. Bot-Detector is a part of Imunify360’s “herd immunity” feature that collects and analyzes a massive amount of information on new attacks on a global scale which it uses to prevent attacks across multiple servers.
 
+* **Cleaned malicious files**
+
+This chart lists the number of cleaned malicious files. 
+
 :::tip Note
 Some charts may be hidden if no alerts of a particular type were recorded within the selected time interval.
 :::
@@ -633,6 +637,9 @@ The following tabs are available:
 </div>
 
 Go to <span class="notranslate">Imunify360 → Malware Scanner → Users</span> tab. Here, there is a table with a list of users on the server, except users with root privileges.
+
+The badge in the <span class="notranslate">_History_</span> tab shows the number of missed events in the Malware Scanner’s History. You won’t miss any automatic actions applied to infected files, since they are listed in the <span class="notranslate">_History_</span> tab and shown in the badge.
+
 
 ![](/images/malwarescanner_users.png)
 
