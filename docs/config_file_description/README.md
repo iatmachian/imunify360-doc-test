@@ -107,8 +107,8 @@ that were uploaded via http/https. Note that it requires <a href="https://modsec
 <td># obsolete (not used)</td></tr>
 <tr><td><span class="notranslate">scan_modified_files: True</span></td>
 <td># enable (<span class="notranslate">True</span>) (default value) or disable (<span class="notranslate">False</span>) real-time scanning for modified files using inotify library. The Scanner searches for modified files in user’s DocumentRoot directories.</td></tr>
-<tr><td><span class="notranslate"><font color="Red">cloud_assisted_scan: True</font></span></td>
-<td><font color="Red"># need a description</font></td></tr>
+<tr><td><span class="notranslate">cloud_assisted_scan: True</span></td>
+<td># speed up scans by check file hashes using cloud database</td></tr>
 <tr><td><span class="notranslate">rapid_scan: False</span></td>
 <td># speeds up (<span class="notranslate">True</span>) ot not (<span class="notranslate">False</span>) (default value) repeated scans based on smart re-scan approach, local result caching and cloud-assisted scan.</font></td></tr>
 <tr>
@@ -241,6 +241,9 @@ to request CAPTCHA again</td></tr>
 <td># additional http ports for Captcha</td></tr>
 <tr><td><span class="notranslate">https_ports: </span></td>
 <td># additional https ports for Captcha</td></tr>
+<tr><th colspan="2" align="left"><span class="notranslate">PERMISSIONS:</span></th></tr>
+<tr><td><span class="notranslate">allow_malware_scan: False</span></td>
+<td># enable (<span class="notranslate">True</span>) or disable (<span class="notranslate">False</span>) (the default value) “scan” action in the UI of the end-user.</td></tr>
 </table>
 
 <span class="notranslate">Active Response</span> is an ossec-driven (IDS) feature of Imunify360 which has been re-engineered to make it capable of blocking access to a specific server port being attacked.

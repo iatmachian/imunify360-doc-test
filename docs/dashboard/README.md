@@ -1,4 +1,4 @@
-# Imunify360 User Interface
+# Imunify360 Admin Interface
 
 Imunify360 is an all-in-one security solution with robust herd protection against the newest attacks, and it is available directly within your control panel (cPanel, Plesk, and DirectAdmin).
 
@@ -839,6 +839,10 @@ To search file or folder in the <span class="notranslate">Ignore List</span> use
  
 <span class="notranslate">Proactive Defense</span> is a unique Imunify360 feature that can prevent malicious activity through PHP scripts. It is available as a PHP module for Apache and LiteSpeed web servers and analyzes script activity using known patterns like obfuscated command injection, malicious code planting, sending spam, SQL injection etc.
 
+:::tip Note
+Proactive Defense requires [Hardened PHP](/dashboard/#installation) (alt-php) to operate.
+:::
+
 ### User Interface
 
 Go to <span class="notranslate">Imunify360 → Proactive Defense</span>.
@@ -1148,6 +1152,7 @@ Go to <span class="notranslate">_Imunify360 → Settings → General_</span>. Th
 * <span class="notranslate">[Installation](/dashboard/#installation)</span>
 * <span class="notranslate">[WAF Settings](/dashboard/#waf-settings)</span>
 * <span class="notranslate">[DoS Protection](/dashboard/#dos-protection)</span>
+* <span class="notranslate">[SMTP Traffic Manager](/dashboard/#smtp-traffic-manager)</span>
 * <span class="notranslate">[3-rd Party Integration](/dashboard/#_3-rd-party-integration)</span>
 * <span class="notranslate">[Auto White List](/dashboard/#auto-white-list)</span>
 * <span class="notranslate">[Incidents Logging](/dashboard/#incidents-logging)</span>
@@ -1248,6 +1253,7 @@ You can switch back to the normal mode by enabling WebShield or unchecking <span
 
 ![](/images/waf_wordpress_acp.png)
 
+
 Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
 
 #### WordPress account brute-force protection
@@ -1265,9 +1271,19 @@ This feature is implemented via modsec rule and could be partially [disabled on 
 
 The alert page supports localization and is displayed in the language of the browser (on an external Imunify domain).
 
+#### CMS-specific WAF Rules
+
+WAF Rules Auto-Configurator generates a set of rules on a per-domain basis, considering the Content Management System (CMS), that the website is running (WordPress, Joomla, Drupal etc).
+
+It allows making WAF rules more effective to protect websites and reduce the number os false positives.
+
+It works in the background and scans domains for installed CMS daily, after that rebuilds ModSec configuration based on detected software.
+
+![](/images/cms-specific_waf_rules.png)
+
 #### DoS Protection
 
-<span class="notranslate">DoS Protection</span> section allows to enable or disable DoS protection. DoS protection works by counting connections from each remote IP address per local port separately. Starting from Imunify360 4.4 beta it is enabled by default for all new installations.
+<span class="notranslate">DoS Protection</span> section allows to enable or disable DoS protection. DoS protection works by counting connections from each remote IP address per local port separately.
 To enable/disable it, tick the <span class="notranslate">_Enable Dos Protection_</span> checkbox. Or you can enable it using the following CLI command:
 
 <div class="notranslate">
@@ -1281,10 +1297,72 @@ It is possible to configure how Imunify360 will behave:
 
 * <span class="notranslate">_Max Connections_</span>– allows to setup the number of simultaneous connections allowed before IP will be blocked. Cannot be set lower than 100.
 * <span class="notranslate">_Check delay_</span> – allows to setup period in seconds between each DoS detection system activation that will check a server for DoS attack. Also, it is possible to set different limits for different local ports by editing the configuration file directly.
+
+:::tip Note
+Although DoS protection works on the TCP level, it is not the same as http request rate - even if there is large number of http connections, the number of TCP connections can be relatively low.
+:::
+
+:::tip Note
+Imunify360 DoS protection is automatically disabled if CSF is active - a warning is shown in Imunify360 UI in that case
+:::
 	
 ![](/images/DosProtection.png)
 
 Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
+
+#### SMTP Traffic Manager <sup><Badge text="4.6+"/> <Badge text="Experimental" type="warn"/></sup>
+
+SMTP traffic management provides more control over SMTP traffic.
+
+An administrator can redirect mail traffic to the local MTA, block it completely, or keep it available for local mails only. Administrators can also block particular ports and whitelist specific users or groups for outgoing mail.
+
+This feature extends the existing cPanel <span class="notranslate">“Block SMTP”</span> functionality, albeit with more control and capabilities, and replaces the similar functionality from CSF. 
+
+You can enable the <span class="notranslate">SMTP Traffic Management</span> in the <span class="notranslate">Settings</span>:
+
+![](/images/SMTPSettings.png)
+
+* <span class="notranslate">**SMTP ports**</span> - a list of the ports to be blocked. The defaults are: 25, 587,465
+* <span class="notranslate">**Allow users**</span> a list of the users to be ignored (not blocked). By default it is empty. Including Unix and CPanel users (if a process that sends an email has a UID of one of the <span class="notranslate">`allow_users`</span>, it will not be blocked)
+* <span class="notranslate">**Allow groups**</span> - a list of the groups to be ignored (not blocked). By default it is empty. Including Unix and CPanel users (if a process that sends an email has a UID of one of the <span class="notranslate">`allow_users`</span>, it will not be blocked)
+* <span class="notranslate">**Allow local**</span> - block all except the local SMTP (localhost). By default it is disabled.
+* <span class="notranslate">**Redirect to local**</span> - enable automatic redirection to the local ports for outgoing mail traffic. By default it is disabled.
+
+To enable these settings via direct config file update or a command-line interface, use this command: 
+
+<div class="notranslate">
+
+```
+/etc/sysconfig/imunify360/imunify360.config
+```
+</div>
+
+The config file should show:
+
+<div class="notranslate">
+
+```
+SMTP_BLOCKING:
+ allow_groups:
+ - mailacc
+ allow_local: true
+ allow_users: []
+ enable: true
+ ports:
+ - 25
+ - 587
+ - 465
+ redirect: true
+```
+</div>
+
+#### What if the Conflict with WHM >> SMTP Restrictions message is shown?
+
+![](/images/SMTPFAQ.png)
+
+<span class="notranslate">_WHM SMTP Restrictions_</span> requires to be disabled at the cPanel to get <span class="notranslate">_SMTP Traffic Management_</span> working.
+
+To disable it, log in to the cPanel WHM portal, select <span class="notranslate">_SMTP Restrictions_</span> on the left sidebar and disable it.
 
 #### 3-rd Party Integration
 
