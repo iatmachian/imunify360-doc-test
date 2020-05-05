@@ -842,7 +842,7 @@ The table can be sorted by <span class="notranslate">_Added_</span> and <span cl
 
 To search file or folder in the <span class="notranslate">Ignore List</span> use <span class="notranslate">_Search_</span> input field above the table.
 
-See also: [How to edit watched and ignored patterns for Malware Scanner](/faq_and_known_issues/#_18-how-to-edit-watched-and-ignored-patterns-for-malware-scanner)
+See also: [How to edit watched and excluded patterns for Malware Scanner?](/faq_and_known_issues/#_18-how-to-edit-watched-and-excluded-patterns-for-malware-scanner)
 
 
 ## Proactive Defense
@@ -979,7 +979,7 @@ The <span class="notranslate">_Ignore List_</span> table includes the following 
 * <span class="notranslate">Rules to ignore</span> — displays the pattern to be ignored.
 * <span class="notranslate">Actions</span> — allows to view details and perform actions on the file.
 
-See also: [How to edit watched and ignored patterns for Malware Scanner](/faq_and_known_issues/#_18-how-to-edit-watched-and-ignored-patterns-for-malware-scanner).
+See also: [How to edit watched and excluded patterns for Malware Scanner?](/faq_and_known_issues/#_18-how-to-edit-watched-and-excluded-patterns-for-malware-scanner).
 
 **How to test Proactive Defense**
 
