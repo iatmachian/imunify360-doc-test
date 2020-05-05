@@ -738,6 +738,11 @@ It is possible to scan a specific directory for malware. Go to <span class="notr
 	     * from <span class="notranslate">Low</span> to <span class="notranslate">High</span>.
 	* <span class="notranslate">_Follow symlinks_</span>. Follow all symlinks within the folder to scan. 
 
+
+:::tip Note
+Malware Scanner manages resource usage intensity during a list preparation, which is beneficial during a scan of a sizable subset of files (thousands of user accounts, millions of files).
+:::
+
 :::tip Note
 If Imunify360 <sup>4.6+</sup> is running on CloudLinux OS, LVE is used to manage scan intensity. If it is running on other operating systems, “nice” is used to control CPU and “ionice” is used when the I/O scheduler is CFQ.
 :::
@@ -836,6 +841,8 @@ The following filters are available:
 The table can be sorted by <span class="notranslate">_Added_</span> and <span class="notranslate">_Path_</span>. By default, it is sorted from newest to oldest.
 
 To search file or folder in the <span class="notranslate">Ignore List</span> use <span class="notranslate">_Search_</span> input field above the table.
+
+See also: [How to edit exclude/ignore list for Malware Scanner](/faq_and_known_issues/#_18-how-to-edit-exclude-ignore-list-for-malware-scanner-and-proactive-defense)
 
 
 ## Proactive Defense
@@ -971,6 +978,8 @@ The <span class="notranslate">_Ignore List_</span> table includes the following 
 * <span class="notranslate">Script Path</span> — displays the path to the script.
 * <span class="notranslate">Rules to ignore</span> — displays the pattern to be ignored.
 * <span class="notranslate">Actions</span> — allows to view details and perform actions on the file.
+
+See also: [How to edit exclude/ignore list for Proactive Defense](/faq_and_known_issues/#_18-how-to-edit-exclude-ignore-list-for-malware-scanner-and-proactive-defense).
 
 **How to test Proactive Defense**
 
@@ -1551,6 +1560,10 @@ Read [CXS integration](/ids_integration/#cxs-integration) documentation carefull
 
     :::tip Note
     If Imunify360 <sup>4.6+</sup> is running on CloudLinux OS, LVE is used to manage scan intensity. If it is running on other operating systems, “nice” is used to control CPU and “ionice” is used when the I/O scheduler is CFQ.
+    :::
+
+    :::tip Note
+    Malware Scanner manages resource usage intensity during a list preparation, which is beneficial during a scan of a sizable subset of files (thousands of user accounts, millions of files).
     :::
 
 **General**

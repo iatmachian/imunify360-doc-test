@@ -36,6 +36,7 @@ Available commands:
 |<span class="notranslate">`blocked-port`</span>|Return/Edit list of blocked ports|
 |<span class="notranslate">`check-domains`</span>|Send domain list check|
 |<span class="notranslate">`clean`</span>|Clean the incidents|
+|<span class="notranslate">`config update`</span>|Allows to update configuration file via CLI|
 |<span class="notranslate">`checkdb`</span>|Check database integrity|
 |<span class="notranslate">`doctor`</span>|Collect info about system and send it to CloudLinux|
 |<span class="notranslate">`features`</span>|Manage available features for Imunify360|
@@ -46,6 +47,7 @@ Available commands:
 |<span class="notranslate">`malware`</span>|Allows to manage malware options|
 |<span class="notranslate">`migratedb`</span>|Check and repair database if it is corrupted|
 |<span class="notranslate">`register`</span>|Agent registration|
+|<span class="notranslate">`remote-proxy`</span>|Allows to add an additional proxy subnet|
 |<span class="notranslate">`rstatus`</span>|Query the server to check if the license is valid|
 |<span class="notranslate">`rules`</span>|Allows user to manage disabled rules|
 |<span class="notranslate">`unregister`</span>|Unregistration the agent|
@@ -164,7 +166,7 @@ where 12.34.56.78 is that specific IP address.
 | | |
 |-|-|
 |<span class="notranslate">`--comment`</span>|allows to add comment to the item|
-|<span class="notranslate">`--expiration`</span>|allows to specify TTL for the blacklisted IP (in seconds since epoch)|
+|<span class="notranslate">`--expiration`</span>|allows specifying expiration time for the blacklisted IP (in seconds since epoch)|
 |<span class="notranslate">`--scope`</span>|allows to set the scope to <span class="notranslate">_Global/Local_</span>. Accepts two values: <span class="notranslate">`local`</span> (a default value, means "add IP on this server only") and <span class="notranslate">`group`</span> (means "add IP for the whole group in which this server is").|
 
 **Examples:**
@@ -199,6 +201,11 @@ imunify360-agent blacklist ip add 1.2.3.4 --scope group
    ```
 
 </div>
+
+
+:::warning Warning
+For now, ipset supports only IPv6/64 networks
+:::
 
 <div class="notranslate">
 
@@ -239,7 +246,7 @@ imunify360-agent blocked-port [command] <value> [--option]
 | | |
 |-----|-|
 |<span class="notranslate">`--comment`</span>| allows to add comment to the item|
-|<span class="notranslate">`--ips`</span>| allows to add IP addresses to ignore list of the<br>blocked port (port won’t be blocked for this IP addresses)|
+|<span class="notranslate">`--ips`</span>| block port for all IP addresses except the specified|
 
 **Example:**
 
@@ -308,6 +315,38 @@ Optional arguments:
 |<span class="notranslate">`--json`</span>|return data in JSON format|
 |<span class="notranslate">`--days`</span>|cleanups incidents from database, if there are more than specified days quantity<br>Example: <span class="notranslate">`--days 5`</span>.<br>this option will cause deletion of all incidents that are older than 5 days from today|
 |<span class="notranslate">`--limit`</span>|leaves only limited number of the incidents in the database and deletes the others<br>Example: <span class="notranslate">`--limit 5000`</span>.<br>this option will leave only 5000 new incidents and delete the others|
+
+
+<div class="notranslate">
+
+## Config update
+
+</div>
+
+Allows to update configuration file via CLI.
+
+Usage:
+
+<div class="notranslate">
+
+```
+imunify360-agent config update [configuration options]
+```
+
+</div>
+
+You can find all configuration options [here](/config_file_description/) and instructions on how to apply configuration changes from CLI [here](/config_file_description/#how-to-apply-changes-from-cli).
+
+**Example:**
+
+Set <span class="notranslate">`MALWARE_SCAN_INTENSITY.cpu = 5`</span> configuration option from a command line:
+
+<div class="notranslate">
+
+```
+imunify360-agent config update ‘{"MALWARE_SCAN_INTENSITY": {"cpu": 5}}’
+```
+</div>
 
 <div class="notranslate">
 
@@ -487,7 +526,7 @@ imunify360-agent get --period 1h --by-country-code UA --by-list black --json
 
 </div>
 
-This command allows to view or edit actual IP <span class="notranslate">Black List</span>.
+This command allows to view or edit IP <span class="notranslate">Gray List</span>.
 
 Usage:
 
@@ -651,6 +690,7 @@ Available commands:
 |<span class="notranslate">`suspicious`</span>| malware Suspicious List operations|
 |<span class="notranslate">`cleanup status`</span>| show the status of the cleanup process|
 |<span class="notranslate">`history list`</span>| lists the complete history of all malware-related incidents/actions (optional arguments available)|
+|<span class="notranslate">`rebuild patterns`</span>| rebuilds patterns after editing exclude/ignore list for Malware Scanner and Proactive Defense|
  
 Optional arguments:
 
@@ -744,6 +784,14 @@ imunify360-agent malware on-demand start --path='/var/www/vhosts/d*' --ignore-ma
 ```
 </div>
 
+3. The following command shows how to get an extended list of malicious files for a particular user. By default, a limit value equals to 50
+
+<div class="notranslate">
+
+```
+imunify360-agent malware malicious list --user cltest --limit 500
+```
+</div>
 
 <div class="notranslate">
 
@@ -828,6 +876,121 @@ If you have an IP-based license, you can use <span class="notranslate">`IPL`</sp
 
 ```
 imunify360-agent register IPL
+```
+
+</div>
+
+<div class="notranslate">
+	
+## Remote-proxy	
+	
+</div>
+
+Allows to add an additional proxy subnet.
+
+Usage:
+
+<div class="notranslate">
+
+```
+imunify360-agent remote-proxy [commands] [--optional arguments]
+```
+
+</div>
+
+Positional arguments:
+
+| | |
+|-|-|
+|<span class="notranslate">`add`</span>|Add proxy subnet in CIDR notation|
+|<span class="notranslate">`delete`</span>|Delete proxy subnet in CIDR notation|
+|<span class="notranslate">`list`</span>|List of manually added proxies|
+|<span class="notranslate">`group`</span>|Manage proxies by name|
+
+Positional arguments for <span class="notranslate">`add`</span>:
+
+| | |
+|-|-|
+|<span class="notranslate">`NETWORKS`</span>|Subnet in CIDR notation|
+
+Optional arguments for <span class="notranslate">`add`</span>:
+
+| | |
+|-|-|
+|<span class="notranslate">`-h`, `--help`</span>|Show this help message|
+|<span class="notranslate">`--json`</span>|Return data in JSON format|
+|<span class="notranslate">`--name NAME`</span>|Name of an added proxy|
+|<span class="notranslate">`--verbose`, `-v`</span>|Allows to return data in a good-looking view if the <span class="notranslate">`--json`</span> option is used.|
+
+Positional arguments for <span class="notranslate">`delete`</span>:
+
+| | |
+|-|-|
+|<span class="notranslate">`NETWORKS`</span>|Subnet in CIDR notation|
+
+Optional arguments for <span class="notranslate">`delete`</span>:
+
+| | |
+|-|-|
+|<span class="notranslate">`-h`, `--help`</span>|Show this help message|
+|<span class="notranslate">`--json`</span>|Return data in JSON format|
+|<span class="notranslate">`--verbose`, `-v`</span>|Allows to return data in a good-looking view if the <span class="notranslate">`--json`</span> option is used.|
+
+Optional arguments for <span class="notranslate">`list`</span>:
+
+| | |
+|-|-|
+|<span class="notranslate">`-h`, `--help`</span>|Show this help message|
+|<span class="notranslate">`--by-group BY_GROUP`</span>|Sort by <span class="notranslate">`GROUP`</span>|
+|<span class="notranslate">`--by-source BY_SOURCE`</span>|Sort by <span class="notranslate">`SOURCE`</span>|
+|<span class="notranslate">`--json`</span>|Return data in JSON format|
+|<span class="notranslate">`--verbose`, `-v`</span>|Allows to return data in a good-looking view if the <span class="notranslate">`--json`</span> option is used|
+
+Positional arguments for <span class="notranslate">`group`</span>:
+
+| | |
+|-|-|
+|<span class="notranslate">`enable`</span>|Enable group|
+|<span class="notranslate">`disable`</span>|Disable group|
+
+Positional arguments for <span class="notranslate">`enable`/`disable`</span>:
+
+| | |
+|-|-|
+|<span class="notranslate">`name`</span>|Name of your proxy subnet|
+
+
+Optional arguments for <span class="notranslate">`enable`/`disable`</span>:
+
+| | |
+|-|-|
+|<span class="notranslate">`-h`, `--help`</span>|Show this help message|
+|<span class="notranslate">`--source SOURCE`</span>|Enable/disable a group by <span class="notranslate">`SOURCE`</span>|
+|<span class="notranslate">`--json`</span>|Return data in JSON format|
+|<span class="notranslate">`--verbose`, `-v`</span>|Allows to return data in a good-looking view if the <span class="notranslate">`--json`</span> option is used.|
+
+Optional arguments for <span class="notranslate">`group`</span>:
+
+| | |
+|-|-|
+|<span class="notranslate">`-h, --help`</span>|Show this help message.|
+
+
+Optional arguments for <span class="notranslate">`remote-proxy`</span>:
+
+| | |
+|-|-|
+|<span class="notranslate">`-h`, `--help`</span>|Show this help message.|
+
+
+**Examples**
+
+The following command adds proxy subnet 1.1.2.0/24 with name <span class="notranslate">`my_own_proxy`</span>
+
+<div class="notranslate">
+
+```
+imunify360-agent remote-proxy add 1.1.2.0/24 --name "my_own_proxy"
 ```
 
 </div>
@@ -1078,7 +1241,7 @@ Optional arguments:
  
 <div class="notranslate">
 
-## Whitelist 
+## Whitelist
 
 </div>
 
@@ -1108,7 +1271,7 @@ imunify360-agent whitelist [subject] [command] <value> [--option]
 |<span class="notranslate">`add`</span>|Add item(-s) to the <span class="notranslate">White List</span>.|
 |<span class="notranslate">`delete`</span>|Remove item(-s) from the <span class="notranslate">White List.</span>|
 |<span class="notranslate">`move`</span>|Move item(-s) to the <span class="notranslate">White List</span>.|
-|<span class="notranslate">`edit`</span>|Edit comment on the item in the <span class="notranslate">White List</span>.|
+|<span class="notranslate">`edit`</span>|Edit TTL, comment and other parameters of the Whitelisted item.|
 |<span class="notranslate">`list`</span>|List items(-s) in the <span class="notranslate">White List</span>.|
 |<span class="notranslate">`reset-to`</span>|Replace whitelisted domains list with a new list.|
 
@@ -1134,7 +1297,7 @@ where `12.34.56.78` is that specific IP address.
 |<span class="notranslate">`--comment`</span>|Allows to add a comment to the item.|
 |<span class="notranslate">`--full-access`</span>|Only for <span class="notranslate">`move`</span> and <span class="notranslate">`edit`</span> commands.<br>Allows to grant full access to the IP or subnet ignoring the rules in Blocked ports.|
 |<span class="notranslate">`--no-full-access`</span>|Only for <span class="notranslate">`move`</span> and <span class="notranslate">`edit`</span> commands.<br>Allows to remove full access of the IP or subnet.|
-|<span class="notranslate">`--expiration`</span>|Allows to specify TTL for the blacklisted IP (in seconds since epoch).|
+|<span class="notranslate">`--expiration`</span>|Allows specifying TTL for the whitelisted IP (in seconds since epoch).|
 |<span class="notranslate">`--scope`</span>|Allows to set the scope to <span class="notranslate">_Global/Local_</span>. Accepts two values: <span class="notranslate">`local`</span> (a default value, means "add IP on this server only") and <span class="notranslate">`group`</span> (means "add IP for the whole group in which this server is").|
 
 **Examples:**
