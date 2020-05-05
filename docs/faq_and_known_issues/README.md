@@ -516,9 +516,9 @@ A reason pattern looks like the following:
 |**Reason**|**Explanation**|
 |<span class="notranslate">`SMW-SA-05155-sh.bkdr.wshll`</span>|**type**: server malware (`SMW`)<br>**detected**: stand-alone (file is completely malicious) (`SA`)<br>**signature ID**: `05155`<br>**file type**: shell scripts (`sh`)<br>**mlwcategory**: artifacts that help attackers with partial or complete access to victims (`bkdr`)<br>**mlwclassification**: web shells (`wshll`)|
 
-### 18. How to edit exclude/ignore list for Malware Scanner and Proactive Defense? <Badge text="v.4.8" />
+### 18. How to edit watched and ignored patterns for Malware Scanner? <Badge text="v.4.8" />
 
-Starting from Imunify version 4.8 you can add and overwrite your own ignore paths to be watched and excluded by the inotify/fanotify scans.
+Starting from Imunify version 4.8 you can edit watched and ignored patterns for Malware Scanner.
 
 Proactive Defense will prevent <span class="notranslate">`include`/`require`</span> of PHP files that are ignored by realtime-scan.
 
@@ -574,6 +574,7 @@ or relative to basedirs supplied by hosting control panels:
 </div>
 
 This relative pattern will expand to the <span class="notranslate">`^/home/[^/]+/www/\.cache`</span> for cPanel, for example.
+The `+` could be <span class="notranslate">`^/home/`</span> or <span class="notrnslate">`/home/`</span>, etc.
 
 All patterns listed here have higher priority than stock watched and ignored lists supplied with Imunify360.
 
