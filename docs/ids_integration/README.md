@@ -11,24 +11,25 @@ To check that running <span class="notranslate">CSF</span> is detected, go to <s
 
 ![](/images/firewallblacklistwarning_zoom70.png)
 
-#### 3-rd Party Integration mode
-
-The main setting that defines how Imunify360 works along with CSF is [3-rd Party Integration](https://docs.imunify360.com/dashboard/#_3-rd-party-integration) switch. (The [config file](/config_file_description/) equivalent is `CSF_INTEGRATION.catch_lfd_events`). If this mode is **disabled** (default), CSF and Imunify360 work as two independent solutions (with redundant modules disabled on the Imunify360 side - see above).
-
-When 3-rd Party Integration mode is **enabled** Imunify360 uses <span class="notranslate">Login Failure Daemon (LFD)</span> as source for security events instead of <span class="notranslate">[OSSEC](https://www.ossec.net)</span>. To get events from <span class="notranslate">Login Failure Daemon (LFD)</span>, Imunify360 automatically replaces <span class="notranslate">`BLOCK_REPORT`</span> variable to the file path of Imunify360 script.
-When some IP address is blocked by <span class="notranslate">LFD, Imunify360</span> adds this IP address to its <span class="notranslate">Graylist</span> and then **removes it from <span class="notranslate">CSF deny/tempdeny lists</span>**. The latter is done to allow the IP to have access to the Captcha and to store all automatically blocked IP addresses in a single place. Thus, no IP is automatically added to <span class="notranslate">CSF deny/tempdeny lists</span>. In general, when this mode is on: 
-
-* <span class="notranslate">Black List, Gray List</span>, and <span class="notranslate">White List</span> can be managed in Imunify360 regardless of <span class="notranslate">CSF</span>.
-* <span class="notranslate">CSF Allow, Deny</span> and <span class="notranslate">Ignore Lists</span> are not automatically imported from <span class="notranslate">CSF</span>. They can still be managed using <span class="notranslate">CSF</span> interface.
-* Imunify360 will not block addresses from <span class="notranslate">CSF Allow</span> and <span class="notranslate">Ignore Lists</span>.
-
-**<span class="notranslate">Mod_security</span> recommendations for 3-rd Party Integration mode**
+**<span class="notranslate">Mod_security</span> recommendations**
 
 When <span class="notranslate">mod_security</span> is configured with <span class="notranslate">SecRuleEngine On</span> (blocking mode), <span class="notranslate">CSF</span> blocks IP addresses by <span class="notranslate">mod_security</span> events. The number of events to block IP address is defined by <span class="notranslate">` LF_MODSEC`</span> variable in <span class="notranslate">`csf.conf`</span>. This can lead to a large number of false positives.
 
 We recommend to set <span class="notranslate">`LF_MODSEC`</span> variable to 0.
 
 In this case, Imunify360 will block IPs only by <span class="notranslate">mod_security</span> events with high severity.
+
+#### 3-rd Party Integration mode
+
+The main setting that defines how Imunify360 works along with CSF is [3-rd Party Integration](https://docs.imunify360.com/dashboard/#_3-rd-party-integration) switch. (The [config file](/config_file_description/) equivalent is `CSF_INTEGRATION.catch_lfd_events`). When this mode is **disabled** (default), CSF and Imunify360 work as two independent solutions (with redundant modules disabled on the Imunify360 side - see above).
+
+When 3-rd Party Integration mode is **enabled** Imunify360 uses <span class="notranslate">Login Failure Daemon (LFD)</span> as source for security events instead of <span class="notranslate">[OSSEC](https://www.ossec.net)</span>. To get events from <span class="notranslate">Login Failure Daemon (LFD)</span>, Imunify360 automatically replaces <span class="notranslate">`BLOCK_REPORT`</span> variable to the file path of Imunify360 script.
+When some IP address is blocked by <span class="notranslate">LFD, Imunify360</span> adds this IP address to its <span class="notranslate">Graylist</span> and then **removes it from <span class="notranslate">CSF deny/tempdeny lists</span>**. The latter is done to allow the IP to have access to the Captcha and to store all automatically blocked IP addresses in a single place. Thus, no IP is automatically added to <span class="notranslate">CSF deny/tempdeny lists</span>. In general, when 3-rd Party Integration mode is on: 
+
+* <span class="notranslate">Black List, Gray List</span>, and <span class="notranslate">White List</span> can be managed in Imunify360 regardless of <span class="notranslate">CSF</span>.
+* <span class="notranslate">CSF Allow, Deny</span> and <span class="notranslate">Ignore Lists</span> are not automatically imported from <span class="notranslate">CSF</span>. They can still be managed using <span class="notranslate">CSF</span> interface.
+* Imunify360 will not block addresses from <span class="notranslate">CSF Allow</span> and <span class="notranslate">Ignore Lists</span>.
+
 
 ## CXS Integration
 
