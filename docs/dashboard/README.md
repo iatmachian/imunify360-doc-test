@@ -738,11 +738,6 @@ It is possible to scan a specific directory for malware. Go to <span class="notr
 	     * from <span class="notranslate">Low</span> to <span class="notranslate">High</span>.
 	* <span class="notranslate">_Follow symlinks_</span>. Follow all symlinks within the folder to scan. 
 
-
-:::tip Note
-Malware Scanner manages resource usage intensity during a list preparation, which is beneficial during a scan of a sizable subset of files (thousands of user accounts, millions of files).
-:::
-
 :::tip Note
 If Imunify360 <sup>4.6+</sup> is running on CloudLinux OS, LVE is used to manage scan intensity. If it is running on other operating systems, “nice” is used to control CPU and “ionice” is used when the I/O scheduler is CFQ.
 :::
@@ -1562,10 +1557,6 @@ Read [CXS integration](/ids_integration/#cxs-integration) documentation carefull
 
     :::tip Note
     If Imunify360 <sup>4.6+</sup> is running on CloudLinux OS, LVE is used to manage scan intensity. If it is running on other operating systems, “nice” is used to control CPU and “ionice” is used when the I/O scheduler is CFQ.
-    :::
-
-    :::tip Note
-    Malware Scanner manages resource usage intensity during a list preparation, which is beneficial during a scan of a sizable subset of files (thousands of user accounts, millions of files).
     :::
 
 **General**
