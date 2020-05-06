@@ -1,4 +1,14 @@
 # WebShield
+
+#### Setting the WebShield "Server" header
+
+Sometimes it's desired to change the WebShield "Server" header to something that suits certain requirements.
+
+To do so, locate the <span class="notranslate">`more_set_headers`</span> directive in the <span class="notrabslate">`/etc/imunify360-webshield/webshield.conf`</span> file.
+
+By default, the directive contains the <span class="notranslate">`"Server: imunify360-webshield/1.8";`</span> value. You can set string after the colon to whatever suits your needs.
+
+
 ## Captcha
 
 The CAPTCHA is a feature intended to distinguish human from machine input and protect websites from the spam and different types of automated abuse. Imunify360 uses [reCAPTCHA](https://www.google.com/recaptcha/intro/invisible.html) service.
@@ -105,36 +115,17 @@ service imunify360-webshield restart
 
 If a server owner has his own Google reCAPTCHA keys (both private and public), he may use them instead of the default CloudLinux keys.
 
-To set Google reCAPTCHA keys, do the following:
+To set Google reCAPTCHA keys, place your keys into the <span class="notranslate">`/etc/imunify360-webshield/webshield-http.conf.d/captchakeys.conf`</span> file as shown in the example below:
 
-1. In the <span class="notranslate">`/etc/imunify360-webshield/virtserver.conf`</span> file find the <span class="notranslate">`set $captcha_key`</span> line 
-2. Replace the provided key with your own public key, for example:
+<div class="notranslate">
 
-    <div class="notranslate">
+```
+captcha_site_key <YOUR_SITE_KEY>;
+captcha_secret_key <YOUR_SECRET_KEY>;
+```
+</div>
 
-    ```
-    location @to_captcha {
-    ...
-    set $captcha_key YOUR_OWN_PUBLIC_KEY;
-    content_by_lua_file lua/captcha.lua;
-    }
-    ```
-    </div>
-
-    :::warning Note
-    Pay attention to semicolon at the end of the line.
-    :::
-3. Then go to the <span class="notranslate">`/etc/imunify360-webshield/webshield.conf`</span> file and uncomment the <span class="notranslate">`captcha_custom_secret_key`</span> directive
-4. Place your private key into it, for example:
-
-    <div class="notranslate">
-
-    ```
-    # Uncomment the following line if you have your own google recaptcha key and want to use it
-    captcha_custom_secret_key YOUR_SECRET_KEY;
-    ```
-    </div>
-5. Reload WebShield
+Then reload WebShield.
 
 ## CDN Support <sup>3.8+</sup>
 	
@@ -194,6 +185,7 @@ For cPanel/EasyApache 4, Plesk, DirectAdmin and LiteSpeed _mod_remoteip_ will be
 * QUANTIL
 * QUIC.cloud CDN
 * BunnyCDN
+* Sucuri WAF
 
 
 ### SplashScreen for Chinese customers
@@ -264,4 +256,6 @@ systemctl reload imunify360-webshield
 
 It will block traffic from those countries no matter if it goes via known proxies or directly.
 
-
+:::warning Note
+You can find WebShield and Captcha related logs in the <span class="notranslate">`/var/log/imunify360-webshield/`</span> file.
+:::
