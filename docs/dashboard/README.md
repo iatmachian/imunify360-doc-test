@@ -1381,6 +1381,8 @@ Tick the <span class="notranslate">_Manage CSF Events and Lists_</span> checkbox
 	
 ![](/images/3rd_party_protection.png)
 
+This settings is explained in more detail [here](/ids_integration/#_3-rd-party-integration-mode)
+
 #### Auto White List
  
 <span class="notranslate">Auto White List</span> section allows to automatically add admin IP to the <span class="notranslate">White List</span> each time when he logs in to hosting panel and enters Imunify360 user interface.
