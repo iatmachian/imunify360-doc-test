@@ -121,7 +121,7 @@ Usage:
 <div class="notranslate">
 
 ```
-imunify360-agent 3rdparty [-h]
+imunify360-agent 3rdparty
 ```
 
 </div>
@@ -393,7 +393,7 @@ Usage:
 <div class="notranslate">
 
 ```
-imunify360-agent checkdb [-h]
+imunify360-agent checkdb
 ```
 
 </div>
@@ -515,7 +515,7 @@ Usage:
 <div class="notranslate">
 
 ```
-imunify360-agent doctor [-h]
+imunify360-agent doctor
 ```
 
 </div>
@@ -540,7 +540,7 @@ Usage:
 <div class="notranslate">
 
 ```
-imunify360-agent features [-h] [command] <feature name>
+imunify360-agent features [command] <feature name>
 ```
 
 </div>
@@ -839,7 +839,7 @@ Usage:
 <div class="notranslate">
 
 ```
-imunify360-agent import [-h] {blocked-ports, wblist} ...
+imunify360-agent import {blocked-ports, wblist} ...
 ```
 
 </div>
@@ -876,7 +876,7 @@ Usage:
 <div class="notranslate">
 
 ```
-imunify360-agent infected-domains [-h] [--optional arguments]
+imunify360-agent infected-domains [--optional arguments]
 ```
 
 </div>
@@ -1427,7 +1427,7 @@ Usage:
 <div class="notranslate">
 
 ```
-imunify360-agent version [-h] [--json]
+imunify360-agent version [--json]
 ```
 
 </div>
