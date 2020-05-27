@@ -129,5 +129,7 @@ module.exports = {
   "/common_problems.htm/": "/whmcs_plugin/#common-problems",
   "/index.html?common_problems.htm": "/whmcs_plugin/#common-problems",
   "/downloading_documentation.htm/": "/downloading_documentation/",
-  "/index.html?downloading_documentation.htm": "/downloading_documentation/"
+  "/index.html?downloading_documentation.htm": "/downloading_documentation/",
+  "/command_line_interface/#config-update": "/command_line_interface/#config",
+  "/ru/command_line_interface/#config-update": "/ru/command_line_interface/#config"
 };
