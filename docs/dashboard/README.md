@@ -1,6 +1,6 @@
 # Imunify360 Admin Interface
 
-Imunify360 is an all-in-one security solution with robust herd protection against the newest attacks, and it is available directly within your control panel (cPanel, Plesk, and DirectAdmin).
+Imunify360 is an all-in-one security solution with robust cloud protection against the newest attacks, and it is available directly within your control panel (cPanel, Plesk, and DirectAdmin).
 
 When you log in to your control panel, Imunify360 asks you to enter your email address.
 
@@ -14,12 +14,12 @@ This email address is used ONLY for receiving server reports.
 
 Or you can do it later in the <span class="notranslate">[Settings | General | Contact Details](/dashboard/#contact-details)</span>.
 
-Log in to your control panel as an admin and go to <span class="notranslate">Plugins</span>, choose Imunify360 to get to the Imunify360 user interface.
+Log in to your control panel as an admin and go to <span class="notranslate">Plugins</span>, choose Imunify360 to get to the Imunify360 admin interface.
 
 It allows to access:
-* <span class="notranslate">[Support](/dashboard/#support)</span> – allows you to contact our support team directly from your Imunify360 User Interface
+* <span class="notranslate">[Support](/dashboard/#support)</span> – allows you to contact our support team directly from your Imunify360 Admin Interface
   
-* <span class="notranslate">[Dashboard](/dashboard/#dashboard)</span> – allows you to see retrospective data in form of charts/heatmaps in your Imunify360 User Interface
+* <span class="notranslate">[Dashboard](/dashboard/#dashboard)</span> – allows you to see retrospective data in form of charts/heatmaps in your Imunify360 Admin Interface
 
 * <span class="notranslate">[Incidents](/dashboard/#incidents)</span> – the list of all suspicious activity on the server.
 
@@ -39,9 +39,9 @@ It allows to access:
 ## Support
 
 
-This tab allows you to contact our support team directly from your Imunify360 User Interface. You can create a request and attach some files to it.
+This tab allows you to contact our support team directly from your Imunify360 Admin Interface. You can create a request and attach some files to it.
 
-To contact our support team in Imunify360 User Interface, please click the _Call_ icon at the top right corner of the page.
+To contact our support team in Imunify360 Admin Interface, please click the _Call_ icon at the top right corner of the page.
 
 ![](/images/contactsupport_zoom70.png)
 
@@ -49,7 +49,7 @@ A support ticket will be created and an email will be sent to a specified email 
 
 <div class="notranslate">
 
-## Dashboard <Badge text="4.0+"/>
+## Dashboard
 
 </div>
 
@@ -64,7 +64,7 @@ Here you can see notifications about server security and Imunify360 configuratio
 
 <div class="notranslate">
 
-### Multi-server Dashboard <Badge text="4.1+"/>
+### Multi-server Dashboard
 
 </div>
 
@@ -168,7 +168,7 @@ Attacks against network services, e.g. FTP, SSH, POP, IMAP, etc., recorded by OS
 
 * **Denied Requests from Bad Bots**
 
-Attacks detected by the Imunify360 Bot-Detector heuristics-based plugin. Bot-Detector is a part of Imunify360’s “herd immunity” feature that collects and analyzes a massive amount of information on new attacks on a global scale which it uses to prevent attacks across multiple servers.
+Attacks detected by the Imunify360 Bot-Detector heuristics-based plugin. Bot-Detector is a part of Imunify360’s “cloud heuristics” feature that collects and analyzes a massive amount of information on new attacks on a global scale which it uses to prevent attacks across multiple servers.
 
 * **Cleaned malicious files**
 
@@ -502,9 +502,9 @@ You will see a notification if an IP is successfully removed.
 
 ![](/images/success_01_zoom75.png)
 
-See also: [How to use external files with the list of Black/White IPs](/firewall_config/#external-black-whitelist-management)
+See also: [How to use external files with the list of Black/White IPs](/features/#external-black-whitelist-management)
 
-### Global Black/White list IP management <sup><Badge text="4.5+"/> <Badge text="beta" type="warn"/></sup>
+### Global Black/White list IP management
 
 Starting from Imunify360 version 4.5 an administrator can manage IPs globally, this means that you can blacklist or whitelist an IP not only on one server but on a group of servers. 
 
@@ -618,7 +618,7 @@ Malware scanning allows you to:
 * manage malicious and quarantined files
 * manage Ignore List
 
-Click <span class="notranslate">_Malware Scanner_</span> in the main menu of the Imunify360 user interface.
+Click <span class="notranslate">_Malware Scanner_</span> in the main menu of the Imunify360 admin interface.
 
 ![](/images/malwarescanner_general.png)
 
@@ -837,7 +837,7 @@ The table can be sorted by <span class="notranslate">_Added_</span> and <span cl
 
 To search file or folder in the <span class="notranslate">Ignore List</span> use <span class="notranslate">_Search_</span> input field above the table.
 
-See also: [How to edit watched and excluded patterns for Malware Scanner?](/faq_and_known_issues/#_18-how-to-edit-watched-and-excluded-patterns-for-malware-scanner)
+See also: [How to edit watched and excluded patterns for Malware Scanner?](/faq_and_known_issues/#_22-how-to-edit-watched-and-excluded-patterns-for-malware-scanner)
 
 
 ## Proactive Defense
@@ -974,7 +974,7 @@ The <span class="notranslate">_Ignore List_</span> table includes the following 
 * <span class="notranslate">Rules to ignore</span> — displays the pattern to be ignored.
 * <span class="notranslate">Actions</span> — allows to view details and perform actions on the file.
 
-See also: [How to edit watched and excluded patterns for Malware Scanner?](/faq_and_known_issues/#_18-how-to-edit-watched-and-excluded-patterns-for-malware-scanner).
+See also: [How to edit watched and excluded patterns for Malware Scanner?](/faq_and_known_issues/#_22-how-to-edit-watched-and-excluded-patterns-for-malware-scanner).
 
 **How to test Proactive Defense**
 
@@ -1076,7 +1076,7 @@ imunify360-agent proactive list
 
 ## Reputation Management
 
-Choose <span class="notranslate">_Reputation Management_</span> in the main menu of the Imunify360 user interface to get to the <span class="notranslate">Reputation Management</span> page.
+Choose <span class="notranslate">_Reputation Management_</span> in the main menu of the Imunify360 admin interface to get to the <span class="notranslate">Reputation Management</span> page.
 
 <span class="notranslate">Reputation Management</span> allows to check if a domain registered on your server is safe or not based on the following reputation engines:
 
@@ -1200,7 +1200,7 @@ HardenedPHP is free on the servers with Imunify360 installed.
 **Overview**
 
 This feature allows to automatically determine if the user is a human. The system falls back to CAPTCHA solving if the algorithm determines that a user may not be a human.
-It is possible to enable Invisible CAPTCHA feature via Imunify360 user interface (UI) and via command line interface (CLI).
+It is possible to enable Invisible CAPTCHA feature via Imunify360 admin interface and via command line interface (CLI).
 
 **How to install Invisible CAPTCHA**
 
@@ -1229,7 +1229,7 @@ To install or uninstall KernelCare click on a button related. Please find additi
 KernelCare is free on the servers with Imunify360 installed.
 :::
 
-#### Privilege escalation detection & protection <sup><Badge text="beta" type="warn"/> <Badge text="4.4+"/></sup>
+#### Privilege escalation detection & protection
 
 The KernelCare extension for Imunify360 allows tracing malicious invocations to detect privilege escalation attempts.
 
@@ -1309,6 +1309,15 @@ It is possible to configure how Imunify360 will behave:
 * <span class="notranslate">_Max Connections_</span>– allows to setup the number of simultaneous connections allowed before IP will be blocked. Cannot be set lower than 100.
 * <span class="notranslate">_Check delay_</span> – allows to setup period in seconds between each DoS detection system activation that will check a server for DoS attack. Also, it is possible to set different limits for different local ports by editing the configuration file directly.
 
+**The minimum values**: 
+
+* Max Connections = 100
+* Check delay = 30
+
+:::tip Note
+_Check delay_ is limited by the minimum value of 30, lower values can cause "false positives" triggering.
+:::
+
 :::tip Note
 Although DoS protection works on the TCP level, it is not the same as http request rate - even if there is large number of http connections, the number of TCP connections can be relatively low.
 :::
@@ -1321,7 +1330,7 @@ Imunify360 DoS protection is automatically disabled if CSF is active - a warning
 
 Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
 
-#### SMTP Traffic Manager <sup><Badge text="4.6+"/> <Badge text="Experimental" type="warn"/></sup>
+#### SMTP Traffic Manager
 
 SMTP traffic management provides more control over SMTP traffic.
 
@@ -1338,6 +1347,12 @@ You can enable the <span class="notranslate">SMTP Traffic Management</span> in t
 * <span class="notranslate">**Allow groups**</span> - a list of the groups to be ignored (not blocked). By default it is empty. Including Unix and CPanel users (if a process that sends an email has a UID of one of the <span class="notranslate">`allow_users`</span>, it will not be blocked)
 * <span class="notranslate">**Allow local**</span> - block all except the local SMTP (localhost). By default it is disabled.
 * <span class="notranslate">**Redirect to local**</span> - enable automatic redirection to the local ports for outgoing mail traffic. By default it is disabled.
+
+::: tip Note
+The following is added by default into the _Allow users_ and the _Allow groups_ for cPanel:
+* UIDs - 0 (root), 202 (cpanel)
+* GIDs - 12 (mail) 
+:::
 
 To enable these settings via direct config file update or a command-line interface, use this command: 
 
@@ -1385,7 +1400,7 @@ This settings is explained in more detail [here](/ids_integration/#_3-rd-party-i
 
 #### Auto White List
  
-<span class="notranslate">Auto White List</span> section allows to automatically add admin IP to the <span class="notranslate">White List</span> each time when he logs in to hosting panel and enters Imunify360 user interface.
+<span class="notranslate">Auto White List</span> section allows to automatically add admin IP to the <span class="notranslate">White List</span> each time when he logs in to hosting panel and enters Imunify360 admin interface.
 In <span class="notranslate">_Timeout_</span> field enter the number of minutes – the IP will be removed from the white list automatically after this time.
 
 ::: tip Note
@@ -1469,7 +1484,7 @@ The purpose of the feature is significantly reducing false positive rate while i
 
 Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
 
-#### PAM <sup><Badge text="4.4+"/></sup>
+#### PAM
 
 #### PAM brute-force attack protection
 
@@ -1482,13 +1497,13 @@ You can also enable it via CLI with the following command:
 <div class="notranslate">
 
 ```
-imunify360-agent config update '{"PAM": {"enabled": true}}'
+imunify360-agent config update '{"PAM": {"enable": true}}'
 ```
 </div>
 
 Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
 
-#### Exim+Dovecot brute-force attack protection <sup><Badge text="4.5+"/> <Badge text="Beta" type="warn"/></sup>
+#### Exim+Dovecot brute-force attack protection
 
 Tick the <span class="notranslate">_Exim+Dovecot brute-force attack protection_</span> checkbox to enable advanced protection against Dovecot brute-force attacks. PAM module protects against IMAP/POP3 brute-force attack and prevents mail account from being compromised via brute-forcing.
 
@@ -1499,7 +1514,7 @@ You can also enable it via CLI with the following command:
 <div class="notranslate">
 
 ```
-imunify360-agent config update '{"PAM.exim_dovecot_protection": {"enabled": true}}'
+imunify360-agent config update '{"PAM": {"exim_dovecot_protection": true}}'
 ```
 </div>
 
@@ -1515,7 +1530,7 @@ Tick <span class="notranslate">_Enable Sentry error reporting_</span> checkbox t
 
 Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
 
-#### Contact Details <sup><Badge text="4.1+"/></sup>
+#### Contact Details
  
 Type your email into the <span class="notranslate">_Email_</span> field to receive email reports about critical issues, security alerts or system misconfigurations detected on your servers.
 
@@ -1865,13 +1880,13 @@ You can perform all these actions via [CLI](/command_line_interface/).
 
 <div class="notranslate">
 
-### Native Feature Management<sup> 4.0</sup>
+### Native Feature Management
 
 </div>
 
 <span class="notranslate">Feature Management</span> allows a hoster to enable/disable different Imunify360 features for server users. Using this functionality, hosting companies may resell chosen Imunify360 features as a part of hosting packages to end-users as well as make features available/unavailable for a group of end-users.
 
-### WHM/cPanel<sup> 4.0</sup>
+### WHM/cPanel
 
 <span class="notranslate">WHM/cPanel Feature Management</span> is now available under <span class="notranslate">WHM/cPanel Package Manager</span> via <span class="notranslate">Package Extension (PE)</span>.
 Using <span class="notranslate">WHM/cPanel Native Feature Management</span> a hoster can enable/disable <span class="notranslate">Malware Scanner</span> and <span class="notranslate">Proactive Defense</span> for all users with the same package (service plan) instantly.
@@ -1962,5 +1977,4 @@ If succeeded, the status of Imunify360 service will be displayed at Service Stat
 
 ![](/images/service_status.jpg)
 
-
-
+<Disqus/>

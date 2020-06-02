@@ -81,11 +81,11 @@ Available commands:
 |[<span class="notranslate">`hooks`</span>](/command_line_interface/#hooks)|Hooks-related commands|
 |[<span class="notranslate">`import`</span>](/command_line_interface/#import)|Import data|
 |[<span class="notranslate">`infected-domains`</span>](/command_line_interface/#infected-domains)|Returns infected domain list|
-|[<span class="notranslate">`login`</span>](/command_line_interface/#login)|Allows to get a token which can be used for authentication in stand-alone Imunify UI.|
+|[<span class="notranslate">`login`</span>](/command_line_interface/#login)|Allows to get a token which can be used for authentication in [stand-alone Imunify UI](/stand_alone/).|
 |[<span class="notranslate">`malware`</span>](/command_line_interface/#malware)|Allows to manage malware options|
 |[<span class="notranslate">`proactive`</span>](/command_line_interface/#proactive)|Allows to manage Proactive Defense feature|
 |[<span class="notranslate">`register`</span>](/command_line_interface/#register)|Agent registration|
-|[<span class="notranslate">`reload-lists`</span>](/command_line_interface/#reload-lists)|Allows to use external files with the list of Black/White-listed IPs|
+|[<span class="notranslate">`reload-lists`</span>](/command_line_interface/#reload-lists)|Allows to use external files with the list of Black/White-listed IPs. [More details](/features/#external-black-whitelist-management).|
 |[<span class="notranslate">`remote-proxy`</span>](/command_line_interface/#remote-proxy)|Allows to add an additional proxy subnet|
 |[<span class="notranslate">`rstatus`</span>](/command_line_interface/#rstatus)|Query the server to check if the license is valid|
 |[<span class="notranslate">`rules`</span>](/command_line_interface/#rules)|Allows user to manage disabled rules|
@@ -487,7 +487,7 @@ imunify360-agent checkdb
 
 </div>
 
-Allows to send domains list for a check to the Imunify360 central server. This command requires cPanel. After domains checked, the results is available via command <span class="notranslate">`infected-domains`</span>.
+Allows to send domains list for a check to the Imunify360 central server. After domains checked, the results is available via command <span class="notranslate">`infected-domains`</span>.
 
 ::: tip Note
 <span class="notranslate">`check-domains`</span> command may take a few minutes to complete.
@@ -1012,9 +1012,9 @@ imunify360-agent hook [command] --event [event_name|all] [--path </path/to/hook_
 |<span class="notranslate">`add-native`</span>|register a new native event handler|
 
 | | |
-|-|-|
-|<span class="notranslate">`--event [event_name|all]`</span>|defines a particular event that invokes a registered handler as opposed to all keyword|
-|<span class="notranslate">`--path </path/to/hook_script>`</span>|shall contain a valid path to a handler of the event, it shall be any executable or Python Native event handlers that agent will run upon a registered event|
+|----------|-|
+|<span class="notranslate">`--event [event_name|all]`</span>|defines a particular event that invokes<br>a registered handler as opposed to all keyword|
+|<span class="notranslate">`--path </path/to/hook_script>`</span>|shall contain a valid path to a handler of the event,<br>it shall be any executable or Python Native event handlers<br>that agent will run upon a registered event|
 
 **Example:**
 
@@ -1776,7 +1776,7 @@ imunify360-agent [command]
 
 | | |
 |-|-|
-|<span class="notranslate">`install-vendors`</span>|Install ModSecurity vendors.<br>This command will install Imunify360 vendor and<br>[Comodo WAF](https://modsecurity.comodo.com/) if there are no conflicts with other installed vendors.|
+|<span class="notranslate">`install-vendors`</span>|Install ModSecurity vendors.<br>This command will install the Imunify360 vendor<br>if there are no conflicts with other installed vendors.|
 |<span class="notranslate">`uninstall-vendors`</span>|uninstall <span class="notranslate">ModSecurity</span> vendors.|
 
 **Example:**

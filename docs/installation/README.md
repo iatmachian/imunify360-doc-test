@@ -1,15 +1,21 @@
 # Installation Guide
 ## Requirements
 **Operating system**
-* <span class="notranslate">CentOS 6 and 7</span>
-* <span class="notranslate">RHEL</span>
+* <span class="notranslate">CentOS/RHEL 6 and 7</span>
 * <span class="notranslate">CloudLinux OS</span> 6 and 7
-* <span class="notranslate">Ubuntu 16.04 LTS</span> only <sup>3.6+</sup>
-* <span class="notranslate">Ubuntu 18.04</span> <sup><span class="notranslate">Beta</span> 3.9+</sup>
+* <span class="notranslate">Ubuntu 16.04 LTS</span> only
+* <span class="notranslate">Ubuntu 18.04</span>
+* CentOS 8 with Plesk
+* CentOS 8 with DirectAdmin
+* CentOS 8 as stand-alone
+* CloudLinux OS 8 with DirectAdmin
+* CloudLinux OS 8 as stand-alone
+
+
 
 **Virtualization**
 
-<span class="notranslate">OpenVZ</span> - works for <span class="notranslate">Virtuozzo</span> 7 with kernel 3.10.0-327.10.1.vz7.12.8 or later.
+<span class="notranslate">OpenVZ</span> - works for <span class="notranslate">Virtuozzo</span> 7 with kernel 3.10.0-327.10.1.vz7.12.8 or newer.
 
 **Hardware**
 
@@ -19,10 +25,9 @@
 **Supported hosting panels**
 
 * <span class="notranslate">cPanel</span>
-* <span class="notranslate">Plesk (Plesk</span> 12.5 is not supported starting with Imunify360 3.8.5)
-* <span class="notranslate">DirectAdmin</span> <sup>Imunify360 v. 3.1.3+</sup>
-
-_<span class="notranslate">ISPManager</span>, non-panel - soon after._
+* <span class="notranslate">Plesk (Plesk</span> 12.5 is not supported)
+* <span class="notranslate">DirectAdmin</span>
+* [No hosting panel systems](/stand_alone/)
 
 **Required browsers**
 
@@ -30,6 +35,11 @@ _<span class="notranslate">ISPManager</span>, non-panel - soon after._
 * <span class="notranslate">Chrome</span> version 39 or later
 * <span class="notranslate">Firefox</span> version 28 or later
 * <span class="notranslate">Edge</span> version 17 or later
+
+**Supported Web-servers**
+* <span class="notranslate">Apache</span>
+* <span class="notranslate">LiteSpeed</span> 
+
 
 ## Side by side installation with another <span class="notranslate">IDS</span>
 
@@ -57,12 +67,12 @@ _<span class="notranslate">ISPManager</span>, non-panel - soon after._
 |-|-|
 |**<span class="notranslate">IDS</span> name** | **Comment**|
 |<span class="notranslate">ASL (Atomicorp Secured Linux)</span> | Possibly is not compatible (investigating).|
-|<span class="notranslate">fail2ban</span> | Imunify360 disables <span class="notranslate">fail2ban</span>.|
+|<span class="notranslate">fail2ban</span> | Imunify360 disables <span class="notranslate">fail2ban</span>: the latter resets chains of iptables rules which causes inconsistency with Imunify360|
 
 ## Installation Instructions
 
 :::warning Warning
-On DirectAdmin, Imunify UI requires the <span class="notranslate">`proc_open`</span> PHP function to be enabled. If you are unable to open the Imunify UI, you might see a related message in the <span class="notranslate">`errror.log`</span> of the web-server. If so, please remove it from the <span class="notranslate">`disable_functions`</span> list in <span class="notranslate">`php.ini`</span>.
+On DirectAdmin, Imunify UI requires the <span class="notranslate">`proc_open`</span> PHP function to be enabled. If you are unable to open the Imunify UI, you might see a related message in the web server error log. If so, please remove it from the <span class="notranslate">`disable_functions`</span> list in <span class="notranslate">`php.ini`</span>.
 :::
 
 1. Get your license key at [https://www.imunify360.com/](https://www.imunify360.com/). You can purchase it or get a trial key from a received email.
@@ -191,12 +201,25 @@ apt-get install --only-upgrade imunify360-firewall
 
 </div>
 
-To update Imunify360 beta version on <span class="notranslate">Ubuntu</span> the command:
+To update Imunify360 beta version on <span class="notranslate">Ubuntu 16.04</span> run the command:
 
 <div class="notranslate">
 
 ```
 echo 'deb https://repo.imunify360.cloudlinux.com/imunify360/ubuntu-testing/16.04/ xenial main'  > /etc/apt/sources.list.d/imunify360-testing.list
+apt-get update
+apt-get install --only-upgrade imunify360-firewall
+```
+
+</div>
+
+
+To update Imunify360 beta version on <span class="notranslate">Ubuntu 18.04</span> run the command:
+
+<div class="notranslate">
+
+```
+echo 'deb https://repo.imunify360.cloudlinux.com/imunify360/ubuntu-testing/18.04/ bionic main'  > /etc/apt/sources.list.d/imunify360-testing.list
 apt-get update
 apt-get install --only-upgrade imunify360-firewall
 ```
@@ -228,3 +251,5 @@ wget https://repo.imunify360.cloudlinux.com/defence360/imunify-force-update.sh
 bash imunify-force-update.sh
 ```
 </div>
+
+<Disqus/>

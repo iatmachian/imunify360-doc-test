@@ -11,7 +11,6 @@ You can drop any feedback to [feedback@imunify360.com](mailto:feedback@imunify36
 **Beta version limitations**
 
 * No WebShield support yet (Captcha, GreyList and etc.)
-* Support for apache server only, Ngix/LiteSpeed/OpenLiteSpeed are coming
 * No support for managing disabled rules yet. See also: [Disabled rules](/dashboard/#disabled-rules)
 
 
@@ -19,7 +18,7 @@ You can drop any feedback to [feedback@imunify360.com](mailto:feedback@imunify36
 
 **Operating system**
 
-* CentOS 6/7
+* CentOS 6/7/8
 * RHEL 6/7
 * CloudLinux OS 
 * Ubuntu 16.04/18.04
@@ -27,9 +26,7 @@ You can drop any feedback to [feedback@imunify360.com](mailto:feedback@imunify36
 **Web servers**
 
 * Apache
-
-
-
+* LiteSpeed
 
 #### There are four main steps in general required for having Imunify360 Stand-alone running on your server:
 
@@ -37,6 +34,10 @@ You can drop any feedback to [feedback@imunify360.com](mailto:feedback@imunify36
 2. Configure Imunify360 integrations like authentication or <span class="notranslate">`mod_security`</span> configuration
 3. Install Imunify360
 4. Change default Imunify360 settings to reflect your needs
+
+:::warning Warning
+Imunify Web-UI PHP code has to be executed under a non-root user which has access to `/var/run/defence360agent/non_root_simple_rpc.sock`. If it runs in CageFS, you'll need to configure it accordingly.
+:::
 
 
 ## 1. Prerequisites
@@ -90,7 +91,7 @@ SecRuleEngine = "On"
 ```
 </div>
 
-Create the empty file <span class="notranslate">`/etc/sysconfig/imunify360/generic/modsec.conf`</span> and include it into the web server config as <span class="notranslate">`IncludeOptional`</span>. The file would be replaced with the actual config during Imunify360 installation.
+Create the empty file <span class="notranslate">`/etc/sysconfig/imunify360/generic/modsec.conf`</span> and include it into the web server config as <span class="notranslate">`IncludeOptional`</span>. The file would be replaced with the actual config during the first Imunify360 installation or you can fill it via calling the Imunify360 ModSec ruleset installation <span class="notranslate">`imunify360-agent install-vendors`</span>.
 
 Set the path and graceful restart script in the <span class="notranslate">`integration.conf`</span>
 
@@ -105,7 +106,7 @@ Example
 ``` ini
 [web_server]
 server_type = apache
-graceful_restart_script = /path/to/a/script/that/restarts/web-server/properly
+graceful_restart_script = /usr/sbin/apachectl restart
 modsec_audit_log = /var/log/httpd/modsec_audit.log
 modsec_audit_logdir = /var/log/modsec_audit
 ```
@@ -179,6 +180,8 @@ service_name = system-auth
 ```
 </div>
 
+You can get a token which can be used for authentication using the [<span class="notranslate">`login`</span> command](/command_line_interface/#login). 
+
 #### Define administrators for Imunify360
 
 The administrators have full access to Imunify360 UI and its settings.
@@ -187,6 +190,9 @@ By default, <span class="notranslate">`root`</span> is considered to be the only
 
 To add more administrators, list them in the <span class="notranslate">`/etc/sysconfig/imunify360/auth.admin`</span> file 
 or specify the admins option in the <span class="notranslate">`/etc/sysconfig/imunify360/integration.conf`</span>
+
+Admin users will be merged from three sources: <span class="notranslate">`/etc/sysconfig/imunify360/auth.admin`</span> list and scripts defined in the
+<span class="notranslate">`/etc/sysconfig/imunify360/integration.conf`</span> or <span class="notranslate">`/opt/cpvendor/etc/integration.ini`</span> that return user lists [Imunify 4.7+].
 
 <div class="notranslate">
 
@@ -475,7 +481,7 @@ domains = /path/to/get-domains-script.sh
 ```
 </div>
 
-It should point to an executable file that generates a JSON file similar to the following:
+It should point to an executable file that generates a JSON file similar to the following
 
 <div class="notranslate">
 
@@ -501,3 +507,5 @@ It should point to an executable file that generates a JSON file similar to the 
 </div>
 
 <span class="notranslate">`web_server_config_path`</span> should point to a path that is added as <span class="notranslate">`IncludeOptional`</span> in this domain's virtual host e.g., <span class="notranslate">`/path/to/example.com/specific/config/to/include`</span> path should be added for the <span class="notranslate">`example.com`</span> domain.
+
+<Disqus/>
