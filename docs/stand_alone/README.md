@@ -201,15 +201,15 @@ Format of JSON file:
 [
   {
       "domain": "john.example.com",
-      “key”: “-----BEGIN PRIVATE KEY-----\nM...O\n-----END PRIVATE KEY-----\n”,
-      “certificate”: “-----BEGIN CERTIFICATE-----\nMI...Y=\n-----END CERTIFICATE-----\n”,
-      “chain”: “-----BEGIN CERTIFICATE-----\nM...I=\n-----END CERTIFICATE-----\n-----BEGIN CERTIFICATE-----\nM...U=\n-----END CERTIFICATE-----\n”
+      "key": "-----BEGIN PRIVATE KEY-----\nM...O\n-----END PRIVATE KEY-----\n",
+      "certificate": "-----BEGIN CERTIFICATE-----\nMI...Y=\n-----END CERTIFICATE-----\n",
+      "chain": "-----BEGIN CERTIFICATE-----\nM...I=\n-----END CERTIFICATE-----\n-----BEGIN CERTIFICATE-----\nM...U=\n-----END CERTIFICATE-----\n"
     },
     {
       "domain": "bob.example.com",
-      “key”: “...”,
-      “certificate”: “...”,
-      “chain”: “...”
+      "key": "...",
+      "certificate": "...",
+      "chain": "..."
     }
 ]
 ```
