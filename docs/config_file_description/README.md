@@ -96,7 +96,7 @@ that were uploaded via http/https. Note that it requires <a href="https://modsec
 <tr><td><span class="notranslate">notify_on_detect: False</span></td>
 <td># notify (<span class="notranslate">True</span>) or not (<span class="notranslate">False</span>) (default value) an admin when malware is detected</td></tr>
 <tr><td><span class="notranslate">optimize_realtime_scan: False</span></td>
-<td># use optimized engine for realtime scan</td></tr>
+<td># enable (<span class="notranslate">True</span>) or disable (<span class="notranslate">False</span>) (default value) file change API support to reduce the system load while watching for file changes in comparison with inotify watch</td></tr>
 <tr><td><span class="notranslate">sends_file_for_analysis: True</span></td>
 <td># send (<span class="notranslate">True</span>) (default value) or not (<span class="notranslate">False</span>) malicious and suspicious files to the Imunify team for analysis</td></tr>
 <tr><td><span class="notranslate">i360_clamd: False</span></td>
