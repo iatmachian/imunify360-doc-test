@@ -106,6 +106,7 @@ module.exports = {
               "/terminology/",
               "/billing/",
               "/installation/",
+              "/stand_alone/",
               "/ids_integration/",
               "/webshield/",
               "/backup_providers_integration/",
