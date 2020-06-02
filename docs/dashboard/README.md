@@ -1449,29 +1449,31 @@ Click <span class="notranslate">_Save changes_</span> button on the bottom of th
 	
 #### WebShield
 
-<span class="notranslate">_Detect IPs behind CDN_</span> feature allows to recognize and block IPs with suspicious activity behind supported CDN providers.
-
-To enable/disable it, tick the <span class="notranslate">_Detect IPs behind CDN_</span> checkbox.
-
 ![](/images/webshield.png)
 
-Or you can enable it using the following CLI command:
+* <span class="notranslate">_Enable WebShield_</span>. When the option is off, disable WebShield, GreyList, and CAPTCHA. A disabled state is recommended for the servers with a small amount of RAM. A disabled option along with enabled "Minimized WAF Ruleset" will switch Imunify360 to the "Low Resource Usage" mode.  
+* <span class="notranslate">_Detect IPs behind CDN_</span> feature allows to recognize and block IPs with suspicious activity behind supported CDN providers.
+  
+  To enable/disable it, tick the <span class="notranslate">_Detect IPs behind CDN_</span> checkbox.
 
-<div class="notranslate">
+  Or you can enable it using the following CLI command:
 
-```
-imunify360-agent config update '{"WEBSHIELD": {"known_proxies_support": true}}'
-```
-</div>
+  <div class="notranslate">
 
-Supported CDN providers:
+  ```
+  imunify360-agent config update '{"WEBSHIELD": {"known_proxies_support": true}}'
+  ```
+  </div>
 
-* Cloudflare
-* MaxCDN
-* StackPath CDN
-* KeyCDN
-* Dartspeed.com
-* QUIC.cloud CDN
+  Supported CDN providers:
+
+  * Cloudflare
+  * MaxCDN
+  * StackPath CDN
+  * KeyCDN
+  * Dartspeed.com
+  * QUIC.cloud CDN
+* <span class="notranslate">_Google re-CAPTCHA service_</span> allows admin to specify reCAPTCHA keys for the server. Follow the [step by step guide](/webshield/#configuring-recaptcha-keys) to setup a <span class="notransate">_Site key_</span> and a <span class="notranslate">_Secret key_</span>.
 
 Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
 
@@ -1584,7 +1586,7 @@ Read [CXS integration](/ids_integration/#cxs-integration) documentation carefull
   ::: tip Note
   It requires inotify to be installed and may put an additional load on a system.
   :::
-* <span class="notranslate">_Optimize real-time scan_</span><sup><em> 4.9 Beta</em></sup> – enables file change API support to reduce the system load while watching for file changes in comparison with inotify watchs.
+* <span class="notranslate">_Optimize real-time scan_</span><sup><em> 4.9 Beta</em></sup> – enables the [File Change Service/API](https://docs.cloudlinux.com/cloudlinux_os_kernel/#file-change-api) support to reduce the system load while watching for file changes in comparison with inotify watchs.
 * <span class="notranslate">_Automatically scan any file uploaded using web_</span> – enables real-time scanning of all the files that were uploaded via http/https.
   ::: tip Note
   It requires [ModSecurity](https://modsecurity.org/) to be installed.
