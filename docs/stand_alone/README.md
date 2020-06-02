@@ -198,7 +198,8 @@ Format of JSON file:
 <div class="notranslate">
 
 ```json
-{
+[
+  {
       "domain": "john.example.com",
       “key”: “-----BEGIN PRIVATE KEY-----\nM...O\n-----END PRIVATE KEY-----\n”,
       “certificate”: “-----BEGIN CERTIFICATE-----\nMI...Y=\n-----END CERTIFICATE-----\n”,
@@ -210,6 +211,7 @@ Format of JSON file:
       “certificate”: “...”,
       “chain”: “...”
     }
+]
 ```
 </div>
 
@@ -234,6 +236,28 @@ When no parameters are passed, the <span class="notranslate">`im360-ssl-cache`</
 Passing certificates data in JSON format is done to put data flow in good order, to avoid excessive checks of data. No certificate checks are made.
 :::
 
+#### Non-SNI requests
+
+When a request without Server Name Indication (SNI) comes, WebShield has to guess what certificate from the cache to serve.
+
+To allow WebShield to handle non-SNI requests on servers without control panel there is an optional `ip` field in the `certs.json` sample.
+
+<div class="notranslate">
+
+```json
+[
+    {
+        "domain": "...",
+        "key": "...",
+        "certificate": "...",
+        "chain": "...",
+        "ip": "..."  // NEW, optional, NOT UNIQUE
+    },..
+]
+```
+</div>
+
+WebShield will use this data to decide which certificate to serve if a request without Server Name Indication (SNI) arrives. if there are domains with the specified IPs, WebShield will use the first one alphabetically.
 
 #### Integration with Malware Scanner
 
