@@ -232,6 +232,14 @@ Click an incident to expand the detailed information.
 
 ![](/images/move_button_zoom94.png)
 
+* Bulk actions on a list of IPs. The following actions are available:
+  * Move to the White list/Black list
+  * Delete from a list
+  * Move IPs to the group
+
+![](/images/IncidentsBulkActions.png)
+
+
 ## Firewall
 
 
