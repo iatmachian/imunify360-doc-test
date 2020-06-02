@@ -54,8 +54,9 @@ Imunify360 Stand-alone version requires the following components installed or en
 Imunify360 Stand-alone version require the following integrations before installation:
 
 * Integration with web server for serving UI
-* Integration with ModSecurity
-* Integration with Malware scanner
+* Interaction with ModSecurity
+* Integration with WebShield
+* Integration with Malware Scanner
 * Integration with authentication service
 * Define administrators for Imunify360
 
@@ -139,8 +140,102 @@ The script should also restart the web server to apply the configuration. This s
 If configuration change failed, the script should return 1, and in the standard error stream (stderr) it should return the reason for failure. On success, the script should return 0.
 In a single run of the script, we might update a single domain/user, as well as multiple users (all users) on the system.
 
+#### Integration with WebShield
 
-#### Integration with malware scanner
+WebShield consists of four services:
+
+* WebShield itself
+* Shared memory daemon makes it easier to deal with certain aspects of Nginx configuration without reloading
+* SSL-caching daemon watches changes to host SSL certificate sets (for known hosting panels only: cPanel, Plesk, DirectAdmin) and updates the WebShield SSL cache when a certificate is added, updated or removed
+* Sentrylogs daemon watches WebShield log files to detect errors
+
+The configuration of WebShield is done by an agent, and direct editing of WebShield configuration files is generally not recommended. This is mainly because after the next reconfiguration all custom changes would be lost. However, a host administrator is allowed to set a certificate as the default one for WebShield to return.
+
+#### Set default SSL certificate explicitly
+
+1. Place a certificate and a key into the <span class="notranslate">`/etc/imunify360-webshield/ssl_certs`</span> folder
+2. If required, in the <span class="notranslate">`/etc/imunify360-webshield/ssl.conf`</span> file, change the following directives according to your changes:
+ 
+  <div class="notranslate">
+
+  ```
+  ssl_certificate             ssl_certs/dummy.pem;
+
+  ssl_certificate_key         ssl_certs/dummy.pem;
+  ```
+  </div>
+
+If you want to provide intermediate certificates, they are to be appended to the certificate file.
+
+Additionally, the administrator is allowed to disable searching for the first certificate in the cache before returning the default one for non-SNI (or for non-existent domains) requests. To disable searching, in the <span class="notranslate">`/etc/imunify360-webshield/ssl.conf`</span> file set the <span class="notranslate">`lua_enable_ws_sslcache_search`</span> directive to <span class="notranslate">`off`</span>.
+
+These settings require WebShield to be restarted/reloaded.
+
+#### Manage WebShield SSL cache manually
+
+To manually manage the certificate cache, use the <span class="notranslate">`/usr/sbin/im360-ssl-cache`</span> utility.
+
+To add certificates to the cache, a user would run the command:
+
+<div class="notranslate">
+
+```
+im360-ssl-cache --add /path/to/certs.json
+```
+</div>
+
+The <span class="notranslate">`--add`</span> parameter accepts zero or one parameter. If a parameter is given, it is taken as a path to a file in JSON format with a list of certificates and private keys to be added. Otherwise, data is expected to be sent in JSON format to STDIN as in the following example:
+
+<div class="notranslate">
+
+```
+cat certs.json | im360-ssl-cache --add
+```
+</div>
+
+Format of JSON file:
+
+<div class="notranslate">
+
+```json
+{
+      "domain": "john.example.com",
+      “key”: “-----BEGIN PRIVATE KEY-----\nM...O\n-----END PRIVATE KEY-----\n”,
+      “certificate”: “-----BEGIN CERTIFICATE-----\nMI...Y=\n-----END CERTIFICATE-----\n”,
+      “chain”: “-----BEGIN CERTIFICATE-----\nM...I=\n-----END CERTIFICATE-----\n-----BEGIN CERTIFICATE-----\nM...U=\n-----END CERTIFICATE-----\n”
+    },
+    {
+      "domain": "bob.example.com",
+      “key”: “...”,
+      “certificate”: “...”,
+      “chain”: “...”
+    }
+```
+</div>
+
+:::tip Note
+As JSON text is not allowed to have line breaks, all newline symbols must be escaped as in the example above.
+:::
+
+To remove certificate(s) from the cache, a user is expected to run the command:
+
+<div class="notranslate">
+
+```
+im360-ssl-cache --remove example.org example.com …
+```
+</div>
+
+The <span class="notranslate">`--remove`</span> parameter expects one or more space-separated domain names, for which certificates are to be removed from the cache.
+
+When no parameters are passed, the <span class="notranslate">`im360-ssl-cache`</span> simply lists all domain names of certificates in the cache.
+
+:::warning Note
+Passing certificates data in JSON format is done to put data flow in good order, to avoid excessive checks of data. No certificate checks are made.
+:::
+
+
+#### Integration with Malware Scanner
 
 To scan files uploaded via FTP, configure [PureFTPd](https://www.pureftpd.org/project/pure-ftpd/). Write in the <span class="notranslate">`pure-ftp.conf`</span>:
 
