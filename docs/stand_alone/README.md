@@ -259,6 +259,25 @@ To allow WebShield to handle non-SNI requests on servers without control panel t
 
 WebShield will use this data to decide which certificate to serve if a request without Server Name Indication (SNI) arrives. if there are domains with the specified IPs, WebShield will use the first one alphabetically.
 
+#### Required mod_remoteip configuration
+
+To ensure WebShield and Graylist are working correctly (e.g. a correct IP is passed to ModSecurity), the server must recognize WebShield as an internal proxy. For example, for Apache, `mod_remoteip` must be installed and configured like this:
+
+<div class="notranslate">
+
+```
+<IfModule remoteip_module>
+    RemoteIPInternalProxy 127.0.0.1
+    RemoteIPInternalProxy ::1
+    RemoteIPHeader X-Real-IP
+</IfModule>
+```
+</div>
+
+WebShield passes the real client IP in the <span class="notranslate">`X-Real-IP`</span> header.
+
+
+for WebShield and Graylist to work correctly 
 #### Integration with Malware Scanner
 
 To scan files uploaded via FTP, configure [PureFTPd](https://www.pureftpd.org/project/pure-ftpd/). Write in the <span class="notranslate">`pure-ftp.conf`</span>:
