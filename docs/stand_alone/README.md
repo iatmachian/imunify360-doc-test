@@ -240,7 +240,7 @@ Passing certificates data in JSON format is done to put data flow in good order,
 
 When a request without Server Name Indication (SNI) comes, WebShield has to guess what certificate from the cache to serve.
 
-To allow WebShield to handle non-SNI requests on servers without control panel there is an optional `ip` field in the `certs.json` sample.
+To allow WebShield to handle non-SNI requests properly, include an `ip` field in the JSON that you pass to the <span class="notranslate">`im360-ssl-cache`</span>.
 
 <div class="notranslate">
 
@@ -257,7 +257,7 @@ To allow WebShield to handle non-SNI requests on servers without control panel t
 ```
 </div>
 
-WebShield will use this data to decide which certificate to serve if a request without Server Name Indication (SNI) arrives. if there are domains with the specified IPs, WebShield will use the first one alphabetically.
+WebShield will use this data to decide which certificate to serve if a request without Server Name Indication (SNI) arrives. If there are several domains with the specified IPs, WebShield will use the first one alphabetically.
 
 #### Required mod_remoteip configuration
 
@@ -277,7 +277,6 @@ To ensure WebShield and Graylist are working correctly (e.g. a correct IP is pas
 WebShield passes the real client IP in the <span class="notranslate">`X-Real-IP`</span> header.
 
 
-for WebShield and Graylist to work correctly 
 #### Integration with Malware Scanner
 
 To scan files uploaded via FTP, configure [PureFTPd](https://www.pureftpd.org/project/pure-ftpd/). Write in the <span class="notranslate">`pure-ftp.conf`</span>:
