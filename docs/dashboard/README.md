@@ -1481,7 +1481,7 @@ Click <span class="notranslate">_Save changes_</span> button on the bottom of th
   * KeyCDN
   * Dartspeed.com
   * QUIC.cloud CDN
-* <span class="notranslate">_Google re-CAPTCHA service_</span> allows admin to specify reCAPTCHA keys for the server. Follow the [step by step guide](/webshield/#configuring-recaptcha-keys) to setup a <span class="notransate">_Site key_</span> and a <span class="notranslate">_Secret key_</span>.
+* <span class="notranslate">_Google reCAPTCHA configuration window_</span> allows admin to specify reCAPTCHA keys for the server. Follow the [step by step guide](/webshield/#configuring-recaptcha-keys) to setup a <span class="notransate">_Site key_</span> and a <span class="notranslate">_Secret key_</span>.
 
 Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
 
@@ -1594,7 +1594,7 @@ Read [CXS integration](/ids_integration/#cxs-integration) documentation carefull
   ::: tip Note
   It requires inotify to be installed and may put an additional load on a system.
   :::
-* <span class="notranslate">_Optimize real-time scan_</span><sup><em> 4.9 Beta</em></sup> – enables the [File Change Service/API](https://docs.cloudlinux.com/cloudlinux_os_kernel/#file-change-api) support to reduce the system load while watching for file changes in comparison with inotify watchs.
+* <span class="notranslate">_Optimize real-time scan_</span><sup><em> 4.9 Beta</em></sup> – enables the [File Change API](https://docs.cloudlinux.com/cloudlinux_os_kernel/#file-change-api) support to reduce the system load while watching for file changes in comparison with inotify watchs.
 * <span class="notranslate">_Automatically scan any file uploaded using web_</span> – enables real-time scanning of all the files that were uploaded via http/https.
   ::: tip Note
   It requires [ModSecurity](https://modsecurity.org/) to be installed.
