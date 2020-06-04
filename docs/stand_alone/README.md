@@ -3,14 +3,8 @@
 
 Previously, Imunify360 had to be installed through a particular control panel, such as cPanel, DirectAdmin, or Plesk. Now, with version 4.5, it can be installed directly on the server, independent of any panel, regardless of the administrative interface. 
 
-#### Beta Limitations
+#### Limitations
 
-This version is released as beta and our product team is looking for feedback and possible issues.
-You can drop any feedback to [feedback@imunify360.com](mailto:feedback@imunify360.com).
-
-**Beta version limitations**
-
-* No WebShield support yet (Captcha, GreyList and etc.)
 * No support for managing disabled rules yet. See also: [Disabled rules](/dashboard/#disabled-rules)
 
 
