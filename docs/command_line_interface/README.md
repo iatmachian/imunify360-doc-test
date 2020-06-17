@@ -83,6 +83,7 @@ Available commands:
 |[<span class="notranslate">`infected-domains`</span>](/command_line_interface/#infected-domains)|Returns infected domain list|
 |[<span class="notranslate">`login`</span>](/command_line_interface/#login)|Allows to get a token which can be used for authentication in [stand-alone Imunify UI](/stand_alone/).|
 |[<span class="notranslate">`malware`</span>](/command_line_interface/#malware)|Allows to manage malware options|
+|[<span class="notranslate">`notifications-config`</span>](/command_line_interface/#notifications-config)|<font color="Red">Allows to show and update notifications in the configuration file via CLI</font>|
 |[<span class="notranslate">`proactive`</span>](/command_line_interface/#proactive)|Allows to manage Proactive Defense feature|
 |[<span class="notranslate">`register`</span>](/command_line_interface/#register)|Agent registration|
 |[<span class="notranslate">`reload-lists`</span>](/command_line_interface/#reload-lists)|Allows to use external files with the list of Black/White-listed IPs. [More details](/features/#external-black-whitelist-management).|
@@ -1213,9 +1214,11 @@ Optional arguments:
 
 | | |
 |-|-|
-|<span class="notranslate">`add`</span>|add a file PATH to the <span class="notranslate">Ignore List</span>|
-|<span class="notranslate">`delete`</span>|delete a file PATH from the <span class="notranslate">Ignore List</span>|
+|<span class="notranslate">`add`</span>|add file PATHS to the <span class="notranslate">Ignore List</span>|
+|<span class="notranslate">`delete`</span>|delete file PATHS from the <span class="notranslate">Ignore List</span>|
 |<span class="notranslate">`list`</span>|shows <span class="notranslate">Ignore List</span> entries (optional arguments apply)|
+
+where PATHS are the absolute paths to files or folders divided by a whitespace.
 
 <span class="notranslate">`command2`</span> is the second positional argument for the <span class="notranslate">`malicious`</span> command and can be one of the following:
 
@@ -1241,11 +1244,10 @@ Optional arguments:
 |<span class="notranslate">`start --path PATH`</span>|starts an on-demand scan for a specified PATH|
 |<span class="notranslate">`status`</span>|show the on-demand malware scanner status|
 |<span class="notranslate">`stop`</span>|stop on-demand malware scanner process|
-|<span class="notranslate">`queue`</span>|show a queue for on-demand scan|
-|<span class="notranslate">`queue put`</span>|put a file in a queue for on-demand scan|
-|<span class="notranslate">`queue remove`</span>|remove a file in a queue for on-demand scan|
+|<span class="notranslate">`queue put`</span>|put file PATHS to the queue for on-demand scan|
+|<span class="notranslate">`queue remove`</span>|remove scans from the queue for on-demand scan|
 
-The optional arguments for <span class="notranslate">`on-demand start`</span> are:
+The optional arguments for <span class="notranslate">`on-demand start`</span> and <span class="notranslate">`on-demand queue put`</span> are:
 
 | |
 |-|
@@ -1296,21 +1298,22 @@ imunify360-agent malware on-demand start --path='/var/www/vhosts/d*' --ignore-ma
 ```
 </div>
 
-3. The following command shows how to get an extended list of malicious files for a particular user. By default, a limit value equals to 50
+3. The following command adds on-demand scans for the selected path(s) to the scan queue
 
 <div class="notranslate">
 
 ```
-imunify360-agent malware malicious list --user cltest --limit 500
+imunify360-agent malware on-demand queue put "/home/user1/some folder" "/home/user2" --file-mask="*.php"
 ```
 </div>
 
-4. The following command adds the specified path to the Ignore List
+4. The following command removes the selected scans from the scan queue
 
 <div class="notranslate">
 
 ```
-imunify360-agent malware ignore add /home/<username>/public_html/
+imunify360-agent malware on-demand list	# get scan_ids for the selected scans from the malicious list
+imunify360-agent malware on-demand queue remove 84f043211dc045ae8e6d641f3b9fdb0a 8c4ee39d4d8f43e296e893940c8e791a
 ```
 </div>
 
@@ -1323,7 +1326,34 @@ imunify360-agent malware on-demand stop
 ```
 </div>
 
-6. The following command saves changes after editing watched and excluded patterns for Malware Scanner.
+6. The following command stops the on-demand Malware Scanner process and clears the scan queue
+
+<div class="notranslate">
+
+```
+imunify360-agent malware on-demand stop --all
+```
+</div>
+
+7. The following command shows how to get an extended list of malicious files for a particular user. By default, a limit value equals to 50
+
+<div class="notranslate">
+
+```
+imunify360-agent malware malicious list --user cltest --limit 500
+```
+</div>
+
+8. The following command adds the specified path to the Ignore List
+
+<div class="notranslate">
+
+```
+imunify360-agent malware ignore add /home/user1/public_html/ "/home/some user/public_html/index.php"
+```
+</div>
+
+9. The following command saves changes after editing watched and excluded patterns for Malware Scanner.
 
 <div class="notranslate">
 
@@ -1332,7 +1362,7 @@ imunify360-agent malware rebuild patterns
 ```
 </div>
 
-7. The following command lists all users and their current infection status
+10. The following command lists all users and their current infection status
 
 <div class="notranslate">
 
@@ -1340,6 +1370,102 @@ imunify360-agent malware rebuild patterns
 imunify360-agent malware user list
 ```
 </div>
+
+
+
+
+-------------------------
+
+
+<font color="Red">added new</font>
+
+
+-------------------------
+
+
+
+## Notifications config
+
+Allows to show and update notifications in the configuration file via CLI.
+
+**Usage:**
+
+<div class="notranslate">
+
+```
+imunify360-agent notifications-config [command] [configuration options]
+```
+
+</div>
+
+<span class="notranslate">`command`</span> can be:
+
+| | |
+|-|-|
+|<span class="notranslate">`show`</span>|returns the whole config as a JSON|
+|<span class="notranslate">`update`</span>|updates the config (partial update is supported) and returns the whole updated config as a JSON|
+
+You can find all configuration options [here](/config_file_description/) and instructions on how to apply configuration changes from CLI [here](/config_file_description/#how-to-apply-changes-from-cli).
+
+**Examples:**
+
+1. The <span class="notranslate">`imunify360-agent notifications-config show`</span> command output:
+
+<div class="notranslate">
+
+```
+{"admin": {"default_emails": ["email1", "email2"], "notify_from_email":
+"root@hosting.example.com", "locale": "en-US"}, "rules": {"EVENT_ID": {"ADMIN":
+{"enabled": true, "period": 3600, "admin_emails": ["email3", "email4", "default"]},
+"SCRIPT": {"enabled": true, "period": 10, "scripts": ["/path/to/script"]}}, "EVENT_ID_2":
+{"ADMIN": {"admin_emails": ["email3", "email4", "default"]}, "SCRIPT": {"scripts": ["/path/to/script"]}}}}
+```
+
+</div>
+
+2. Update admin default emails:
+
+<div class="notranslate">
+
+```
+imunify360-agent notifications-config update '{"admin": {"default_emails": ["email1", "email2"]}}'
+```
+</div>
+
+3. Enable and configure email notifications for <span class="notranslate">ADMIN</span> for the <span class="notranslate">REALTIME_MALWARE_FOUND</span> event:
+
+<div class="notranslate">
+
+```
+imunify360-agent notifications-config update '{"rules": {"REALTIME_MALWARE_FOUND": {"ADMIN": {"enabled": true, "period": 3600, "admin_emails": ["email3", "email4", "default"]}}}}'
+```
+</div>
+
+4. Disable email notifications for <span class="notranslate">ADMIN</span> for the <span class="notranslate">REALTIME_MALWARE_FOUND</span> event:
+
+<div class="notranslate">
+
+```
+imunify360-agent notifications-config update '{"rules": {"REALTIME_MALWARE_FOUND": {"ADMIN": {"enabled": false}}}}'
+```
+</div>
+
+5. Change the period for the <span class="notranslate">SCRIPT</span> hook for the <span class="notranslate">REALTIME_MALWARE_FOUND</span> event to 1 minute:
+
+<div class="notranslate">
+
+```
+imunify360-agent notifications-config update '{"rules": {"REALTIME_MALWARE_FOUND": {"SCRIPT": {"period": 60}}}}'
+```
+</div>
+
+-------------------------
+
+
+<font color="Red">end of added new</font>
+
+
+-------------------------
 
 <div class="notranslate">
 
