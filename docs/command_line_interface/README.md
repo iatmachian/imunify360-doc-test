@@ -1409,7 +1409,7 @@ You can find all configuration options [here](/config_file_description/) and ins
 
 **Examples:**
 
-1. The <span class="notranslate">`imunify360-agent notifications-config show`</span> command output:
+1. The <span class="notranslate">`imunify360-agent notifications-config show | python -m json.tool`</span> command output:
 
 <div class="notranslate">
 
