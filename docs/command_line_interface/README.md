@@ -1409,16 +1409,53 @@ You can find all configuration options [here](/config_file_description/) and ins
 
 **Examples:**
 
-1. The <span class="notranslate">`imunify360-agent notifications-config show | python -m json.tool`</span> command output:
+1. The <span class="notranslate">`imunify360-agent notifications-config show`</span> command output:
 
 <div class="notranslate">
 
-```
-{"admin": {"default_emails": ["email1", "email2"], "notify_from_email":
-"root@hosting.example.com", "locale": "en-US"}, "rules": {"EVENT_ID": {"ADMIN":
-{"enabled": true, "period": 3600, "admin_emails": ["email3", "email4", "default"]},
-"SCRIPT": {"enabled": true, "period": 10, "scripts": ["/path/to/script"]}}, "EVENT_ID_2":
-{"ADMIN": {"admin_emails": ["email3", "email4", "default"]}, "SCRIPT": {"scripts": ["/path/to/script"]}}}}
+``` json
+{
+    "admin": {
+        "default_emails": [
+            "email1",
+            "email2"
+        ],
+        "locale": "en-US",
+        "notify_from_email": "root@hosting.example.com"
+    },
+    "rules": {
+        "EVENT_ID": {
+            "ADMIN": {
+                "admin_emails": [
+                    "email3",
+                    "email4",
+                    "default"
+                ],
+                "enabled": true,
+                "period": 3600
+            },
+            "SCRIPT": {
+                "enabled": true,
+                "period": 10,
+                "scripts": [
+                    "/path/to/script"
+                ]
+            }
+        },
+        "EVENT_ID_2": {
+            "ADMIN": {
+                "admin_emails": [
+                    "email3",
+                    "email4",
+                    "default"
+                ]
+            },
+            "SCRIPT": {
+                "scripts": [
+                    "/path/to/script"
+                ]
+            }
+        }
 ```
 
 </div>
