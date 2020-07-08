@@ -23,7 +23,7 @@ It allows to access:
 
 * <span class="notranslate">[Incidents](/dashboard/#incidents)</span> – the list of all suspicious activity on the server.
 
-* <span class="notranslate">[Lists](/dashboard/#firewall)</span> – a dashboard of <span class="notranslate">Black List, White List</span> and <span class="notranslate">Gray List</span>, and <span class="notranslate">Blocked Ports</span> with the ability to manage them.
+* <span class="notranslate">[Firewall](/dashboard/#firewall)</span> – a dashboard of <span class="notranslate">Black List, White List</span> and <span class="notranslate">Gray List</span>, and <span class="notranslate">Blocked Ports</span> with the ability to manage them.
 
 * <span class="notranslate">[Malware Scanner](/dashboard/#malware-scanner)</span> – real-time file scanner.
 
@@ -47,11 +47,7 @@ To contact our support team in Imunify360 Admin Interface, please click the _Cal
 
 A support ticket will be created and an email will be sent to a specified email address. When a status of your request will change you receive a notification to your email address. You will be able to track your request via [https://cloudlinux.zendesk.com/hc/](https://cloudlinux.zendesk.com/hc/) and email.
 
-<div class="notranslate">
-
 ## Dashboard
-
-</div>
 
 You can access the Imunify360 Dashboard from your control panel. It shows security events as charts and heat maps.
 It's a great way to analyze incidents that happened within the past day, week or month.
@@ -188,6 +184,7 @@ Use filters to show the exact list of incidents:
 * <span class="notranslate">_Timeframe_</span> – allows filtering incidents by different time periods.
 * <span class="notranslate">_List_</span> – allows filtering incidents by <span class="notranslate">White List, Black List</span>, or <span class="notranslate">Gray List</span>, or showing the incidents from all lists.
 * _IP_ – allows showing all the incidents of a proper IP address. Tick <span class="notranslate">_Description/IP_</span> checkbox to enable input field where you can enter a proper IP or a part of it and filter the list by clicking on magnifier or pressing Enter.
+* _TTL_ - It has different values depends on Severity and number of an attack attempts. The value can be from 5 min to 24 days. It is not possible to manage TTL for Graylist
 * <span class="notranslate">_Country_</span> – allows filtering the incidents by abusers country. Tick <span class="notranslate">_Country_</span> checkbox to enable input field with auto-complete where you can enter a proper country and  filter the incidents by clicking magnifier or _Enter_.
 
 ![](/images/tloi_zoom86.png)
@@ -525,7 +522,9 @@ You will see the _Scope_ column and controls (on clicking the _Add_ button) to m
 
 #### How to change Scope to Group/Local
 
-To change the scope to <span class="notranslate">_Group/Local_</span>, go to <span class="notranslate">_Firewall > White/Black list_</span> and select an IP.
+To change the scope to <span class="notranslate">_Group/Local_</span>, first [create your groups](https://docs.cln.cloudlinux.com/dashboard/#how-to-add-a-server-to-a-group) in the CLN.
+
+After that, go to <span class="notranslate">_Firewall > White/Black list_</span> and select an IP.
 
 
 * In the <span class="notranslate">_Actions_</span> column click ![](/images/gear.png).
@@ -1163,6 +1162,7 @@ The following tabs are available:
 * <span class="notranslate">[Backups](/dashboard/#backups)</span>
 * <span class="notranslate">[Disables Rules](/dashboard/#disabled-rules)</span>
 * <span class="notranslate">[Attributions](/dashboard/#attributions)</span>
+* <span class="notranslate">[Notifications](/dashboard/#notifications)</span>
 
 ### General
 
@@ -1191,7 +1191,7 @@ Here you can install and uninstall the following components:
 ![](/images/settingsgeneralinstallation.png)
 
 
-**HardenedPHP**
+#### HardenedPHP
 
 To install or uninstall HardenedPHP click on a button related. Please find additional information about HardenedPHP in [this article](https://www.cloudlinux.com/hardenedphp).
 During HardenedPHP installation process the installation log will appear and will update automatically.
@@ -1203,7 +1203,7 @@ HardenedPHP is free on the servers with Imunify360 installed.
 ![](/images/kc_install_log_zoom91.png)
 
 
-**Invisible Captcha**
+#### Invisible Captcha
 
 **Overview**
 
@@ -1228,8 +1228,10 @@ Go to <span class="notranslate">Imunify360 → Settings → General → Installa
 
 ![](/images/invisiblecaptcharemove_zoom70.png)
 
+See [how to test invisible CAPTCHA](/webshield/#verification).
 
-**KernelCare**
+
+#### KernelCare
 
 To install or uninstall KernelCare click on a button related. Please find additional information about KernelCare [here](https://www.kernelcare.com).
 
@@ -1511,7 +1513,7 @@ imunify360-agent config update '{"PAM": {"enable": true}}'
 ```
 </div>
 
-Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
+Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes. This will enable protection for SSH/FTP protocols.
 
 #### Exim+Dovecot brute-force attack protection
 
@@ -1989,5 +1991,116 @@ It is possible to enable Service Status checker for Imunify360. Perform the foll
 If succeeded, the status of Imunify360 service will be displayed at Service Status section of Server Status.
 
 ![](/images/service_status.jpg)
+
+
+<font color="Red">
+
+----------------------------- new added --------------------------------
+
+</font>
+
+
+### Notifications
+
+Starting from version 4.10, an administrator is able to configure email addresses to submit reports and execute custom scripts. Go to <span class="notranslate">_Settings_</span> and choose <span class="notranslate">_Notifications_</span> tab.
+
+![](/images/notifications.png)
+
+* <span class="notranslate">**Default admin emails**</span>: specify the default list of emails used for all enabled admin email notifications. 
+* <span class="notranslate">**From**</span>: specify a sender of all emails sent by the Hooks. 
+
+The following events are available.
+
+#### Real-Time scan: malware detected
+
+Occurs when malware is detected during the real-time scanning.
+
+![](/images/RealTimeScanDetected.png)
+
+* <span class="notranslate">**Enable email notifications for admin**</span>: move the slider to <span class="notranslate">ON</span> to notify the administrator and a custom user list via email upon event occurrence. To notify the administrator on the default admin email, tick the <span class="notranslate">_Default admin emails_</span> checkbox. 
+* <span class="notranslate">**Notify every (mins)**</span>: set a notification interval in minutes. The data for all events that happened within the interval will be accumulated and sent altogether.
+* <span class="notranslate">**Admin emails**</span>: tick the <span class="notranslate">_Default admin emails_</span> and/or specify your emails for notifications.
+* <span class="notranslate">**Enable script execution**</span>: move the slide to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
+* <span class="notranslate">**Notify every (sec)**</span>: set a notification interval in seconds. The data for all events that happened within the interval will be accumulated and sent altogether. 
+* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported. 
+
+#### User scan: started
+
+Occurs immediately after the user scanning has started.
+
+![](/images/UserScanStarted.png)
+
+* <span class="notranslate">**Enable script execution**</span>: move the slider to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
+* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported.
+
+#### Custom scan: started
+
+![](/images/CustomScanStarted.png)
+
+Occurs immediately after on-demand (manual) scanning has started.
+
+* <span class="notranslate">**Enable script execution**</span>: move the slider to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
+* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported.
+
+#### User scan: finished
+
+Occurs immediately after the user scanning has finished, regardless the malware has found or not.
+
+![](/images/UserScanFinished.png)
+
+* <span class="notranslate">**Enable script execution**</span>: move the slider to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
+* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported.
+
+#### Custom scan: finished
+
+![](/images/CustomScanFinished.png)
+
+Occurs immediately after on-demand (manual) scanning has finished, regardless the malware has found or not.
+
+* <span class="notranslate">**Enable script execution**</span>: move the slider to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
+* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported.
+
+#### Custom scan: malware detected
+
+Occurs when the on-demand scanning process has finished and malware found.
+
+![](/images/CustomScanDetected.png)
+
+* <span class="notranslate">**Enable email notifications for admin**</span>: move the slider to <span class="notranslate">ON</span> to notify the administrator and a custom user list via email upon event occurrence. To notify the administrator on the default admin email, tick the <span class="notranslate">_Default admin emails_</span> checkbox. 
+* <span class="notranslate">**Admin emails**</span>: tick the <span class="notranslate">_Default admin emails_</span> and/or specify your emails for notifications.
+* <span class="notranslate">**Enable script execution**</span>: move the slide to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
+* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported. 
+
+#### User scan: malware detected
+
+Occurs when the malware scanning process of a user account has finished and malware found.
+
+![](/images/UserScanDetected.png)
+
+* <span class="notranslate">**Enable email notifications for admin**</span>: move the slider to <span class="notranslate">ON</span> to notify the administrator and a custom user list via email upon event occurrence. To notify the administrator on the default admin email, tick the <span class="notranslate">_Default admin emails_</span> checkbox. 
+* <span class="notranslate">**Admin emails**</span>: tick the <span class="notranslate">_Default admin emails_</span> and/or specify your emails for notifications.
+* <span class="notranslate">**Enable script execution**</span>: move the slide to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
+* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported.
+
+#### Script blocked
+
+Occurs when the Proactive Defense has blocked malicious script.
+
+![](/images/ScriptBlocked.png)
+
+* <span class="notranslate">**Enable email notifications for admin**</span>: move the slider to <span class="notranslate">ON</span> to notify the administrator and a custom user list via email upon event occurrence. To notify the administrator on the default admin email, tick the <span class="notranslate">_Default admin emails_</span> checkbox. 
+* <span class="notranslate">**Notify every (mins)**</span>: set a notification interval in minutes. The data for all events that happened within the interval will be accumulated and sent altogether.
+* <span class="notranslate">**Admin emails**</span>: tick the <span class="notranslate">_Default admin emails_</span> and/or specify your emails for notifications.
+* <span class="notranslate">**Enable script execution**</span>: move the slide to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
+* <span class="notranslate">**Notify every (sec)**</span>: set a notification interval in seconds. The data for all events that happened within the interval will be accumulated and sent altogether. 
+* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported.
+
+Click <span class="notranslate">_Save changes_</span> at the bottom to save changes.
+
+ <font color="Red">
+
+----------------------------- end of new added --------------------------------
+
+</font>
 
 <Disqus/>
