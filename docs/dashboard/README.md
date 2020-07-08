@@ -1663,10 +1663,16 @@ Imunify360 security team will use that information to prevent future infections 
 
 ![](/images/SettingsBlamer.png)
 
-Click <span class="notranslate">_Save changes_</span> button at the page bottom to apply all changes.
+To reduce the number of blamer events, similar events are combined by default into a single one. In order to disable it, specify the <span class="notranslate">`filter_messages=off`</span> in the <span class="notranslate">_/usr/share/i360-php-opts/module.ini_</span>
 
-To reduce the number of blamer events, similar events are combined by default into a single one. In order to disable it, specify <span class="notranslate"> `filter_messages=off` </span>
-in <span class="notranslate"> _/usr/share/i360-php-opts/module.ini_ </span>
+* <span class="notranslate">_PHP Immunity_</span> — tick to allow Imunify360 automatically detect and patch vulnerabilities in software at the Proactive Defense level preventing re-infections through the same vulnerability. 
+
+![](/images/SettingsPHPImmunity.png)
+
+By enabling this feature Blamer will be enabled as well and Proactive Defence switched into the KILL mode.
+
+
+Click <span class="notranslate">_Save changes_</span> at the page bottom to apply all changes.
 
 ### Backups
 
@@ -2095,7 +2101,7 @@ Occurs when the Proactive Defense has blocked malicious script.
 * <span class="notranslate">**Notify every (sec)**</span>: set a notification interval in seconds. The data for all events that happened within the interval will be accumulated and sent altogether. 
 * <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported.
 
-Click <span class="notranslate">_Save changes_</span> at the bottom to save changes.
+Click <span class="notranslate">_Save changes_</span> at the bottom to apply all changes.
 
  <font color="Red">
 
