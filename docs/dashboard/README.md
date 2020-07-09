@@ -183,16 +183,12 @@ Use filters to show the exact list of incidents:
 
 * <span class="notranslate">_Timeframe_</span> – allows filtering incidents by different time periods.
 * <span class="notranslate">_List_</span> – allows filtering incidents by <span class="notranslate">White List, Black List</span>, or <span class="notranslate">Gray List</span>, or showing the incidents from all lists.
-* _IP_ – allows showing all the incidents of a proper IP address. Tick <span class="notranslate">_Description/IP_</span> checkbox to enable input field where you can enter a proper IP or a part of it and filter the list by clicking on magnifier or pressing Enter.
-* _TTL_ - It has different values depends on Severity and number of an attack attempts. The value can be from 5 min to 24 days. It is not possible to manage TTL for Graylist
+* <font color="Red"><span class="notranslate">_Search field_</span> – allows showing all the incidents of a proper IP address, domain or description. Tick <span class="notranslate">_Description/IP_</span> checkbox to enable input field where you can enter a proper IP or a part of it, domain or description and filter the list.</font>
 * <span class="notranslate">_Country_</span> – allows filtering the incidents by abusers country. Tick <span class="notranslate">_Country_</span> checkbox to enable input field with auto-complete where you can enter a proper country and  filter the incidents by clicking magnifier or _Enter_.
 
-![](/images/tloi_zoom86.png)
+![](/images/IncidentsGeneral.png)
 
-Slide _Auto-refresh_ to enable or disable automatic refresh of the incidents in the table without reloading the web page.
-Set the number of incidents to be shown on a page by choosing the number of items per page in the bottom right of the page.
-
-![](/images/auto_refresh_zoom92.png)
+Move _Auto-refresh_ to enable or disable automatic refresh of the incidents in the table without reloading the web page.
 
 The list of incidents contains the following information:
 
@@ -205,13 +201,14 @@ There is a color indication for IP address.
   * A black bubble means that this IP address is currently in the <span class="notranslate">Black List</span>. And access from this IP is totally blocked without ability to unblock by the CAPTCHA.
   * No bubble is shown when this incident doesn’t contain IP address.
 * <span class="notranslate">_Country_ </span>– country origin of the abuser IP address.
-* <span class="notranslate">_# of Times_</span> – the number of times the abuser tried to repeat the action.
+* <span class="notranslate">_Count_</span> – the number of times the abuser tried to repeat the action.
 * <span class="notranslate">_Event_</span> – description of the event or suspicious activity (as it is described by OSSEC and Mod_Security sensors).
 * <span class="notranslate">_Severity_</span> – severity level of the incidents (as it is estimated in [OSSEC severity levels](https://ossec-docs.readthedocs.io/en/latest/docs/manual/rules-decoders/rule-levels.html?highlight=severity%20level) and [Mod_Security severity levels](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-%28v2.x%29#severity)). The color of severity means:
 
   * Green – Mod_Security levels 7-5, OSSEC levels 00-03
   * Orange – Mod_Security level 4, OSSEC levels 04-10
   * Red – Mod_Security levels 3-0, OSSEC levels 11-15
+* <span class="notranslate">_Actions_</span> – actions available for the Incident.
 
 ![](/images/list.jpg)
 
@@ -644,6 +641,10 @@ The following tabs are available:
 </div>
 
 Go to <span class="notranslate">Imunify360 → Malware Scanner → Users</span> tab. Here, there is a table with a list of users on the server, except users with root privileges.
+
+:::tip Note
+Starting from Imunify360 4.10 you are able to scan the main user with domain in case multiple users have the same user ID.
+:::
 
 The badge in the <span class="notranslate">_History_</span> tab shows the number of missed events in the Malware Scanner’s History. You won’t miss any automatic actions applied to infected files, since they are listed in the <span class="notranslate">_History_</span> tab and shown in the badge.
 
@@ -1513,7 +1514,7 @@ imunify360-agent config update '{"PAM": {"enable": true}}'
 ```
 </div>
 
-Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes. This will enable protection for SSH/FTP protocols.
+Click <span class="notranslate">_Save changes_</span> button at the bottom of the section to apply changes. This will enable protection for SSH/FTP protocols.
 
 #### Exim+Dovecot brute-force attack protection
 
@@ -1530,9 +1531,25 @@ imunify360-agent config update '{"PAM": {"exim_dovecot_protection": true}}'
 ```
 </div>
 
-Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes.
+Click <span class="notranslate">_Save changes_</span> button at the bottom of the section to apply changes.
 
 
+#### FTP brute-force attack protection 
+
+Tick the <span class="notranslate">_FTP brute-force attack protection_</span> checkbox to enable protection for ftpd server against FTP brute-force attacks. It uses a time-proven algorithm that we’ve been using in the SSH PAM extension.
+	
+![](/images/ftpBruteForceAttackProtection.png)
+
+You can also enable it via CLI with the following command:
+
+<div class="notranslate">
+
+```
+imunify360-agent config update '{"PAM": {"ftp_protection": true}}'
+```
+</div>
+
+Click <span class="notranslate">_Save changes_</span> button on the bottom of the section to save changes. This will enable protection for SSH/FTP protocols.
 
 #### Error Reporting
  

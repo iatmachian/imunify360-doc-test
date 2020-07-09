@@ -202,6 +202,8 @@ to request CAPTCHA again</td></tr>
 <td># enable (<span class="notranslate">true</span>) or disable (<span class="notranslate">false</span>) (default value) PAM brute-force attack protection</td></tr>
 <tr><td><span class="notranslate">PAM.exim_dovecot_protection: false</span></td>
 <td># enable (<span class="notranslate">true</span>) or disable (<span class="notranslate">false</span>) (default value) Exim+Dovecot brute-force attack protection against Dovecot brute-force attacks.</td></tr>
+<tr><td><span class="notranslate"><font color="Red">PAM.ftp_protection: false</font></span></td>
+<td><font color="Red"># enable (<span class="notranslate">true</span>) or disable (<span class="notranslate">false</span>) (default value) FTP brute-force attack protection.</font></td></tr>
 <tr>
 <th align="left"><span class="notranslate">KERNELCARE:</span></th>
 <th align="left"># KernelCare extension for Imunify360 which allows tracing malicious invocations to detect privilege escalation attempts</th></tr>
