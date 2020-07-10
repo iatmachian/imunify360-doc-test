@@ -2051,8 +2051,6 @@ Occurs immediately after the user scanning has started.
 
 ![](/images/UserScanStarted.png)
 
-* <span class="notranslate">**Enable script execution**</span>: move the slider to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
-* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported.
 
 #### Custom scan: started
 
@@ -2060,8 +2058,6 @@ Occurs immediately after the user scanning has started.
 
 Occurs immediately after on-demand (manual) scanning has started.
 
-* <span class="notranslate">**Enable script execution**</span>: move the slider to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
-* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported.
 
 #### User scan: finished
 
@@ -2069,17 +2065,12 @@ Occurs immediately after the user scanning has finished, regardless the malware 
 
 ![](/images/UserScanFinished.png)
 
-* <span class="notranslate">**Enable script execution**</span>: move the slider to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
-* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported.
-
 #### Custom scan: finished
 
 ![](/images/CustomScanFinished.png)
 
 Occurs immediately after on-demand (manual) scanning has finished, regardless the malware has found or not.
 
-* <span class="notranslate">**Enable script execution**</span>: move the slider to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
-* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported.
 
 #### Custom scan: malware detected
 
@@ -2087,10 +2078,6 @@ Occurs when the on-demand scanning process has finished and malware found.
 
 ![](/images/CustomScanDetected.png)
 
-* <span class="notranslate">**Enable email notifications for admin**</span>: move the slider to <span class="notranslate">ON</span> to notify the administrator and a custom user list via email upon event occurrence. To notify the administrator on the default admin email, tick the <span class="notranslate">_Default admin emails_</span> checkbox. 
-* <span class="notranslate">**Admin emails**</span>: tick the <span class="notranslate">_Default admin emails_</span> and/or specify your emails for notifications.
-* <span class="notranslate">**Enable script execution**</span>: move the slide to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
-* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported. 
 
 #### User scan: malware detected
 
@@ -2098,23 +2085,12 @@ Occurs when the malware scanning process of a user account has finished and malw
 
 ![](/images/UserScanDetected.png)
 
-* <span class="notranslate">**Enable email notifications for admin**</span>: move the slider to <span class="notranslate">ON</span> to notify the administrator and a custom user list via email upon event occurrence. To notify the administrator on the default admin email, tick the <span class="notranslate">_Default admin emails_</span> checkbox. 
-* <span class="notranslate">**Admin emails**</span>: tick the <span class="notranslate">_Default admin emails_</span> and/or specify your emails for notifications.
-* <span class="notranslate">**Enable script execution**</span>: move the slide to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
-* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported.
 
 #### Script blocked
 
 Occurs when the Proactive Defense has blocked malicious script.
 
 ![](/images/ScriptBlocked.png)
-
-* <span class="notranslate">**Enable email notifications for admin**</span>: move the slider to <span class="notranslate">ON</span> to notify the administrator and a custom user list via email upon event occurrence. To notify the administrator on the default admin email, tick the <span class="notranslate">_Default admin emails_</span> checkbox. 
-* <span class="notranslate">**Notify every (mins)**</span>: set a notification interval in minutes. The data for all events that happened within the interval will be accumulated and sent altogether.
-* <span class="notranslate">**Admin emails**</span>: tick the <span class="notranslate">_Default admin emails_</span> and/or specify your emails for notifications.
-* <span class="notranslate">**Enable script execution**</span>: move the slide to <span class="notranslate">ON</span> to run a script (event handler) upon event occurrence. 
-* <span class="notranslate">**Notify every (sec)**</span>: set a notification interval in seconds. The data for all events that happened within the interval will be accumulated and sent altogether. 
-* <span class="notranslate">**Run a script**</span>: specify the full path to the script(s) or any other Linux executable to be launched on event occurrence. Make sure that the script has an executable bit (+x) on. A line-separated list of scripts is supported.
 
 Click <span class="notranslate">_Save changes_</span> at the bottom to apply all changes.
 
