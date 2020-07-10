@@ -642,10 +642,6 @@ The following tabs are available:
 
 Go to <span class="notranslate">Imunify360 → Malware Scanner → Users</span> tab. Here, there is a table with a list of users on the server, except users with root privileges.
 
-:::tip Note
-Starting from Imunify360 4.10 you are able to scan the main user with domain in case multiple users have the same user ID.
-:::
-
 The badge in the <span class="notranslate">_History_</span> tab shows the number of missed events in the Malware Scanner’s History. You won’t miss any automatic actions applied to infected files, since they are listed in the <span class="notranslate">_History_</span> tab and shown in the badge.
 
 
