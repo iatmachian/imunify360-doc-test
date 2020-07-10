@@ -1678,7 +1678,9 @@ Imunify360 security team will use that information to prevent future infections 
 
 To reduce the number of blamer events, similar events are combined by default into a single one. In order to disable it, specify the <span class="notranslate">`filter_messages=off`</span> in the <span class="notranslate">_/usr/share/i360-php-opts/module.ini_</span>
 
-* <span class="notranslate">_PHP Immunity_</span> — tick to allow Imunify360 automatically detect and patch vulnerabilities in software at the Proactive Defense level preventing re-infections through the same vulnerability. 
+* <span class="notranslate">_PHP Immunity_</span> — tick to allow Imunify360 automatically detect and patch vulnerabilities in software at the Proactive Defense level preventing re-infections through the same vulnerability.
+
+Once a vulnerable script or unknown malware executes any malicious flow which in turn leads to a malware drop, it causes the auto-generate rule to be released for the Proactive Defence. Ultimately, it will stop any further attempts to exploit the vulnerability or drop malware. Any dropped malware will be also auto-cleaned by the real-time malware scanner keeping the system clean and protected.
 
 ![](/images/SettingsPHPImmunity.png)
 
