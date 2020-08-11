@@ -31,6 +31,17 @@ In the config file it is possible to set up Imunify360 configuration. The follow
 </td><td># limit on port 80 is set to 150 connections</td>
 </tr>
 <tr>
+<th colspan="2" align="left"><span class="notranslate">FIREWALL:</span></th>
+</tr>
+<tr>
+<td width="250px;"><span class="notranslate">port_blocking_mode: DENY</span></td><td># allows to block all except specified ports (<span class="notranslate">ALLOW</span>). Disabled by default (<span class="notranslate">DENY</span>).<br>Exact ports and port-ranges to be allowed can be configured by the following fields in the config file:<br>
+- FIREWALL.TCP_IN_IPv4<br>
+- FIREWALL.TCP_OUT_IPv4<br>
+- FIREWALL.UDP_IN_IPv4<br>
+- FIREWALL.UDP_OUT_IPv4<br>
+Changes of config files will be applied automatically. You don’t need to restart the server or Imunify360.<br>
+<em><b>Please note, the feature doesn’t support IPv6 addresses at this moment and CSF needs to be disabled due to conflicts.</b></em></td></tr>
+<tr>
 <th colspan="2" align="left"><span class="notranslate">INCIDENT_LOGGING:</span></th>
 </tr>
 <tr>
@@ -110,7 +121,7 @@ that were uploaded via http/https. Note that it requires <a href="https://modsec
 <tr><td><span class="notranslate">cloud_assisted_scan: True</span></td>
 <td># speed up scans by check file hashes using cloud database</td></tr>
 <tr><td><span class="notranslate">rapid_scan: False</span></td>
-<td># speeds up (<span class="notranslate">True</span>) ot not (<span class="notranslate">False</span>) (default value) repeated scans based on smart re-scan approach, local result caching and cloud-assisted scan.</font></td></tr>
+<td># speeds up (<span class="notranslate">True</span>) ot not (<span class="notranslate">False</span>) (default value) repeated scans based on smart re-scan approach, local result caching and cloud-assisted scan.</td></tr>
 <tr>
 <th colspan="2" align="left"><span class="notranslate">CAPTCHA:</span></th></tr>
 <tr><td><span class="notranslate">cert_refresh_timeout: 3600</span></td>
@@ -175,8 +186,8 @@ to request CAPTCHA again</td></tr>
 <td># enable (<span class="notranslate">true</span>) or disable (<span class="notranslate">false) Blamer</span></td></tr>
 <tr><td><span class="notranslate">mode: KILL</span></td>
 <td># available modes:<ul><li><span class="notranslate">KILL</span></li><li><span class="notranslate">DISABLED</span></li><li><span class="notranslate">LOG</span></li></ul></td></tr>
-<tr><td><span class="notranslate"><font color="Red">php_immunity: false</font></span></td>
-<td><font color="Red"># enable (<span class="notranslate">true</span>) or disable (<span class="notranslate">false) PHP Immunity </span> (allows to automatically detect & patch vulnerabilities in software at the Proactive Defense level preventing re-infections through the same vulnerability). By enabling this feature, Blamer will be enabled as well and Proactive Defence switched into the KILL mode.</font></td></tr>
+<tr><td><span class="notranslate">php_immunity: false</span></td>
+<td># enable (<span class="notranslate">true</span>) or disable (<span class="notranslate">false) PHP Immunity </span> (allows to automatically detect & patch vulnerabilities in software at the Proactive Defense level preventing re-infections through the same vulnerability). By enabling this feature, Blamer will be enabled as well and Proactive Defence switched into the KILL mode.</td></tr>
 <tr>
 <th colspan="2" align="left"><span class="notranslate">MALWARE_SCAN_INTENSITY:</span></th></tr>
 <tr><td><span class="notranslate">cpu: 6</span></td>
@@ -202,8 +213,8 @@ to request CAPTCHA again</td></tr>
 <td># enable (<span class="notranslate">true</span>) or disable (<span class="notranslate">false</span>) (default value) PAM brute-force attack protection</td></tr>
 <tr><td><span class="notranslate">PAM.exim_dovecot_protection: false</span></td>
 <td># enable (<span class="notranslate">true</span>) or disable (<span class="notranslate">false</span>) (default value) Exim+Dovecot brute-force attack protection against Dovecot brute-force attacks.</td></tr>
-<tr><td><span class="notranslate"><font color="Red">PAM.ftp_protection: false</font></span></td>
-<td><font color="Red"># enable (<span class="notranslate">true</span>) or disable (<span class="notranslate">false</span>) (default value) FTP brute-force attack protection.</font></td></tr>
+<tr><td><span class="notranslate">PAM.ftp_protection: false</span></td>
+<td># enable (<span class="notranslate">true</span>) or disable (<span class="notranslate">false</span>) (default value) FTP brute-force attack protection.</td></tr>
 <tr>
 <th align="left"><span class="notranslate">KERNELCARE:</span></th>
 <th align="left"># KernelCare extension for Imunify360 which allows tracing malicious invocations to detect privilege escalation attempts</th></tr>

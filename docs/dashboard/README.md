@@ -65,7 +65,7 @@ Here you can see notifications about server security and Imunify360 configuratio
 </div>
 
 
-Starting from Imunify360 version 4.1, the <span class="notranslate">Dashboard</span> can display Imunify360 performance data for a number of specified servers. 
+<span class="notranslate">Dashboard</span> can display Imunify360 performance data for a number of specified servers. 
 * You can add a specified server using its server key – a unique server id that identifies an installed Imunify360 instance.
 
     :::tip Note
@@ -183,7 +183,7 @@ Use filters to show the exact list of incidents:
 
 * <span class="notranslate">_Timeframe_</span> – allows filtering incidents by different time periods.
 * <span class="notranslate">_List_</span> – allows filtering incidents by <span class="notranslate">White List, Black List</span>, or <span class="notranslate">Gray List</span>, or showing the incidents from all lists.
-* <font color="Red"><span class="notranslate">_Search field_</span> – allows showing all the incidents of a proper IP address, domain or description. Tick <span class="notranslate">_Description/IP_</span> checkbox to enable input field where you can enter a proper IP or a part of it, domain or description and filter the list.</font>
+* <span class="notranslate">_Search field_</span> – allows showing all the incidents of a proper IP address, domain or description. Tick <span class="notranslate">_Description/IP_</span> checkbox to enable input field where you can enter a proper IP or a part of it, domain or description and filter the list.
 * <span class="notranslate">_Country_</span> – allows filtering the incidents by abusers country. Tick <span class="notranslate">_Country_</span> checkbox to enable input field with auto-complete where you can enter a proper country and  filter the incidents by clicking magnifier or _Enter_.
 
 ![](/images/IncidentsGeneral.png)
@@ -508,7 +508,7 @@ See also: [How to use external files with the list of Black/White IPs](/features
 
 ### Global Black/White list IP management
 
-Starting from Imunify360 version 4.5 an administrator can manage IPs globally, this means that you can blacklist or whitelist an IP not only on one server but on a group of servers. 
+Administrator can manage IPs globally, this means that you can blacklist or whitelist an IP not only on one server but on a group of servers. 
 
 Prior to manage IPs globally, you should create a group and add servers into it. This can be done via [CLN UI](https://cln.cloudlinux.com/). You can find the complete documentation on how to create and manage servers’ groups [here](https://docs.cln.cloudlinux.com/dashboard/#server-groups).
 
@@ -520,6 +520,8 @@ You will see the _Scope_ column and controls (on clicking the _Add_ button) to m
 #### How to change Scope to Group/Local
 
 To change the scope to <span class="notranslate">_Group/Local_</span>, first [create your groups](https://docs.cln.cloudlinux.com/dashboard/#how-to-add-a-server-to-a-group) in the CLN.
+
+![](/images/CLNGroups.png)
 
 After that, go to <span class="notranslate">_Firewall > White/Black list_</span> and select an IP.
 
@@ -535,13 +537,30 @@ After that, go to <span class="notranslate">_Firewall > White/Black list_</span>
 
 This feature allows to block specific ports for TCP/UDP connection. It is also possible to add specific IPs or subnet as a whitelisted so that the rule for the port will not work.
 
-:::tip Note
-Imunify360 can block particular ports using this feature, yet it doesn't support a paradigm to "block everything but the selected ports". That could be achieved via legacy linux iptables.
-:::
-
-Click <span class="notranslate">_Lists_</span> and choose <span class="notranslate">_Blocked Ports_</span>.
+Click <span class="notranslate">_Firewall_</span> and choose <span class="notranslate">_Ports_</span>.
 
 ![](/images/Blocked_Ports1.png)
+
+Choose the default blocking mode:
+
+* All open, except specified
+* All close, except specified
+
+Or you can set the default blocking mode via [CLI and config file](/config_file_description/).
+
+Exact ports and port-ranges to be allowed can be configured by the following fields in the config file:
+
+* FIREWALL.TCP_IN_IPv4
+* FIREWALL.TCP_OUT_IPv4
+* FIREWALL.UDP_IN_IPv4
+* FIREWALL.UDP_OUT_IPv4
+  
+Changes of config files will be applied automatically. You don’t need to restart the server or Imunify360.
+
+:::warning Note
+The feature doesn’t support IPv6 addresses at this moment and CSF needs to be disabled due to conflicts.
+:::
+
 
 ::: tip Note
 If CSF integration enabled, then <span class="notranslate">Blocked Ports</span> will be disabled. Imunify360 imports Closed ports and their whitelisted IPs from CSF.
@@ -743,7 +762,7 @@ It is possible to scan a specific directory for malware. Go to <span class="notr
 	* <span class="notranslate">_Follow symlinks_</span>. Follow all symlinks within the folder to scan. 
 
 :::tip Note
-If Imunify360 <sup>4.6+</sup> is running on CloudLinux OS, LVE is used to manage scan intensity. If it is running on other operating systems, “nice” is used to control CPU and “ionice” is used when the I/O scheduler is CFQ.
+If Imunify360 is running on CloudLinux OS, LVE is used to manage scan intensity. If it is running on other operating systems, “nice” is used to control CPU and “ionice” is used when the I/O scheduler is CFQ.
 :::
 
 ![](/images/malware_scanner_4_7.png)
@@ -869,8 +888,8 @@ Here you can set a mode, view detected events and perform actions on them.
 #### Mode Settings
 
 The following <span class="notranslate">Proactive Defense</span> modes are available:
-* <span class="notranslate">Disabled</span> — means that <span class="notranslate">Proactive Defense</span> feature is not working and a system is not protected enough (default mode)
-* <span class="notranslate">Log Only</span> — means that possible malicious activity is only logged, no actions are performed
+* <span class="notranslate">Disabled</span> — means that <span class="notranslate">Proactive Defense</span> feature is not working and a system is not protected enough
+* <span class="notranslate">Log Only</span> — means that possible malicious activity is only logged, no actions are performed (default mode)
 * <span class="notranslate">Kill Mode</span> — the highest level of protection — the script is terminated as soon as malicious activity is detected
 
 To select a mode, tick the desired checkbox. When an action is completed, you will see a pop-up with the successful mode changing message.
@@ -908,9 +927,9 @@ The <span class="notranslate">_Detected Events_</span> table includes the follow
 The following actions are available for the detected event:
 * View file content
 * Move IP to the <span class="notranslate">Black List</span>
-* Move file to <span class="notranslate">Ignore List</span><sup> 3.7.0+</sup> (ignore detected rule) — allows a user to exclude a file from <span class="notranslate">Proactive Defense</span> analysis for a particular rule
-* Move file to <span class="notranslate">Ignore List</span> (ignore all rules)<sup> 3.7.0+</sup> — allows a user to exclude a file from <span class="notranslate">Proactive Defense</span> analysis for all rules
-* Remove file from <span class="notranslate">Ignore List</span><sup> 3.7.0+</sup> — allows a user to include ignored file to <span class="notranslate">Proactive Defense</span> analysis again.
+* Move file to <span class="notranslate">Ignore List</span> (ignore detected rule) — allows a user to exclude a file from <span class="notranslate">Proactive Defense</span> analysis for a particular rule
+* Move file to <span class="notranslate">Ignore List</span> (ignore all rules) — allows a user to exclude a file from <span class="notranslate">Proactive Defense</span> analysis for all rules
+* Remove file from <span class="notranslate">Ignore List</span> — allows a user to include ignored file to <span class="notranslate">Proactive Defense</span> analysis again.
 
 **View file content**
 
@@ -937,7 +956,7 @@ Click _View details_ icon in the row of the desired event. Then, click <span cla
 
 ![](/images/proactivedefenseblockip_zoom70.png)
 
-**Move file to Ignore List (ignore detected rule) <sup> 3.7.0+</sup>**
+**Move file to Ignore List (ignore detected rule)**
 
 **The first way**
 Click _Cog_ icon in the row of the desired event and choose <span class="notranslate">_Ignore detected rule for the file_</span>. Click <span class="notranslate">_Yes, add to Ignore List_</span> in the confirmation pop-up or click <span class="notranslate">_Cancel_</span> to close pop-up. Now you can see this file on the <span class="notranslate">Ignore List</span> tab.
@@ -948,7 +967,7 @@ Click _View details_ icon and then in the file details pop-up click <span class=
 
 ![](/images/proactivedefenseignoredetectedruleforfile1_zoom70.png)
 
-**Move file to Ignore List (ignore all rules) <sup>3.7.0+</sup>**
+**Move file to Ignore List (ignore all rules)**
 
 **The first way**
 Click _Cog_ icon in the row of the desired event and choose <span class="notranslate">_Ignore all rules for the file_</span>. Click <span class="notranslate">_Yes, add to Ignore List_</span> in the confirmation pop-up or click <span class="notranslate">_Cancel_</span> to close pop-up. The file will be moved to <span class="notranslate">Ignore List</span> tab.
@@ -959,14 +978,14 @@ Click _View details_ icon and then in the file details pop-up click <span class=
 
 ![](/images/proactivedefenseignoreallrulesforfile1_zoom70.png)
 
-**Remove file from Ignore List <sup>3.7.0+</sup>**
+**Remove file from Ignore List**
 
 On the Ignore List tab click _Bin_ icon and confirm the action.
 ![](/images/proactivedefenseignorelistbin_zoom70.png)
 
 To perform bulk action, tick required checkboxes and click <span class="notranslate">_Remove from ignore list_</span> at the top of the table, then confirm the action in the pop-up.
 
-**Ignore List tab <sup>3.7.0+</sup>**
+**Ignore List tab**
 
 Here, there is a table with files with ignored rules. If file is added to <span class="notranslate">Ignore List, Proactive Defense</span> will not analyze scripts activity from this file for all or specified rule.
 ![](/images/proactivedefenseignorelist_zoom70.png)
@@ -989,77 +1008,21 @@ See also: [How to edit watched and excluded patterns for Malware Scanner?](/faq_
 
 ``` PHP
 <?php
-$ffile = tmpfile();
-$string2 = 'test';
-$triim = trim($string2, "s");
-$string = 'cup';
-$name = 'coffee';
-$str = 'This is a $string with my $name in it.';
-$arr = array('Hello','World!','Beautiful','Day!');
-eval("\$str = \"$str\";");
-$a = 1;
-while($a <= 255) {
-$aaa = is_string($string2);
-$a++;
+$pattern = 'TEST-FILE';
+$external_code = @file_get_contents('https://secure.eicar.org/eicar.com.txt');
+if (strpos($external_code,$pattern)){
+    print "Poactive Defence DOESN'T work or NOT in KILL mode";
 }
-$b = 1;
-while($b <= 255) {
-$bbb = strstr($string2, '1');
-$ccc = strchr($string2, '2');
-$b++;
+else {
+    print "Proactive Defence works fine - file_get_contents function has been BLOCKED, please check Imunify360 Proactive Defence tab for correspondent BLOCK event";
 }
-$c = 1;
-while($c <= 255) {
-$ccc = strtoupper($string2);
-$ddd = crc32($string2);
-$c++;
-}
-$d =1;
-while($d <= 255) {
-$ddd = strtolower($string2);
-$ttt = join(" ",$arr);
-$d++;
-}
-$e =1;
-while($e <= 255) {
-$eee = is_bool($string2);
-$ppp = implode(",", $arr);
-$e++;
-}
-$f = 1;
-while($f <= 255) {
-$fff = strlen($string2);
-$kkk = str_word_count($string2, 1);
-$f++;
-}
-$g = 1;
-while($g <= 255) {
-$ggg = is_array($string2);
-$g++;
-}
-$h = 1;
-while($h <= 255) {
-$hhh = is_null($string2);
-$sss = ltrim($string2);
-$h++;
-}
-$j = 1;
-while($j <= 255) {
-$jjj = is_int($string2);
-$j++;
-}
-while($k <= 255) {
-$kkk = is_numeric($string2);
-$k++;
-}
-$triim = trim($string2, "t");
-if (@file_put_contents($ffile, "<?php\n;") !== false){
-print "PD doesn't work or not in KILL mode";
-}
-fclose($ffile);
 ?>
 ```
 </div>
+
+:::tip Note
+This script is available starting from Imunify360 v. 4.10.2
+:::
 
 3. Place this file on the server.
 4. Call a test page with the script from the point 2.
@@ -1240,7 +1203,7 @@ KernelCare is free on the servers with Imunify360 installed.
 
 The KernelCare extension for Imunify360 allows tracing malicious invocations to detect privilege escalation attempts.
 
-Starting from Imunify360 version 4.4, you can find these attempts on the [Incidents tab](/dashboard/#incidents) (as part of the OSSEC log). The incidents can be seen by filtering events with the `EDF` label. 
+You can find these attempts on the [Incidents tab](/dashboard/#incidents) (as part of the OSSEC log). The incidents can be seen by filtering events with the `EDF` label. 
 
 To enable the feature, tick the <span class="notranslate">_Privilege escalation detection & protection_</span> checkbox.
 
@@ -1598,7 +1561,7 @@ Read [CXS integration](/ids_integration/#cxs-integration) documentation carefull
     :::
 
     :::tip Note
-    If Imunify360 <sup>4.6+</sup> is running on CloudLinux OS, LVE is used to manage scan intensity. If it is running on other operating systems, “nice” is used to control CPU and “ionice” is used when the I/O scheduler is CFQ.
+    If Imunify360 is running on CloudLinux OS, LVE is used to manage scan intensity. If it is running on other operating systems, “nice” is used to control CPU and “ionice” is used when the I/O scheduler is CFQ.
     :::
 
 #### General
@@ -1609,7 +1572,7 @@ Read [CXS integration](/ids_integration/#cxs-integration) documentation carefull
   ::: tip Note
   It requires inotify to be installed and may put an additional load on a system.
   :::
-* <span class="notranslate">_Optimize real-time scan_</span><sup><em> 4.9 Beta</em></sup> – enables the [File Change API](https://docs.cloudlinux.com/cloudlinux_os_kernel/#file-change-api) support to reduce the system load while watching for file changes in comparison with inotify watchs.
+* <span class="notranslate">_Optimize real-time scan_</span> – enables the [File Change API](https://docs.cloudlinux.com/cloudlinux_os_kernel/#file-change-api) support to reduce the system load while watching for file changes in comparison with inotify watchs.
 * <span class="notranslate">_Automatically scan any file uploaded using web_</span> – enables real-time scanning of all the files that were uploaded via http/https.
   ::: tip Note
   It requires [ModSecurity](https://modsecurity.org/) to be installed.
@@ -1697,7 +1660,7 @@ Imunify360 provides customers with an ability to integrate with backup providers
 
 The following integrated with Imunify360 backup providers are available:
 * <span class="notranslate">CloudLinux Backup</span>
-* Hosting panel Backup (cPanel or Plesk)
+* Hosting panel Backup (cPanel, Plesk, or DirectAdmin)
 * <span class="notranslate">Acronis Backup</span>
 
 :::tip Note
@@ -1727,7 +1690,7 @@ To enable backups log in to a hosting panel as administrator, go to Imunify360 p
 * To enable it, select backup provider from the dropdown:
   * <span class="notranslate">[CloudLinux Backup](https://www.imunify360.com/cloudlinux-backup)</span>
   * <span class="notranslate">[Acronis Backup](https://www.acronis.com/en-eu/)</span>
-  * cPanel or Plesk Backup (according to user’s hosting panel)
+  * cPanel, Plesk or DirectAdmin Backup (according to user’s hosting panel)
 
 ![](/images/settingsbackup.png)
 
@@ -1766,15 +1729,15 @@ Imunify360 checks if Acronis agent is already installed. If not, Imunify360 inst
 
 ![](/images/acronisbackup.png)
 
-**cPanel or Plesk Backup**
+**cPanel Plesk or DirectAdmin Backup**
 
-* Choose cPanel/Plesk backup
-* Select <span class="notranslate">_cPanel/Plesk Backup_</span>
+* Choose cPanel/Plesk/DirectAdmin backup
+* Select <span class="notranslate">_cPanel/Plesk/DirectAdmin Backup_</span>
 * Click <span class="notranslate">_Connect Backup_</span> button
 
 ![](/images/backuprestorecpanel.png)
 
-After successful connection, Imunify360 will return an appropriate message.
+After the successful connection, Imunify360 will return the appropriate message.
 
 #### How to disable backups
 
@@ -1977,11 +1940,7 @@ When the **Malware Scanner is not available** for end-user, it doesn't exclude u
 
 Click <span class="notranslate">_Add_</span> to apply changes.
 
-See also: [CLI](http://localhost:8080/command_line_interface/).
-:::tip Note
-Imunify360 4.0 does not support _Not Available_ state for the Malware Scanner in the original in-app Features Management and via CLI. You can disable Malware Scanner for a particular package via WHM Package Manager only.
-:::
- 
+See also: [CLI](http://localhost:8080/command_line_interface/). 
 
 ### Attributions
 
@@ -2012,13 +1971,6 @@ It is possible to enable Service Status checker for Imunify360. Perform the foll
 If succeeded, the status of Imunify360 service will be displayed at Service Status section of Server Status.
 
 ![](/images/service_status.jpg)
-
-
-<font color="Red">
-
------------------------------ new added --------------------------------
-
-</font>
 
 
 ### Notifications
@@ -2093,11 +2045,5 @@ Occurs when the Proactive Defense has blocked malicious script.
 ![](/images/ScriptBlocked.png)
 
 Click <span class="notranslate">_Save changes_</span> at the bottom to apply all changes.
-
- <font color="Red">
-
------------------------------ end of new added --------------------------------
-
-</font>
 
 <Disqus/>
