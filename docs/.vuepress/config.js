@@ -115,6 +115,7 @@ module.exports = {
               "/user_interface/",
               "/hosting_panels_specific_settin/",
               "/config_file_description/",
+              "/features/",
               "/command_line_interface/",
               "/uninstall/",
               "/faq_and_known_issues/",
