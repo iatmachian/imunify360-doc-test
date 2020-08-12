@@ -599,7 +599,7 @@ For now, Malware Database Scanner (MDS) supports WordPress databases only.
 
 ### How to use Malware Database Scanner (MDS)
 
-MDS supports several methods:
+To provide safe work with database MDS supports several methods:
 
 * <span class="notranslate">`--scan`</span> - only scan the database, no changes will be applied
 * <span class="notranslate">`--clean`</span> - scan database and clean-up malicious
@@ -647,27 +647,30 @@ php /opt/ai-bolit/imunify_dbscan.php [OPTIONS] [PATH]
 <div class="notranslate">
 
 ```
-# /opt/alt/php74-imunify/usr/bin/php -n -d extension=json.so -d extension=pdo.so -d extension=mysqlnd.so -d extension=nd_mysqli.so /opt/ai-bolit/imunify_dbscan.php --port=3306 --login=user --password-from-stdin --database=$DATABASE --avdb=`pwd`/mds-ai-bolit-hoster.db --report-file=$REPORT --scan
+# /opt/alt/php74-imunify/usr/bin/php -n -d extension=json.so -d extension=pdo.so -d extension=mysqlnd.so -d extension=nd_mysqli.so /opt/ai-bolit/imunify_dbscan.php --port=3306 --login=user --password-from-stdin --database=$DATABASE --avdb=`pwd`/mds-ai-bolit-hoster.db --report-file=`pwd`/report.json --scan
 ```
 </div>
 
+Scan results will be stored in the <span class="notranslate">`results.json`</span>.
 
 #### Scan & Clean-up database
 
 <div class="notranslate">
 
 ```
-# /opt/alt/php74-imunify/usr/bin/php -n -d extension=json.so -d extension=pdo.so -d extension=mysqlnd.so -d extension=nd_mysqli.so /opt/ai-bolit/imunify_dbscan.php --port=3306 --login=user --password-from-stdin --database=$DATABASE --avdb=`pwd`/mds-ai-bolit-hoster.db --procudb=`pwd`/procu2.php --report-file=$REPORT --clean
+# /opt/alt/php74-imunify/usr/bin/php -n -d extension=json.so -d extension=pdo.so -d extension=mysqlnd.so -d extension=nd_mysqli.so /opt/ai-bolit/imunify_dbscan.php --port=3306 --login=user --password-from-stdin --database=$DATABASE --avdb=`pwd`/mds-ai-bolit-hoster.db --procudb=`pwd`/procu2.php --report-file=`pwd`/report.json --clean
 ```
 </div>
 
+Scan results will be stored in the <span class="notranslate">`results.json`</span>. Also, backup of the affected data will be created with a filename similar to the <span class="notranslate">`mds_backup_1597223818.csv`</span>.
 
-#### Restore database
+
+#### Undo changes (restore)
 
 <div class="notranslate">
 
 ```
-# /opt/alt/php74-imunify/usr/bin/php -n -d extension=json.so -d extension=pdo.so -d extension=mysqlnd.so -d extension=nd_mysqli.so /opt/ai-bolit/imunify_dbscan.php --port=3306 --login=user --password-from-stdin --database=$DATABASE --report-file=$REPORT --restore=`pwd`/backup.csv
+# /opt/alt/php74-imunify/usr/bin/php -n -d extension=json.so -d extension=pdo.so -d extension=mysqlnd.so -d extension=nd_mysqli.so /opt/ai-bolit/imunify_dbscan.php --port=3306 --login=user --password-from-stdin --database=$DATABASE --report-file=$REPORT --restore=`pwd`/mds_backup_1597223818.csv
 ```
 </div>
 
