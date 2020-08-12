@@ -50,6 +50,13 @@ Changes of config files will be applied automatically. You don’t need to resta
 <tr><td><span class="notranslate">limit: 100000</span></td><td># how many incidents should be stored in Imunify360 log file</td></tr>
 <tr><td><span class="notranslate">ui_autorefresh_timeout: 10</span></td><td># set auto refresh time for incidents in user interface</td></tr>
 <tr>
+<th colspan="2" align="left"><span class="notranslate">LOGGER:</span></th>
+</tr>
+<tr>
+<td width="250px;"><span class="notranslate">max_log_file_size: 62914560</span></td><td># defines the maximum size of the log file in bytes (default is 60 MB)</td></tr>
+<tr>
+<td width="250px;"><span class="notranslate">backup_count: 5</span></td><td># defines how many log files to store. If 5, it will store <span class="notranslate"><em>app.log</em>, <em>app.log.1</em></span>, and up to <span class="notranslate"><em>app.log.5</em></span>.</td></tr>
+<tr>
 <th align="left"><span class="notranslate">MOD_SEC:</span></th>
 <th align="left"><span class="notranslate"># defines ModSecurity settings</span></th>
 </tr>
