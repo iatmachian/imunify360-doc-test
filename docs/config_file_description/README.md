@@ -34,7 +34,7 @@ In the config file it is possible to set up Imunify360 configuration. The follow
 <th colspan="2" align="left"><span class="notranslate">FIREWALL:</span></th>
 </tr>
 <tr>
-<td width="250px;"><span class="notranslate">port_blocking_mode: ALLOW</span></td><td># block all except specified ports.<br><br>
+<td width="250px;"><span class="notranslate">port_blocking_mode: ALLOW</span></td><td># allows to set firewall port blocking mode.<br><br>
 <b>ALLOW (default)</b> - allow all except specified.<br>
 <b>DENY</b> - block all except specified.<br><br>
 Exact ports and port-ranges to be allowed can be configured by the following fields in the config file:<br>
