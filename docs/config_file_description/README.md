@@ -45,10 +45,6 @@ Exact ports and port-ranges to be allowed can be configured by the following fie
 Changes of config files will be applied automatically. You don’t need to restart the server or Imunify360.<br><br>
 <em><b>Please note, the feature doesn’t support IPv6 addresses at this moment and CSF needs to be disabled due to conflicts.</b></em></td></tr>
 <tr>
-<td><span class="notranslate">UDP_IN_IPv4: "20","21","53","443","1000-1999"</span>
-</td><td># set a list of allowed ports. Comma-separated range of ports and/or a specific port.</td>
-</tr>
-<tr>
 <th colspan="2" align="left"><span class="notranslate">INCIDENT_LOGGING:</span></th>
 </tr>
 <tr>
