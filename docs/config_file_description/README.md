@@ -34,7 +34,7 @@ In the config file it is possible to set up Imunify360 configuration. The follow
 <th colspan="2" align="left"><span class="notranslate">FIREWALL:</span></th>
 </tr>
 <tr>
-<td width="250px;"><span class="notranslate">port_blocking_mode: DENY</span></td><td># allows to block all except specified ports (<span class="notranslate">ALLOW</span>). Disabled by default (<span class="notranslate">DENY</span>).<br>Exact ports and port-ranges to be allowed can be configured by the following fields in the config file:<br>
+<td width="250px;"><span class="notranslate">port_blocking_mode: ALLOW</span></td><td># allows to block all except specified ports (<span class="notranslate">DENY</span>). Disabled by default (<span class="notranslate">ALLOW</span>).<br>Exact ports and port-ranges to be allowed can be configured by the following fields in the config file:<br>
 - FIREWALL.TCP_IN_IPv4<br>
 - FIREWALL.TCP_OUT_IPv4<br>
 - FIREWALL.UDP_IN_IPv4<br>
