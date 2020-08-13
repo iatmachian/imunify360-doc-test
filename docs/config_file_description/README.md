@@ -34,13 +34,20 @@ In the config file it is possible to set up Imunify360 configuration. The follow
 <th colspan="2" align="left"><span class="notranslate">FIREWALL:</span></th>
 </tr>
 <tr>
-<td width="250px;"><span class="notranslate">port_blocking_mode: ALLOW</span></td><td># allows to block all except specified ports (<span class="notranslate">DENY</span>). Disabled by default (<span class="notranslate">ALLOW</span>).<br>Exact ports and port-ranges to be allowed can be configured by the following fields in the config file:<br>
+<td width="250px;"><span class="notranslate">port_blocking_mode: ALLOW</span></td><td># block all except specified ports.<br><br>
+<b>ALLOW (default)</b> - allow all except specified.<br>
+<b>DENY</b> - block all except specified.<br><br>
+Exact ports and port-ranges to be allowed can be configured by the following fields in the config file:<br>
 - FIREWALL.TCP_IN_IPv4<br>
 - FIREWALL.TCP_OUT_IPv4<br>
 - FIREWALL.UDP_IN_IPv4<br>
-- FIREWALL.UDP_OUT_IPv4<br>
-Changes of config files will be applied automatically. You don’t need to restart the server or Imunify360.<br>
+- FIREWALL.UDP_OUT_IPv4<br><br>
+Changes of config files will be applied automatically. You don’t need to restart the server or Imunify360.<br><br>
 <em><b>Please note, the feature doesn’t support IPv6 addresses at this moment and CSF needs to be disabled due to conflicts.</b></em></td></tr>
+<tr>
+<td><span class="notranslate">UDP_IN_IPv4: "20","21","53","443","1000-1999"</span>
+</td><td># set a list of allowed ports. Comma-separated range of ports and/or a specific port.</td>
+</tr>
 <tr>
 <th colspan="2" align="left"><span class="notranslate">INCIDENT_LOGGING:</span></th>
 </tr>
