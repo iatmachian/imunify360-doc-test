@@ -68,7 +68,7 @@ Available commands:
 |[<span class="notranslate">`blocked-port-ip`</span>](/command_line_interface/#blocked-port-ip)|Allows to change the list of IPs that are excluded (allowed) for a certain blocked port|
 |[<span class="notranslate">`checkdb`</span>](/command_line_interface/#checkdb)|Check database integrity|
 |[<span class="notranslate">`check-domains`</span>](/command_line_interface/#check-domains)|Send domain list check|
-|[<span class="notranslate">`check modsec directives`</span>](/command_line_interface/#check-modsec-directives)<sup> Beta 3.9.0+ cPanel</sup>|Allows to check whether the global ModSecurity<br>directives have values recommended by Imunify360|
+|[<span class="notranslate">`check modsec directives`</span>](/command_line_interface/#check-modsec-directives)|Allows to check whether the global ModSecurity<br>directives have values recommended by Imunify360|
 |[<span class="notranslate">`clean`</span>](/command_line_interface/#clean)|Clean the incidents|
 |[<span class="notranslate">`config`</span>](/command_line_interface/#config)|Allows to update and show configuration file via CLI|
 |[<span class="notranslate">`doctor`</span>](/command_line_interface/#doctor)|Collect info about system and send it to the Imunify support team|
@@ -83,7 +83,7 @@ Available commands:
 |[<span class="notranslate">`infected-domains`</span>](/command_line_interface/#infected-domains)|Returns infected domain list|
 |[<span class="notranslate">`login`</span>](/command_line_interface/#login)|Allows to get a token which can be used for authentication in [stand-alone Imunify UI](/stand_alone/).|
 |[<span class="notranslate">`malware`</span>](/command_line_interface/#malware)|Allows to manage malware options|
-|[<span class="notranslate">`notifications-config`</span>](/command_line_interface/#notifications-config)|<font color="Red">Allows to show and update notifications in the configuration file via CLI</font>|
+|[<span class="notranslate">`notifications-config`</span>](/command_line_interface/#notifications-config)|Allows to show and update notifications in the configuration file via CLI|
 |[<span class="notranslate">`proactive`</span>](/command_line_interface/#proactive)|Allows to manage Proactive Defense feature|
 |[<span class="notranslate">`register`</span>](/command_line_interface/#register)|Agent registration|
 |[<span class="notranslate">`reload-lists`</span>](/command_line_interface/#reload-lists)|Allows to use external files with the list of Black/White-listed IPs. [More details](/features/#external-black-whitelist-management).|
@@ -91,7 +91,7 @@ Available commands:
 |[<span class="notranslate">`rstatus`</span>](/command_line_interface/#rstatus)|Query the server to check if the license is valid|
 |[<span class="notranslate">`rules`</span>](/command_line_interface/#rules)|Allows user to manage disabled rules|
 |[<span class="notranslate">`submit false-positive/false-negative`</span>](/command_line_interface/#submit-false-positive-false-negative)|Allows to submit a file as false positive/false negative|
-|[<span class="notranslate">`unregister`</span>](/command_line_interface/#unregister)|Unregistration the agent|
+|[<span class="notranslate">`unregister`</span>](/command_line_interface/#unregister)|Unregister the agent|
 |[<span class="notranslate">`vendors`</span>](/command_line_interface/#vendors)|Command for manipulating Imunify360 vendors|
 |[<span class="notranslate">`version`</span>](/command_line_interface/#version)|Show version|
 |[<span class="notranslate">`whitelist`</span>](/command_line_interface/#whitelist)|Return/Edit operator for IP and domain white list|
@@ -111,12 +111,8 @@ Optional arguments for the commands:
 |<span class="notranslate">`--to`</span>|Allows to set the end of the period for filter.<br>Format is a timestamp.|
 |<span class="notranslate">`--manual`</span>|Show only items that have been added manually.|
 |<span class="notranslate">`--order-by`</span>|List of fields to sort the results by.|
- 
-<div class="notranslate">
 
 ## 3rdparty
-
-</div>
 
 Command for disabling 3rd party IDS (currently they are cPHulk and fail2ban) and make Imunify360 agent the primary IDS.
 
@@ -149,6 +145,16 @@ imunify360-agent 3rdparty conflicts
 
 </div>
 
+Example of successful output:
+
+<div class="notranslate">
+
+```
+{'scan_intensity_io_cfq': True, 'smtp_blocking_enable': True, 'scan_modsec': True}
+```
+
+</div>
+
 2. The following command lists other IDS that might be running concurrently with Imunify360:
 
 <div class="notranslate">
@@ -158,9 +164,6 @@ imunify360-agent 3rdparty list
 ```
 
 </div>
-
-
-<div class="notranslate">
 
 ## Backup systems
 
@@ -218,11 +221,21 @@ The <span class="notranslate">`check`</span> command returns <span class="notran
 <div class="notranslate">
 
    ```
-   $ imunify360-agent backup-systems list
-   acronis 
-   r1soft 
-   cloudlinux
+   imunify360-agent backup-systems list
    ```
+</div>
+
+Example of successful output:
+
+<div class="notranslate">
+
+```
+acronis 
+r1soft 
+cloudlinux
+cpanel
+```
+
 </div>
 
 2. The following command initializes CloudLinux backup system:
@@ -230,9 +243,18 @@ The <span class="notranslate">`check`</span> command returns <span class="notran
 <div class="notranslate">
 
    ```
-   $ imunify360-agent backup-systems init cloudlinux
-   Backup initialization process is in progress
+   imunify360-agent backup-systems init cloudlinux
    ```
+</div>
+
+Example of successful output:
+
+<div class="notranslate">
+
+```
+Backup initialization process is in progress
+```
+
 </div>
 
 3. The following command checks if the CloudLinux backup system is connected:
@@ -240,9 +262,18 @@ The <span class="notranslate">`check`</span> command returns <span class="notran
 <div class="notranslate">
 
    ```
-   $ imunify360-agent backup-systems check cloudlinux
-   {'url': 'https://cln.cloudlinux.com/clweb/cb/buy.html?id=YourServerIdHere', 'status': 'unpaid'}
+   imunify360-agent backup-systems check cloudlinux
    ```
+</div>
+
+Example of successful output:
+
+<div class="notranslate">
+
+```
+{'url': 'https://cln.cloudlinux.com/clweb/cb/buy.html?id=YourServerIdHere', 'status': 'unpaid'}
+```
+
 </div>
 
 At first, it shows that it isn't, so you should open the URL from the JSON response in the browser to activate the backup. Once this is done, it shows in the CLN.
@@ -252,16 +283,23 @@ Run the check again and now it returns the size and that the backup has been pai
 <div class="notranslate">
 
    ```
-   $ imunify360-agent backup-systems check cloudlinux
-   {'size': 10, 'status': 'paid'}
+   imunify360-agent backup-systems check cloudlinux
    ```
+</div>
+
+Example of successful output:
+
+<div class="notranslate">
+
+```
+{'size': 10, 'status': 'paid'}
+```
+
 </div>
 
 The above commands create a new cloudlinuxbackup.com account and link that account to this server after following the link and confirming the payment of $0.00 for free 10GB.
 
 ## Blacklist
-
-</div>
 
 This command allows you to view or edit actual IPs in the <span class="notranslate">Black List</span>.
 
@@ -338,6 +376,17 @@ where 12.34.56.78 is that specific IP address.
 
 </div>
 
+Example of successful output:
+
+<div class="notranslate">
+
+```
+IP       TTL  COUNTRY  IMPORTED_FROM  COMMENT
+1.2.3.4
+```
+
+</div>
+
 
 * The following command adds an IP 1.2.3.4 to the Black List and sets the scope to <span class="notranslate">`group`</span>:
 
@@ -349,16 +398,22 @@ imunify360-agent blacklist ip add 1.2.3.4 --scope group
 
 </div>
 
+Example of successful output:
+
+<div class="notranslate">
+
+   ```
+OK
+   ```
+
+</div>
+
 
 :::warning Warning
 For now, ipset supports only IPv6/64 networks
 :::
 
-<div class="notranslate">
-
 ## Blocked ports
-
-</div>
 
 This command allows to view or edit ports, IPs, and protocols in the list of blocked ports.
 
@@ -450,12 +505,7 @@ imunify360-agent blocked-port-ip add 12.34.56.78 5555:tcp --comment “Some comm
 
 </div>
 
-
-<div class="notranslate">
-
 ## Checkdb
-
-</div>
 
 Checks database integrity. In case database is corrupt, then this command saves backup copy of the database at the <span class="notranslate">`/var/imunify360`</span> and tries to restore integrity of the original database. Note that if this command cannot restore database integrity, then it will destroy the original broken database.
 
@@ -481,12 +531,7 @@ imunify360-agent checkdb
 
 </div>
 
-<div class="notranslate">
-
-
 ## Check-domains
-
-</div>
 
 Allows to send domains list for a check to the Imunify360 central server. After domains checked, the results is available via command <span class="notranslate">`infected-domains`</span>.
 
@@ -516,12 +561,17 @@ imunify360-agent check-domains
 
 </div>
 
+Example of successful output:
 
 <div class="notranslate">
 
-## Check modsec directives
+   ```
+OK
+   ```
 
 </div>
+
+## Check modsec directives
 	
 Allows to check whether the global [ModSecurity directives](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual-%28v2.x%29#Configuration_Directives) have values recommended by Imunify360. 
 	
@@ -546,12 +596,19 @@ imunify360-agent check modsec directives
 ```
 
 </div>
-	
+
+Example of successful output:
+
 <div class="notranslate">
 
-## Clean
-
+```
+WARNING: {'ignored': False, 'id': '1000', 'fix': 'Run `imunify360-agent fix modsec directives` command', 'title': "Wrong value for SecConnEngine ModSecurity directive. Expected: 'Off' Got: None", 'url': 'https://docs.imunify360.com/issues/1000'}
+WARNING: {'ignored': False, 'id': '1000', 'fix': 'Run `imunify360-agent fix modsec directives` command', 'title': "Wrong value for SecAuditEngine ModSecurity directive. Expected: 'RelevantOnly' Got: None", 'url': 'https://docs.imunify360.com/issues/1000'}
+WARNING: {'ignored': False, 'id': '1000', 'fix': 'Run `imunify360-agent fix modsec directives` command', 'title': "Wrong value for SecRuleEngine ModSecurity directive. Expected: 'On' Got: None", 'url': 'https://docs.imunify360.com/issues/1000'}
+```
 </div>
+	
+## Clean
 
 Clean the incident list.
 
@@ -584,12 +641,7 @@ imunify360-agent clean --days 5 --limit 5000
 
 </div>
 
-
-<div class="notranslate">
-
 ## Config
-
-</div>
 
 Allows to update and show configuration file via CLI.
 
@@ -623,13 +675,7 @@ imunify360-agent config update ‘{"MALWARE_SCAN_INTENSITY": {"cpu": 5}}’
 ```
 </div>
 
-
-<div class="notranslate">
-
-
 ## Doctor
-
-</div>
 
 Collecting information about Imunify360 state, generating the report and sending it to Imunify360 Support Team. This command can be used in case of any troubles or issues with Imunify360. This command will generate a key to be sent to Imunify360 Support Team. With that key Imunify360 Support Team can help with any problem as fast as possible.
 
@@ -720,6 +766,15 @@ imunify360-agent features [command] <feature name>
    ```
 
    </div>
+
+Example of successful output:
+
+<div class="notranslate">
+
+```
+{'status': 'not_installed', 'message': 'KernelCare is not installed'}
+```
+</div>
 
 2. The following command installs KernelCare:
 
@@ -813,6 +868,15 @@ imunify360-agent feature-management native disable
 
 </div>
 
+Example of successful output:
+
+<div class="notranslate">
+
+```
+OK
+```
+</div>
+
 Once the command executed:
 
 * The <span class="notranslate">Native Features Management</span> will be deactivated
@@ -856,7 +920,6 @@ All existing <span class="notranslate">Features Management</span> settings will 
 :::
 
 ## Fix modsec directives
-	
 	
 Fixes the non-recommended values (sets them to ones recommended by Imunify360)
 	
@@ -926,11 +989,7 @@ imunify360-agent get --period 1h --by-country-code UA --by-list black --json
 
 </div>
 
-<div class="notranslate">
-
 ## Graylist
-
-</div>
 
 This command allows to view or edit IP <span class="notranslate">Gray List</span>.
 
@@ -985,8 +1044,6 @@ imunify360-agent graylist ip delete 1.2.3.4
 
 </div>
 
-<div class="notranslate">
-
 ## Hooks
 
 You can find more about hooks [here](/features/#hooks).
@@ -1029,11 +1086,7 @@ imunify360-agent hook list
 
 </div>
 
-
-
 ## Import
-
-</div>
 
 This command allows to import <span class="notranslate">Black List</span> and <span class="notranslate">White List</span> from the other 3rd party IDS (only CSF supported at the moment) to Imunify360 database.
 Note. If CSF is enabled, then it is not necessary to run the command because Imunify360 is integrated with CSF.
@@ -1067,11 +1120,7 @@ imunify360-agent import wblist
 
 </div>
 
-<div class="notranslate">
-
 ## Infected-domains
-
-</div>
 
 Allows to retrieve infected domains list.
 
@@ -1163,11 +1212,7 @@ imunify360-agent login pam --username my-user1 --password ********
 
 </div>
 
-<div class="notranslate">
-
 ## Malware
-
-</div>
 
 Allows to manage malware options.
 
@@ -1371,19 +1416,6 @@ imunify360-agent malware user list
 ```
 </div>
 
-
-
-
--------------------------
-
-
-<font color="Red">added new</font>
-
-
--------------------------
-
-
-
 ## Notifications config
 
 Allows to show and update notifications in the configuration file via CLI.
@@ -1496,19 +1528,7 @@ imunify360-agent notifications-config update '{"rules": {"REALTIME_MALWARE_FOUND
 ```
 </div>
 
--------------------------
-
-
-<font color="Red">end of added new</font>
-
-
--------------------------
-
-<div class="notranslate">
-
 ## Proactive
-
-</div>
 
 These commands allow to manage <span class="notranslate">Proactive Defense</span> feature.
 
@@ -1568,13 +1588,7 @@ It means that <span class="notranslate">Proactive Defense</span> will not analyz
 
    </div>
 
-
-
-<div class="notranslate">
-
 ## Register
-
-</div>
 
 Allows to register and activate Imunify360. You can use it in case if Imunify360 was not activated during installation process or in case if activation key of the Imunify360 was changed for any reason. If you do not know what is an activation key or have any problem with it then, please, read [Installation guide](/installation/) or contact our [support team](https://cloudlinux.zendesk.com/hc/requests/new).
 
@@ -1646,13 +1660,8 @@ imunify360-agent reload-lists
 ```
 
 </div>
-
-
-<div class="notranslate">
 	
 ## Remote-proxy	
-	
-</div>
 
 Allows to add an additional proxy subnet.
 
@@ -1733,11 +1742,7 @@ imunify360-agent remote-proxy add 1.1.2.0/24 --name "my_own_proxy"
 
 </div>
 
-<div class="notranslate">
-
 ## Rstatus
-
-</div>
 
 Allows to check if Imunify360 server license is valid.
 
@@ -1751,11 +1756,7 @@ imunify360-agent rstatus [--optional arguments]
 
 </div>
 
-<div class="notranslate">
-
 ## Rules
-
-</div>
 
 This command allows user to manage rules disabled for firewall plugins Imunify360 uses.
 
@@ -1855,11 +1856,7 @@ Option can be:
 
 </div>
 
-<div class="notranslate">
-
 ## Submit false-positive/false-negative
-
-</div>
 
 To submit file as false positive (if Imunify360 considers file as a malicious but it actually isn't) you can use the following command (please make sure to specify the file name along with full path):
 
@@ -1891,15 +1888,8 @@ Optional arguments:
 |-|-|
 |<span class="notranslate">`--to`</span>|Email to send.|
 |<span class="notranslate">`--sender`</span>|User email.|
- 
-<div class="notranslate">
-
-
-<div class="notranslate">
 
 ## Unregister
-
-</div>
 
 Allows to unregister and disable Imunify360 on the server. 
 
@@ -1917,11 +1907,7 @@ imunify360-agent unregister [--optional arguments]
 
 </div>
 
-<div class="notranslate">
-
 ## Vendors
-
-</div>
 
 Command for manipulating Imunify360 vendors.
 
@@ -1954,11 +1940,7 @@ imunify360-agent uninstall-vendors
 
 </div>
 
-<div class="notranslate">
-
 ## Version
-
-</div>
 
 Allows to view the actual Imunify360 version installed on the server.
 
@@ -1972,9 +1954,17 @@ imunify360-agent version [--json]
 
 </div>
 
-## Whitelist
+Example of successful output:
+
+<div class="notranslate">
+
+```
+4.9.5-3
+```
 
 </div>
+
+## Whitelist
 
 This command allows to view or edit actual IPs and domains in the <span class="notranslate">White List</span>.
 
@@ -1995,6 +1985,10 @@ imunify360-agent whitelist [subject] [command] <value> [--option]
 |<span class="notranslate">`ip`</span>|Allows to manipulate with IPs in the <span class="notranslate">White List</span>.|
 |<span class="notranslate">`domain`</span>|Allows to manipulate with domains in the <span class="notranslate">White List</span>.|
 |<span class="notranslate">`country`</span>|Allows to manipulate with countries in the <span class="notranslate">White List</span>.|
+
+:::warning Note
+A domain whitelisting will affect only greylisted IPs. It will not affect ModSecurity rules and blacklisted IPs.
+:::
 
 <span class="notranslate">`command`</span> is a second positional argument and can be:
 
@@ -2149,5 +2143,16 @@ imunify360-agent whitelisted-crawlers [command]
 
    </div>
 
+Example of successful output:
+
+<div class="notranslate">
+
+```
+DESCRIPTION  DOMAINS                                       ID
+Google       ['.google.com', '.googlebot.com']             1 
+Yandex       ['.yandex.ru', '.yandex.com', '.yandex.net']  2 
+```
+
+</div>
 
 <Disqus/>
