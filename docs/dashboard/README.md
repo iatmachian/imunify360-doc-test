@@ -74,6 +74,10 @@ Rejected recommendations will not appear again for a while.
 If you do not want to use the recommendations you can disable Imunify Advisor via the [config file](/config_file_description/).
 :::
 
+:::tip Note
+If your server's settings differ from the recommended, the Imunify Advisor will pop up again to display the settings.
+:::
+
 
 <div class="notranslate">
 
