@@ -9,6 +9,11 @@ In the config file it is possible to set up Imunify360 configuration. The follow
 
 <table>
 <tr>
+<th colspan="2" align="left"><span class="notranslate">advisor:</span></th>
+</tr>
+<tr>
+<td width="250px;"><span class="notranslate">enabled: True</span></td><td># enable (<span class="notranslate">True</span> - the default value) or disable (<span class="notranslate">False</span>) the Imunify Advisor for 30 days.</td></tr>
+<tr>
 <th colspan="2" align="left"><span class="notranslate">AUTO_WHITELIST:</span></th>
 </tr>
 <tr>

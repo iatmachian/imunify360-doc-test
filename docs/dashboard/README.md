@@ -58,6 +58,21 @@ Click <span class="notranslate">_Dashboard_</span> tab to display an overview of
 
 Here you can see notifications about server security and Imunify360 configuration, along with recommendations for making server security effective and proactive.
 
+### Imunify Advisor <Badge text="beta"/> <Badge text="5.2"/>
+
+The Imunify Advisor checks your server’s current settings, then provides a list of optimal settings for your individual server. 
+
+![](/images/Imunify_Advisor.png)
+
+A dialog box pops up to display the settings.
+
+Tick or untick checkboxes and click <span class="notranslate">_Apply_</span> to apply settings.
+
+:::tip Note
+If you do not want to use the recommended settings you can disable Imunify Advisor for 30 days via the [config file](/config_file_description/).
+:::
+
+
 <div class="notranslate">
 
 ### Multi-server Dashboard
@@ -173,6 +188,7 @@ This chart lists the number of cleaned malicious files.
 :::tip Note
 Some charts may be hidden if no alerts of a particular type were recorded within the selected time interval.
 :::
+
 
 ## Incidents
 
@@ -1386,7 +1402,7 @@ Click <span class="notranslate">_Save changes_</span> button on the bottom of th
 In this section it is possible to control what kind of incidents will be shown on the [Incidents page](/dashboard/#incidents).
 Move the slider to change your preferences.
 
-There are 15 available levels related to [OSSEC](http://ossec-docs.readthedocs.io/en/latest/manual/rules-decoders/rule-levels.html) and [ModSecurity](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual#severity) severity levels:
+There are 15 available levels related to [OSSEC](https://www.ossec.net/docs/manual/rules-decoders/rule-levels.html) and [ModSecurity](https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual#severity) severity levels:
 
 | |  | |
 |-|--|-|
@@ -1494,6 +1510,10 @@ Click <span class="notranslate">_Save changes_</span> button at the bottom of th
 
 
 #### FTP brute-force attack protection 
+
+:::tip Note
+This protection type is available only in cPanel/WHM for proftpd and pureftpd daemons.
+:::
 
 Tick the <span class="notranslate">_FTP brute-force attack protection_</span> checkbox to enable protection for ftpd server against FTP brute-force attacks. It uses a time-proven algorithm that we’ve been using in the SSH PAM extension.
 	
@@ -1940,7 +1960,7 @@ When the **Malware Scanner is not available** for end-user, it doesn't exclude u
 
 Click <span class="notranslate">_Add_</span> to apply changes.
 
-See also: [CLI](http://localhost:8080/command_line_interface/). 
+See also: [CLI](/command_line_interface/). 
 
 ### Attributions
 
