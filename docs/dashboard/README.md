@@ -64,15 +64,14 @@ The Imunify Advisor checks your server’s current settings, then provides a lis
 
 ![](/images/Imunify_Advisor.png)
 
-A dialog box pops up to display the settings.
+A dialog box pops up to display recommendations.
 
-You can tick or untick checkboxes. Click <span class="notranslate">_Apply_</span> to apply settings.
-If you apply all recommended settings, the Imunify Advisor will be automatically disabled for 30 days.
+You can accept or reject them (by unchecking a corresponding checkbox) and apply settings by clicking <span class="notranslate">_Apply_</span>.
 
-If your server's settings differ from the recommended, the Imunify Advisor will pop up again to display the settings.
+Rejected recommendations will not appear again for a while.
 
 :::tip Note
-If you do not want to use the recommended settings you can disable Imunify Advisor via the [config file](/config_file_description/).
+If you do not want to use the recommendations you can disable Imunify Advisor via the [config file](/config_file_description/).
 :::
 
 
